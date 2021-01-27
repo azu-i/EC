@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +9,17 @@
 <body>
   <h1>Noodle Shop</h1>
   <table>
-    <?php foreach ($goods as $g) { ?>
+    <?php foreach ($goods as $good) { ?>
       <tr>
         <td>
-          <?php echo img_tag($g['id']) ?>
+          <?php echo img_tag($good->id()) ?>
         </td>
         <td>
-          <p class="goods"><?php echo $g['name'] ?></p>
-          <p><?php echo nl2br($g['comment']) ?></p>
+          <p class="goods"><?php echo $good->name() ?></p>
+          <p><?php echo nl2br($good->comment()) ?></p>
         </td>
         <td width="80">
-          <p><?php echo $g['price'] ?> 円</p>
+          <p><?php echo $good->getPriceWithUnit() ?></p>
           <form action="cart.php" method="post">
             <select name="num">
               <?php
@@ -29,7 +28,7 @@
               }
               ?>
             </select>
-            <input type="hidden" name="id" value="<?php echo $g['id'] ?>">
+            <input type="hidden" name="id" value="<?php echo $good->id() ?>">
             <input type="submit" name="submit" value="カートへ">
           </form>
         </td>
