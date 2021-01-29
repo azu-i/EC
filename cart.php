@@ -1,5 +1,6 @@
 <?php
   require 'common.php';
+  require 'Price.php';
   $rows = [];
   $sum = 0;
   $pdo = connect();
@@ -16,8 +17,21 @@
     $st->closeCursor();
     $row['num'] = strip_tags($num);
     $sum += $num * $row['price'];
-    $rows[] = $row;
+    $sum_price = new Price($sum);
+    $cart_price = new Price($row['price']);
+    
+    $rows[] = new Good(
+      $row['id'],
+      $row['name'],
+      $cart_price,
+      $row['comment']
+    );
+
+    $row[] = $row['num'];
+
+    
   }
+   
 
   require 't_cart.php';
 ?>

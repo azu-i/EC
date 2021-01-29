@@ -12,7 +12,7 @@
     購入完了しました。
   </div>
   <div class="base">
-    <a href="index.php">お買い物に戻る</a>　
+    <a href="index.php">お買い物に戻る</a>
   </div>
 </body>
 </html>

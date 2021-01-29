@@ -15,7 +15,7 @@
       $goods[] = new Good(
         $goodFromTable['id'], 
         $goodFromTable['name'], 
-        $price, 
+        $price,
         $goodFromTable['comment']
       );
     }
