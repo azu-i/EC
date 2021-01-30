@@ -20,17 +20,22 @@
     <?php foreach ($rows as $row) { ?>
       <tr>
         <td><?php echo $row->name() ?></td>
-        <td><?php echo $row->getPriceWithUnit()?></td>
-        <td><?php echo $row['num'] ?></td>
-        <td><?php echo $row['price'] * $row['num'] ?>円</td>
+        <td><?php echo $row->price() ?></td>
+        <td><?php echo $row->num() ?></td>
+        <td><?php echo $row->sum_goods_price() ?>円</td>
       </tr>
     <?php } ?>
-    <tr><td colspan="2"></td><td><strong>合計</strong></td><td><?php echo $sum_price ?></td></tr>
+    <tr>
+      <td colspan="2"></td>
+      <td><strong>合計</strong></td>
+      <td><?php echo $row->sum_price() ?>円</td>
+    </tr>
   </table>
   <div class="base">
-      <a href="index.php">お買い物に戻る</a>
-      <a href="cart_empty.php">カートを空にする</a>
-      <a href="buy.php">購入する</a>
+    <a href="index.php">お買い物に戻る</a>
+    <a href="cart_empty.php">カートを空にする</a>
+    <a href="buy.php">購入する</a>
   </div>
 </body>
+
 </html>
