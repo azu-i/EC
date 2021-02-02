@@ -12,9 +12,6 @@
     <?php foreach ($goods as $good) { ?>
       <tr>
         <td>
-          <?php echo img_tag($good->id()) ?>
-        </td>
-        <td>
           <p class="goods"><?php echo $good->name() ?></p>
           <p><?php echo nl2br($good->comment()) ?></p>
         </td>

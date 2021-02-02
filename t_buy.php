@@ -26,12 +26,17 @@
         <input type="text" name="tel" value="<?php echo $tel ?>">
       </p>
       <p>
+        支払い方法<br>
+        <input type="radio" name="payment" value="コンビニ支払い">コンビニ支払い
+        <input type="radio" name="payment" value="代金引換">代金引換
+      </p>
+      <p>
         <input type="submit" name="submit" value="購入">
       </p>
     </form>
   </div>
   <div class="base">
-    <a href="index.php">お買い物に戻る</a>　
+    <a href="index.php">お買い物に戻る</a>
     <a href="cart.php">カートに戻る</a>
   </div>
 </body>

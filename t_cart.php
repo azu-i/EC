@@ -28,7 +28,7 @@
     <tr>
       <td colspan="2"></td>
       <td><strong>合計</strong></td>
-      <td><?php echo $row->sum_price() ?>円</td>
+      <td><?php echo $row->sum_cart() ?>円</td>
     </tr>
   </table>
   <div class="base">

@@ -23,18 +23,17 @@
       $sum_goods = $row['price'] * $row['num'];
       $sum += $num * $row['price'];
 
-      $price = new Price($row['price']);
-      $sum_goods_price = new Price($sum_goods);
-      $sum_cart = new Price($sum);
+      // $price = new Price($row['price']);
+      // $sum_goods_price = new Price($sum_goods);
+      // $sum_cart = new Price($sum);
       
       $rows[] = new Cart(
         $row['name'],
-        $price,
-        $sum_goods_price,
-        $sum_cart,
+        $row['price'],
+        $sum_goods,
+        $sum,
         $row['num']
       );
-      
     }
 
   } catch (Exception $e) {

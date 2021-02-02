@@ -1,15 +1,18 @@
 <?php
 require 'common.php';
-$error = $name = $address = $tel = '';
+require 'cart_index.php';
+$error = $name = $address = $tel = $payment= '';
 
 if (@$_POST['submit']) {
   $name = htmlspecialchars($_POST['name']);
   $address = htmlspecialchars($_POST['address']);
   $tel = htmlspecialchars($_POST['tel']);
+  $payment = htmlspecialchars($_POST['payment']); 
   if (!$name) $error .= 'お名前を入力して下さい<br>';
   if (!$address) $error .= 'ご住所を入力して下さい<br>';
   if (!$tel) $error .= '電話番号を入力して下さい<br>';
   if (preg_match('/[^\d-]/', $tel)) $error .= '電話番号が正しくありません。<br>';
+  if (!$payment) $error .= '支払い方法を入力して下さい<br>';
   if (!$error) {
     $pdo = connect();
     $body = "商品が購入されました。\n\n"
