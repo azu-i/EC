@@ -1,6 +1,6 @@
 <?php
-  require 'Price.php';
-  require 'Good.php';
+  require 'domain/Price.php';
+  require 'domain/Goods.php';
   require 'common.php';
 
   $pdo = connect();
@@ -12,7 +12,7 @@
     foreach ($goodsFromTable as $goodFromTable) {
       $price = new Price($goodFromTable['price']);
 
-      $goods[] = new Good(
+      $goods[] = new Goods(
         $goodFromTable['id'], 
         $goodFromTable['name'], 
         $price,

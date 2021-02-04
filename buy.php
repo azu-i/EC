@@ -1,6 +1,6 @@
 <?php
 require 'common.php';
-require 'cart_index.php';
+require 'domain/Cart.php';
 $error = $name = $address = $tel = $payment= '';
 
 if (@$_POST['submit']) {

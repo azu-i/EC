@@ -17,7 +17,7 @@
         </td>
         <td width="80">
           <p><?php echo $good->getPriceWithUnit() ?></p>
-          <form action="cart.php" method="post">
+          <form action="cart_index.php" method="post">
             <select name="num">
               <?php
               for ($i = 0; $i <= 9; $i++) {

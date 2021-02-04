@@ -1,6 +1,6 @@
 <?php
 
-class Good
+class Goods
 {
   private $id;
   private $name;

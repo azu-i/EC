@@ -1,49 +1,38 @@
 <?php
+ini_set('display_errors', "On");
 
-class Cart
-{
-  private $name;
-  private $price;
-  private $sum_goods_price;
-  private $sum_cart;
-  private $num;
+require 'domain/Price.php';
+require 'domain/Goods.php';
+require 'domain/CartItem.php';
+require 'domain/Cart.php';
+require 'common.php';
 
-  public function __construct($name, $price, $sum_goods_price, $sum_cart,$num)
-  {
-   if(empty($name)  || empty($num) || empty($sum_goods_price) || empty($sum_cart)){
-      throw new Exception('足りていないパラメーターがあります');
-   } 
-   $this->name = $name;
-   $this->price = $price;
-   $this->sum_goods_price = $sum_goods_price;
-   $this->sum_cart = $sum_cart;
-   $this->num = $num;
-  }
+$pdo = connect();
 
-  public function name()
-  {
-    return $this->name;
-  }
-
-  public function price()
-  {
-    return $this->price;
-  }
-
-  public function sum_goods_price()
-  {
-    return $this->sum_goods_price;
-  }
-
-  public function sum_cart()
-  {
-    return $this->sum_cart;
-  }
-
-  public function num()
-  {
-    return $this->num;
-  }
-
-
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+if (@$_POST['submit']) {
+  @$_SESSION['cart'][$_POST['id']] += $_POST['num'];
 }
+
+$cart = new Cart();
+
+try {
+  foreach ($_SESSION['cart'] as $code => $num) {
+    $st = $pdo->prepare("SELECT * FROM goods WHERE id = ?");
+    $st->execute(array($code));
+    $row = $st->fetch();
+    $st->closeCursor();
+
+    $price = new Price($row['price']);
+    $goods = new Goods($row['id'], $row['name'], $price, $row['comment']);
+    $cart_item = new CartItem($goods, strip_tags($num));
+      
+    $cart->append_cart_item($cart_item);
+  }
+
+} catch (Exception $e) {
+  echo $e->getMessage();
+  die;
+}
+
+require 't_cart.php';
