@@ -10,9 +10,6 @@ require 'common.php';
 $pdo = connect();
 
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
-if (@$_POST['submit']) {
-  @$_SESSION['cart'][$_POST['id']] += $_POST['num'];
-}
 
 $cart = new Cart();
 
@@ -36,3 +33,5 @@ try {
 }
 
 require 't_cart.php';
+// require 'cart_stock.php';
+
