@@ -1,6 +1,9 @@
 <?php
-require 'Price.php';
-require 'Good.php';
+ini_set('display_errors', "On");
+
+require '../domain/Price.php';
+require '../domain/Goods.php';
+require '../domain/Comment.php';
 require 'common.php';
 
 $pdo = connect();
@@ -11,12 +14,13 @@ $goods = [];
 try {
   foreach ($goodsFromTable as $goodFromTable) {
     $price = new Price($goodFromTable['price']);
+    $comment = new Comment($goodFromTable['comment']);
 
-    $goods[] = new Good(
+    $goods[] = new Goods(
       $goodFromTable['id'],
       $goodFromTable['name'],
       $price,
-      $goodFromTable['comment']
+      $comment
     );
   }
 } catch (Exception $e) {

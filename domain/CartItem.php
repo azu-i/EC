@@ -5,7 +5,7 @@ class CartItem
   private $goods;
   private $quantity;
 
-  public function __construct(Goods $goods, int $quantity)
+  public function __construct(Goods $goods, Quantity $quantity)
   {
     if (empty($quantity)) {
       throw new Exception('足りていないパラメーターがあります');
@@ -26,11 +26,11 @@ class CartItem
 
   public function quantity(): int
   {
-    return $this->quantity;
+    return $this->quantity->count();
   }
 
   public function sum_price(): int
   {
-    return $this->price() * $this->quantity;
+    return $this->price() * $this->quantity->count();
   }
 }

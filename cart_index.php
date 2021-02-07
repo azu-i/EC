@@ -5,6 +5,8 @@ require 'domain/Price.php';
 require 'domain/Goods.php';
 require 'domain/CartItem.php';
 require 'domain/Cart.php';
+require 'domain/Quantity.php';
+require 'domain/Comment.php';
 require 'common.php';
 
 $pdo = connect();
@@ -21,8 +23,11 @@ try {
     $st->closeCursor();
 
     $price = new Price($row['price']);
-    $goods = new Goods($row['id'], $row['name'], $price, $row['comment']);
-    $cart_item = new CartItem($goods, strip_tags($num));
+    $comment = new Comment($row['comment']);
+
+    $goods = new Goods($row['id'], $row['name'], $price, $comment);
+    $num = new Quantity(strip_tags($num));
+    $cart_item = new CartItem($goods, $num);
       
     $cart->append_cart_item($cart_item);
   }
@@ -33,5 +38,4 @@ try {
 }
 
 require 't_cart.php';
-// require 'cart_stock.php';
 

@@ -17,7 +17,7 @@
           <p><?php echo nl2br($good->comment()) ?></p>
         </td>
         <td width="80">
-          <p><?php echo $good->getPriceWithUnit() ?> 円</p>
+          <p><?php echo $good->getPriceWithUnit() ?></p>
           <p><a href="edit.php?id=<?php echo $good->id() ?>">修正</a></p>
           <p><a href="upload.php?id=<?php echo $good->id() ?>">画像</a></p>
           <p><a href="delete.php?id=<?php echo $good->id() ?>" onclick="return confirm('削除してよろしいですか？')">削除</a></p>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Noodle Shop</title>
@@ -31,6 +32,8 @@
         </td>
       </tr>
     <?php } ?>
+    <a href="admin/index.php">管理画面</a>
   </table>
 </body>
+
 </html>

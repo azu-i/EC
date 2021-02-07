@@ -7,7 +7,7 @@ class Goods
   private $price;
   private $comment;
 
-  public function __construct(int $id, string $name, Price $price, string $comment)
+  public function __construct(int $id, string $name, Price $price, Comment $comment)
   {
     if (empty($id) || empty($name) || empty($comment)) {
       throw new Exception('足りていないパラメーターがあります');
@@ -40,6 +40,6 @@ class Goods
 
   public function comment(): string
   {
-    return $this->comment;
+    return $this->comment->detail();
   }
 }
