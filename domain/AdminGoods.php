@@ -1,5 +1,5 @@
 <?php
-class InsertGoods
+class AdminGoods
 {
   private $name;
   private $comment;

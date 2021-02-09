@@ -1,28 +1,4 @@
 <?php
-// require '..common.php';
-// require '../domain/Comment.php';
-// require '../domain/Price.php';
-// require '../domain/InsertGoods.php';
-
-// // $error = $name = $comment = $price = '';
-
-// $pdo = connect();
-
-// if(@$_POST['submit']){
-//   $name = $_POST['name'];
-//   $comment = new Comment($_POST['comment']);
-//   $price = new Price($_POST['price']);
-//   $insertGoods = new InsertGoods(
-//     $name,
-//     $comment,
-//     $price
-//   );
-
-//   $pdo->query("INSERT INTO goods(name,comment,price) VALUES($insertGoods)");
-//   header('Location: index.php');
-// }
-
-// require 't_insert.php';
 require 'common.php';
 $error = $name = $comment = $price = '';
 $pdo = connect();

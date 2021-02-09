@@ -9,8 +9,11 @@ class Goods
 
   public function __construct(int $id, string $name, Price $price, Comment $comment)
   {
-    if (empty($id) || empty($name) || empty($comment)) {
-      throw new Exception('足りていないパラメーターがあります');
+    if (empty($id)) {
+      throw new Exception('IDが不適切です。');
+    }
+    if (empty($name)) {
+      throw new Exception('商品名が空です。');
     }
     $this->id = $id;
     $this->name = $name;
