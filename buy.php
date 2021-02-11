@@ -19,9 +19,9 @@ if (@$_POST['submit']) {
       . "お名前: $name\n"
       . "ご住所: $address\n"
       . "電話番号: $tel\n\n";
-    foreach ($_SESSION['cart'] as $code => $num) {
+    foreach ($_SESSION['cart'] as $id => $num) {
       $st = $pdo->prepare("SELECT * FROM goods WHERE id = ?");
-      $st->execute(array($code));
+      $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
       $body .= "商品名: {$row['name']}\n"

@@ -12,11 +12,11 @@ $pdo = connect();
 if (@$_POST['submit']) {
   try {
 
-    $code = $_POST['code'];
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $comment = new Comment($_POST['comment']);
     $price = new Price($_POST['price']);
-    $goods = new Goods($code, $name, $price, $comment);
+    $goods = new Goods($id, $name, $price, $comment);
 
     $name = $goods->name();
     $comment = $goods->comment();
@@ -26,13 +26,7 @@ if (@$_POST['submit']) {
     $sql = "UPDATE goods SET name='$name', comment='$comment', price=$price WHERE id=$id";
     $pdo->query($sql);
 
-    // $stmt = $pdo->prepare('UPDATE goods SET  name=? , comment=?, price=?, WHERE id=?');
-    // $stmt->bindParam(1, $name);
-    // $stmt->bindParam(2, $comment);
-    // $stmt->bindParam(3, $price);
-    // $stmt->bindParam(4, $id);
-    // $stmt->execute();
-    
+     
     header('Location: index.php');
     exit();
   } catch (Exception $e) {

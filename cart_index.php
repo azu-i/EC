@@ -16,9 +16,9 @@ if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = new Cart();
 
 try {
-  foreach ($_SESSION['cart'] as $code => $num) {
+  foreach ($_SESSION['cart'] as $id => $num) {
     $st = $pdo->prepare("SELECT * FROM goods WHERE id = ?");
-    $st->execute(array($code));
+    $st->execute(array($id));
     $row = $st->fetch();
     $st->closeCursor();
 

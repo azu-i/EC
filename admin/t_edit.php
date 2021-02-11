@@ -24,7 +24,7 @@
         <input type="text" name="price" value="<?php echo $goods->price() ?>">
       </p>
       <p>
-        <input type="hidden" name="code" value="<?php echo $goods->id() ?>">
+        <input type="hidden" name="id" value="<?php echo $goods->id() ?>">
         <input type="submit" name="submit" value="更新">
       </p>
     </form>
