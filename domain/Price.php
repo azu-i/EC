@@ -4,9 +4,9 @@ class Price
 {
   private $value;
 
-  public function __construct(int $value)
+  public function __construct($value)
   {
-    if ($value < 0) {
+    if ($value < 0 || empty($value)) {
       throw new Exception('金額は0円以上で入力してください');
     }
     $this->value = $value;

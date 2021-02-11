@@ -9,8 +9,8 @@
 
 <body>
   <div class="base">
-    <?php if ($error) echo "<span class=\"error\">$error</span>" ?>
-    <form action="edit.php" method="post">
+    <!-- <?php if ($error) echo "<span class=\"error\">$error</span>" ?> -->
+    <form action="edit_uplode.php" method="post">
       <p>
         商品名<br>
         <input type="text" name="name" value="<?php echo $goods->name() ?>">
