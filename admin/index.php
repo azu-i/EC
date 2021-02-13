@@ -4,9 +4,10 @@ ini_set('display_errors', "On");
 require '../domain/Price.php';
 require '../domain/Goods.php';
 require '../domain/Comment.php';
-require 'common.php';
+require '../domain/DAO.php';
 
-$pdo = connect();
+$dao = new DAO();
+$pdo = $dao->connect();
 $st = $pdo->query("SELECT * FROM goods");
 $goodsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
 

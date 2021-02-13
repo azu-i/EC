@@ -1,13 +1,14 @@
 <?php
-  require 'common.php';
+  require '../domain/DAO.php';
   require '../domain/Price.php';
   require '../domain/Goods.php';
   require '../domain/Comment.php';
 
   ini_set('display_errors', "On");
-
+  
   $error = '';
-  $pdo = connect();
+  $dao = new DAO();
+  $pdo = $dao->connect();
   try {
 
     $id = $_POST['id'];

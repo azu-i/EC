@@ -7,9 +7,10 @@ require 'domain/CartItem.php';
 require 'domain/Cart.php';
 require 'domain/Quantity.php';
 require 'domain/Comment.php';
-require 'common.php';
+require 'domain/DAO.php';
 
-$pdo = connect();
+$dao = new DAO();
+$pdo = $dao->connect();
 
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
@@ -21,17 +22,14 @@ try {
     $st->execute(array($id));
     $row = $st->fetch();
     $st->closeCursor();
-
     $price = new Price($row['price']);
     $comment = new Comment($row['comment']);
-
     $goods = new Goods($row['id'], $row['name'], $price, $comment);
     $num = new Quantity(strip_tags($num));
     $cart_item = new CartItem($goods, $num);
-      
+
     $cart->append_cart_item($cart_item);
   }
-
 } catch (Exception $e) {
   echo $e->getMessage();
   die;
@@ -39,3 +37,4 @@ try {
 
 require 't_cart.php';
 
+?>

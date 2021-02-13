@@ -25,7 +25,7 @@
     <?php } ?>
   </table>
   <div class="base">
-    <a href="insert.php">新規追加</a>
+    <a href="t_insert.php">新規追加</a>
     <a href="../index.php">サイト確認</a>
   </div>
 </body>

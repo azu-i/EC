@@ -1,12 +1,13 @@
 <?php
-require 'common.php';
 require '../domain/Price.php';
 require '../domain/Goods.php';
 require '../domain/Comment.php';
+require '../domain/DAO.php';
 
 ini_set('display_errors', "On");
 
-$pdo = connect();
+$dao = new DAO();
+$pdo = $dao->connect();
 
   $id = $_GET['id'];
   $st = $pdo->query("SELECT * FROM goods WHERE id=$id");

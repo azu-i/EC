@@ -1,20 +1,22 @@
 <?php
-require 'common.php';
-$error = $name = $comment = $price = '';
-$pdo = connect();
-if (@$_POST['submit']) {
+require '../domain/Price.php';
+require '../domain/Goods.php';
+require '../domain/Comment.php';
+require '../domain/DAO.php';
+
+ini_set('display_errors', "On");
+
+$dao = new DAO();
+$pdo = $dao->connect();
+  
   $name = $_POST['name'];
-  $comment = $_POST['comment'];
-  $price = $_POST['price'];
-  if (!$name) $error .= '商品名がありません。<br>';
-  if (!$comment) $error .= '商品説明がありません。<br>';
-  if (!$price) $error .= '価格がありません。<br>';
-  if (preg_match('/\D/', $price)) $error .= '価格が不正です。<br>';
-  if (!$error) {
-    $pdo->query("INSERT INTO goods(name,comment,price) VALUES('$name','$comment',$price)");
+  $comment = new Comment($_POST['comment']);
+  $price = new Price($_POST['price']);
+
+  $comment_insert = $comment->detail();
+  $price_insert = $price->value();
+
+    $pdo->query("INSERT INTO goods(name,comment,price) VALUES('$name','$comment_insert',$price_insert)");
     header('Location: index.php');
     exit();
-  }
-}
-require 't_insert.php';
 ?>
