@@ -11,6 +11,13 @@ class DAO
     
     return new PDO($dsn, $user, $pass);
   }
+
+  function delete($id)
+  {
+    $pdo = $this->connect();
+    $st = $pdo->query("DELETE FROM goods WHERE id={$id}");
+    return $st;
+  }
 }
 
 

@@ -11,8 +11,7 @@
 <body>
   <h1>購入</h1>
   <div class="base">
-    <?php if ($error) echo "<span class=\"error\">$error</span>" ?>
-    <form action="buy.php" method="post">
+    <form action="purchase.php" method="post">
       <p>
         お名前<br>
         <input type="text" name="name" value="<?php echo $name ?>">

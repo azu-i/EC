@@ -1,5 +1,6 @@
 <?php
-  require 'common.php';
-  $pdo = connect();
-  $st = $pdo->query("DELETE FROM goods WHERE id={$_GET['id']}");
+  require '../domain/DAO.php';
+  $dao = new DAO();
+  $id = $_GET['id'];
+  $delete = $dao->delete($id);
   header('Location: index.php');

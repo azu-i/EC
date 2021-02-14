@@ -34,7 +34,7 @@
   <div class="base">
     <a href="index.php">お買い物に戻る</a><br>
     <a href="cart_empty.php">カートを空にする</a><br>
-    <a href="buy.php">購入する</a>
+    <a href="purchase.php">購入する</a>
   </div>
 </body>
 
