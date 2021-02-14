@@ -3,10 +3,10 @@ class Purchase
 {
   private $name;
   private $address;
-  private $tel;
+  private $tell;
   private $payment;
 
-  public function __construct(string $name, string $address, int $tel, string $payment)
+  public function __construct(string $name, string $address, int $tell, string $payment)
   {
     if (empty($name)) {
       throw new Exception('名前が未入力です。');
@@ -14,7 +14,7 @@ class Purchase
     if (empty($address)) {
       throw new Exception('住所が未入力です。');
     }
-    if (empty($tel)) {
+    if (empty($tell)) {
       throw new Exception('電話番号が未入力です。');
     }
     if (empty($payment)) {
@@ -22,7 +22,7 @@ class Purchase
     }
     $this->name = $name;
     $this->address = $address;
-    $this->tel = $tel;
+    $this->tell = $tell;
     $this->payment = $payment; 
   }
 
@@ -36,9 +36,9 @@ class Purchase
     return $this->address;
   }
 
-  public function tel()
+  public function tell()
   {
-    return $this->tel;
+    return $this->tell;
   }
 
   public function payment()

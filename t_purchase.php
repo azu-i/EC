@@ -14,15 +14,15 @@
     <form action="purchase.php" method="post">
       <p>
         お名前<br>
-        <input type="text" name="name" value="<?php echo $name ?>">
+        <input type="text" name="name">
       </p>
       <p>
         ご住所<br>
-        <input type="text" name="address" size="60" value="<?php echo $address ?>">
+        <input type="text" name="address" size="60">
       </p>
       <p>
         電話番号<br>
-        <input type="text" name="tel" value="<?php echo $tel ?>">
+        <input type="text" name="tel" >
       </p>
       <p>
         支払い方法<br>
