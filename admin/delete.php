@@ -1,6 +1,7 @@
 <?php
-  require '../domain/DAO.php';
-  $dao = new DAO();
+  require '../domain/GoodsDao.php';
+  $goodsDao = new GoodsDao();
+  session_start(); 
   $id = $_GET['id'];
-  $delete = $dao->delete($id);
+  $goodsDao->delete($id);
   header('Location: index.php');

@@ -1,23 +1,18 @@
 <?php 
 
-class DAO
+class Dao
 {
-  function connect()
+  const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
+  const USER = "root";
+  const PASS = "root";
+
+  private $pdo;
+
+  public function __construct()
   {
-    session_start(); 
-    $dsn = "mysql:host=localhost;dbname=shop;charset=utf8";
-    $user = "root";
-    $pass = "root";
-    
-    return new PDO($dsn, $user, $pass);
+    $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
   }
 
-  function delete($id)
-  {
-    $pdo = $this->connect();
-    $st = $pdo->query("DELETE FROM goods WHERE id={$id}");
-    return $st;
-  }
 }
 
 

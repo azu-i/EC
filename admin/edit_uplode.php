@@ -1,14 +1,14 @@
 <?php
-  require '../domain/DAO.php';
   require '../domain/Price.php';
   require '../domain/Goods.php';
   require '../domain/Comment.php';
+  require '../domain/GoodsDao.php';
 
   ini_set('display_errors', "On");
   
   $error = '';
-  $dao = new DAO();
-  $pdo = $dao->connect();
+  $goodsDao = new GoodsDao();
+ 
   try {
 
     $id = $_POST['id'];
@@ -24,7 +24,7 @@
     $id = $goods->id();
 
     $sql = "UPDATE goods SET name='$name', comment='$comment', price=$price WHERE id=$id";
-    $pdo->query($sql);
+    $dao->query($sql);
 
 
     header('Location: index.php');

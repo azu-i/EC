@@ -7,11 +7,11 @@ require 'domain/CartItem.php';
 require 'domain/Cart.php';
 require 'domain/Quantity.php';
 require 'domain/Comment.php';
-require 'domain/DAO.php';
+require 'domain/GoodsDao.php';
 
-$dao = new DAO();
-$pdo = $dao->connect();
+$goodsDao = new GoodsDao();
 
+session_start(); 
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
 $cart = new Cart();
