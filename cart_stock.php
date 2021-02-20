@@ -1,8 +1,9 @@
 <?php
-require 'domain/DAO.php';
+require 'domain/GoodsDao.php';
 
-$dao = new DAO();
-$pdo = $dao->connect();
+$goodsDao = new GoodsDao();
+session_start();
+
 
 if (@$_POST['submit']) {
   @$_SESSION['cart'][$_POST['id']] += $_POST['num'];

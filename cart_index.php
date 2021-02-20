@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors', "On");
 
 require 'domain/Price.php';
 require 'domain/Goods.php';
@@ -9,16 +8,17 @@ require 'domain/Quantity.php';
 require 'domain/Comment.php';
 require 'domain/GoodsDao.php';
 
+ini_set('display_errors', "On");
 $goodsDao = new GoodsDao();
-
+$goodsDao->pdo();
 session_start(); 
-if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 
+if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = new Cart();
 
 try {
   foreach ($_SESSION['cart'] as $id => $num) {
-    $st = $pdo->prepare("SELECT * FROM goods WHERE id = ?");
+    $st = $goodsDao->pdo()->prepare("SELECT * FROM goods WHERE id = ?");
     $st->execute(array($id));
     $row = $st->fetch();
     $st->closeCursor();

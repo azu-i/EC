@@ -33,6 +33,7 @@
       </tr>
     <?php } ?>
     <a href="admin/index.php">管理画面</a>
+    <a href="cart_empty.php">カートを空にする</a>
   </table>
 </body>
 

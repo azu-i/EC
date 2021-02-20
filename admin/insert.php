@@ -6,16 +6,12 @@ require '../domain/GoodsDao.php';
 
 ini_set('display_errors', "On");
 
-$dao = new GoodsDao();
-  
-  $name = $_POST['name'];
-  $comment = new Comment($_POST['comment']);
-  $price = new Price($_POST['price']);
+$goodsDao = new GoodsDao();
 
-  $comment_insert = $comment->detail();
-  $price_insert = $price->value();
+$name = $_POST['name'];
+$comment = new Comment($_POST['comment']);
+$price = new Price($_POST['price']);
 
-    $pdo->query("INSERT INTO goods(name,comment,price) VALUES('$name','$comment_insert',$price_insert)");
-    header('Location: index.php');
-    exit();
-?>
+$goodsDao->goodInsert($name, $comment->detail(), $price->value());
+header('Location: index.php');
+exit();
