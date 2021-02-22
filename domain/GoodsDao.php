@@ -42,9 +42,8 @@ class GoodsDao
     $name = $goods->name();
     $price = $goods->price();
     $comment = $goods->comment();
-
-
     $st = $this->pdo->query("UPDATE goods SET name='$name', comment='$comment', price=$price WHERE id= $id");
+
     return $st;
   }
 
@@ -106,23 +105,19 @@ class GoodsDao
     return $goods;
   }
 
-
-  public function searchCartItems(array $cart_content)
+  public function searchCartItems(array $cart_content, Cart $cart)
   {
-    $cart = new Cart();
+   
     foreach ($cart_content as $id => $num) {
       $st = $this->pdo->prepare("SELECT * FROM goods WHERE id = ?");
       $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
-      $price = new Price($row['price']);
-      $comment = new Comment($row['comment']);
-      $goods = new Goods($row['id'], $row['name'], $price, $comment);
+      $goods = $this->newGoods($row['id'], $row['name'], $row['price'],$row['comment']);
       $num = new Quantity(strip_tags($num));
       $cart_item = new CartItem($goods, $num);
 
       $cart->append_cart_item($cart_item);
-
       return $cart;
     }
   }

@@ -1,7 +1,6 @@
 <?php
-require 'domain/DAO.php';
+require 'domain/GoodsDao.php';
 require 'domain/Purchase.php';
-require 'domain/Cart.php';
 ini_set('display_errors', "On");
 
 if (@$_POST['submit']) {
@@ -21,8 +20,9 @@ if (@$_POST['submit']) {
   $address_buyer = $purchase_data->address();
   $tell_buyer = $purchase_data->tell();
   $payment_buyer = $purchase_data->payment();
-    $dao = new DAO();
-    $pdo = $dao->connect();
+    $goodsDao = new GoodsDao();
+    $goodsDao->pdo();
+    session_start();
     $_SESSION['cart'] = null;
     require 't_purchase_complete.php';
     exit();

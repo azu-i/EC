@@ -26,22 +26,22 @@ class Purchase
     $this->payment = $payment; 
   }
 
-  public function name()
+  public function name(): string
   {
     return $this->name;
   }
 
-  public function address()
+  public function address(): string
   {
     return $this->address;
   }
 
-  public function tell()
+  public function tell(): string
   {
     return $this->tell;
   }
 
-  public function payment()
+  public function payment(): int
   {
     return $this->payment;
   }

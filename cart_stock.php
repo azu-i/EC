@@ -2,6 +2,7 @@
 require 'domain/GoodsDao.php';
 
 $goodsDao = new GoodsDao();
+$goodsDao->pdo();
 session_start();
 
 
