@@ -20,7 +20,7 @@
     <?php foreach ($cart->cart_items() as $cart_item) { ?>
       <tr>
         <td><?php echo $cart_item->name() ?></td>
-        <td><?php echo $cart_item->price() ?></td>
+        <td><?php echo $cart_item->price() ?>円</td>
         <td><?php echo $cart_item->quantity() ?></td>
         <td><?php echo $cart_item->sum_price() ?>円</td>
       </tr>

@@ -1,10 +1,14 @@
 <?php
-require_once 'Price.php';
-require_once 'Goods.php';
-require_once 'CartItem.php';
-require_once 'Cart.php';
-require_once 'Quantity.php';
-require_once 'Comment.php';
+// require_once 'Price.php';
+// require_once 'Goods.php';
+// require_once 'CartItem.php';
+// require_once 'Cart.php';
+// require_once 'Quantity.php';
+// require_once 'Comment.php';
+require_once 'GoodsFactory.php';
+require_once 'CartItemFactory.php';
+require_once 'QuantityFactory.php';
+ini_set('display_errors', "On");
 
 class GoodsDao
 {
@@ -37,7 +41,7 @@ class GoodsDao
   //商品情報編集
   public function editUplode(int $id, string $name, int $price, string $comment)
   {
-    $goods = $this->newGoods($id, $name, $price, $comment);
+    $goods = GoodsFactory::create($id, $name, $price, $comment);
     $id = $goods->id();
     $name = $goods->name();
     $price = $goods->price();
@@ -62,7 +66,7 @@ class GoodsDao
   //登録されている商品を全てデータベースから取ってくる
   public function findAll(): array
   {
-    $st = $this->pdo->query("SELECT * FROM goods");
+    $st = $this->pdo()->query("SELECT * FROM goods");
     $goodsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
     $goods = $this->convertToGoodsEntities($goodsFromTable);
     return $goods;
@@ -73,7 +77,7 @@ class GoodsDao
     $st = $this->pdo->query("SELECT * FROM goods WHERE id = $id");
     $row = $st->fetch();
 
-    $goods = $this->newGoods(
+    $goods = GoodsFactory::create(
       $id,
       $row['name'],
       $row['price'],
@@ -87,7 +91,7 @@ class GoodsDao
     $goods = [];
     foreach ($goodsFromTable as $goodFromTable) {
 
-      $goods[] = $this->newGoods(
+      $goods[] = GoodsFactory::create(
         $goodFromTable['id'],
         $goodFromTable['name'],
         $goodFromTable['price'],
@@ -97,25 +101,18 @@ class GoodsDao
     return $goods;
   }
 
-  private function newGoods(int $id, string $name, int $price, string $comment): Goods
-  {
-    $price = new Price($price);
-    $comment = new Comment($comment);
-    $goods = new Goods($id, $name, $price, $comment);
-    return $goods;
-  }
-
   public function searchCartItems(array $cart_content, Cart $cart)
   {
-   
+
     foreach ($cart_content as $id => $num) {
       $st = $this->pdo->prepare("SELECT * FROM goods WHERE id = ?");
       $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
-      $goods = $this->newGoods($row['id'], $row['name'], $row['price'],$row['comment']);
-      $num = new Quantity(strip_tags($num));
-      $cart_item = new CartItem($goods, $num);
+      $goods = GoodsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
+      // $num = $this->goodsFactory->quantity(strip_tags($num));
+      $num = QuantityFactory::create( strip_tags($num))->count();
+      $cart_item = CartItemFactory::create($goods, $num);
 
       $cart->append_cart_item($cart_item);
       return $cart;
