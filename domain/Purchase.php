@@ -6,7 +6,7 @@ class Purchase
   private $tell;
   private $payment;
 
-  public function __construct(string $name, string $address, int $tell, string $payment)
+  public function __construct(string $name, string $address, string $tell, string $payment)
   {
     if (empty($name)) {
       throw new Exception('名前が未入力です。');
@@ -41,7 +41,7 @@ class Purchase
     return $this->tell;
   }
 
-  public function payment(): int
+  public function payment(): string
   {
     return $this->payment;
   }

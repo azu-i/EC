@@ -1,10 +1,4 @@
 <?php
-// require_once 'Price.php';
-// require_once 'Goods.php';
-// require_once 'CartItem.php';
-// require_once 'Cart.php';
-// require_once 'Quantity.php';
-// require_once 'Comment.php';
 require_once 'GoodsFactory.php';
 require_once 'CartItemFactory.php';
 require_once 'QuantityFactory.php';
@@ -71,6 +65,7 @@ class GoodsDao
     $goods = $this->convertToGoodsEntities($goodsFromTable);
     return $goods;
   }
+  
 
   public function selectItem(int $id): Goods
   {
@@ -110,7 +105,6 @@ class GoodsDao
       $row = $st->fetch();
       $st->closeCursor();
       $goods = GoodsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
-      // $num = $this->goodsFactory->quantity(strip_tags($num));
       $num = QuantityFactory::create( strip_tags($num))->count();
       $cart_item = CartItemFactory::create($goods, $num);
 

@@ -1,9 +1,7 @@
 <?php
+
 ini_set('display_errors', "On");
-
-
-require '../domain/GoodsDao.php';
-
+require_once '../domain/GoodsDao.php';
 
 try {
   $goodsDao = new GoodsDao();

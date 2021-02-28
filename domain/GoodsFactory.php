@@ -1,7 +1,7 @@
 <?php
-require_once 'domain/PriceFactory.php';
-require_once 'domain/Goods.php';
-require_once 'domain/CommentFactory.php';
+require_once 'PriceFactory.php';
+require_once 'Goods.php';
+require_once 'CommentFactory.php';
 ini_set('display_errors', "On");
 
 class GoodsFactory
