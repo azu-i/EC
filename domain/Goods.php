@@ -14,6 +14,7 @@ class Goods
     }
     if (empty($name)) {
       throw new Exception('商品名が空です。');
+      
     }
     $this->id = $id;
     $this->name = $name;
