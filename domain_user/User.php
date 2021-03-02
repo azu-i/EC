@@ -1,4 +1,6 @@
 <?php
+require_once './UserName.php';
+require_once './Email.php';
 
 class User
 {
@@ -6,14 +8,8 @@ class User
   private $email;
   private $password;
 
-  public function __construct(string $name, string $email,string $password)
+  public function __construct(UserName $name, Email $email, string $password)
   {
-    if (empty($name)) {
-      throw new Exception('ユーザー名が未入力です。');
-    }
-    if (empty($email)) {
-      throw new Exception('メールアドレスが未入力です。');
-    }
     if (empty($password)) {
       throw new Exception('パスワードが未入力です。');
     }
@@ -22,18 +18,25 @@ class User
     $this->password = $password;
   }
  
-  public function name()
+  public function name(): UserName
   {
     return $this->name;
   }
 
-  public function email()
+  public function email(): Email
   {
     return $this->email;
   }
 
-  public function password()
+  public function password(): string
   {
     return $this->password;
+  }
+
+  public function extractParamsForRegister(): array
+  {
+    $name = $this->name->user_name();
+    $email = $this->email->mail();
+    return [$name, $email, $this->password];
   }
 }

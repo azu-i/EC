@@ -1,15 +1,15 @@
 <?php
 require_once '../domain_user/UserDao.php';
-require_once '../domain_user/UserEmailFactory.php';
-require_once '../domain_user/UserNameFactory.php';
+require_once '../domain_user/UserFactory.php';
+
 ini_set('display_errors', "On");
 
-$userDao = new UserDao();
-
-$name = UserNameFactory::create($_POST['name'])->user_name();
-$email = UserEmailFactory::create($_POST['email'])->mail();
+$name = $_POST['name'];
+$email = $_POST['email'];
 $password = $_POST['password'];
+$user = UserFactory::create($name, $email, $password);
 
-$userDao->userInsert($name, $email, $password);
+$userDao = new UserDao();
+$userDao->insert($user);
+
 header('Location: ../index.php');
-?>

@@ -1,4 +1,6 @@
 <?php
+require_once './User.php';
+
 ini_set('display_errors', "On");
 
 class UserDao
@@ -19,13 +21,13 @@ class UserDao
     return $this->pdo;
   }
 
-  public function userInsert(string $name, string $email, string $password)
+  public function insert(User $user)
   {
-    $this->pdo()->query("INSERT INTO user VALUES(NULL,'$name', '$email', '$password',CURRENT_TIMESTAMP)");
+    [$name, $email, $password] = $user->extractParamsForRegister();
+    $sql = "INSERT INTO user VALUES(NULL, '$name', '$email', '$password', CURRENT_TIMESTAMP)";
+    var_dump($sql);
+    $this->pdo->query($sql);
   }
 
   
 }
-
-
-?>

@@ -11,7 +11,7 @@ class GoodsFactory
     return new Goods(
       $id,
       $name,
-      PriceFactory::create($price),
+      new Price($price),
       CommentFactory::create($comment)
     );
   }
