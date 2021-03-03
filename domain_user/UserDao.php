@@ -1,5 +1,5 @@
 <?php
-require_once './User.php';
+require_once 'User.php';
 
 ini_set('display_errors', "On");
 
@@ -25,8 +25,15 @@ class UserDao
   {
     [$name, $email, $password] = $user->extractParamsForRegister();
     $sql = "INSERT INTO user VALUES(NULL, '$name', '$email', '$password', CURRENT_TIMESTAMP)";
-    var_dump($sql);
     $this->pdo->query($sql);
+  }
+
+  public function login(string $email, string $password)
+  {
+    $select = "SELECT * FROM members WHERE mail = '$email' AND pass = '$password'";
+    $search_account = $this->pdo->query($select);
+    $search_account->execute();
+    
   }
 
   

@@ -1,4 +1,5 @@
-<?php 
+<?php
+ini_set('display_errors', "On");
 class UserName
 {
   private $user_name;

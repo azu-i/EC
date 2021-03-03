@@ -1,14 +1,14 @@
 <?php
-require_once './UserName.php';
-require_once './Email.php';
-
+require_once 'UserName.php';
+require_once 'Email.php';
+ini_set('display_errors', "On");
 class User
 {
   private $name;
   private $email;
   private $password;
 
-  public function __construct(UserName $name, Email $email, string $password)
+  public function __construct(UserName $name, Email $email, UserPassword $password)
   {
     if (empty($password)) {
       throw new Exception('パスワードが未入力です。');
@@ -28,7 +28,7 @@ class User
     return $this->email;
   }
 
-  public function password(): string
+  public function password(): UserPassword
   {
     return $this->password;
   }
@@ -37,6 +37,7 @@ class User
   {
     $name = $this->name->user_name();
     $email = $this->email->mail();
-    return [$name, $email, $this->password];
+    $password = $this->password->user_password();
+    return [$name, $email, $password];
   }
 }

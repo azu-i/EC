@@ -5,6 +5,6 @@ require_once '../domain_user/UserDao.php';
 $pdo = new UserDao();
 $pdo->pdo();
 
-$mail = $_POST['mail'];
-$password = $_POST['password'];
+$mail = $_SESSION['email'];
+$password = $_SESSION['password'];
 ?>

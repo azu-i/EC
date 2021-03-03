@@ -17,7 +17,7 @@
       </p>
       <p>
         メールアドレス<br>
-        <input type="text" name="email" ></input>
+        <input type="text" name="email"></input>
       </p>
       <p>
         パスワード ※20文字まで<br>
