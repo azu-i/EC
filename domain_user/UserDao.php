@@ -24,8 +24,13 @@ class UserDao
   public function insert(User $user)
   {
     [$name, $email, $password] = $user->extractParamsForRegister();
-    $sql = "INSERT INTO user VALUES(NULL, '$name', '$email', '$password', CURRENT_TIMESTAMP)";
-    $this->pdo->query($sql);
+    $sql = "INSERT INTO user VALUES(NULL, :name, :email, :password, CURRENT_TIMESTAMP)";
+    $st = $this->pdo->prepare($sql);
+    $st->bindParam(':name', $name, PDO::PARAM_STR);
+    $st->bindParam(':email', $email, PDO::PARAM_STR);
+    $st->bindParam(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+    $st->execute();
+    return $st;
   }
 
   public function login(string $email, string $password)

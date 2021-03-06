@@ -9,7 +9,11 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $user = UserFactory::create($name, $email, $password);
 
+if($password !== $_POST['password_confirmation']){
+  throw new Exception('確認用パスワードと異なっています。');
+}
+
 $userDao = new UserDao();
 $userDao->insert($user);
 
-header('Location: ../index.php');
+header('Location: t_user_registration_complete.php');

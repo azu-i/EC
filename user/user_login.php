@@ -7,4 +7,5 @@ $pdo->pdo();
 
 $mail = $_SESSION['email'];
 $password = $_SESSION['password'];
-?>
+
+header('Location: ../index.php');

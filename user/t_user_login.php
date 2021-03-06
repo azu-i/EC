@@ -22,6 +22,7 @@
         <input type="submit" name="submit" value="ログイン">
       </p>
     </form>
+    <a href="t_user_registration.php">新規登録はこちら</a>
   </div>
 </body>
 

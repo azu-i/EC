@@ -20,8 +20,13 @@
         <input type="text" name="email"></input>
       </p>
       <p>
-        パスワード ※20文字まで<br>
+        パスワード ※英数字8文字以上、100文字以内<br>
         <input type="text" name="password">
+      </p>
+      <p>
+      <p>
+        パスワード確認<br>
+        <input type="text" name="password_confirmation">
       </p>
       <p>
         <input type="hidden" name="id">

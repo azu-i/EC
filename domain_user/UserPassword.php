@@ -5,8 +5,8 @@ class UserPassword
 
   public function __construct(string $user_password)
   {
-    if(mb_strlen($user_password) > 20){
-      throw new Exception('パスワードは20文字までで登録お願いします。');
+    if(!preg_match("/\A[a-z\d]{8,100}+\z/i",$user_password)){
+      throw new Exception('パスワードは英数字8文字以上、100文字以内にしてください。');
     }
     $this->user_password = $user_password;
   }
