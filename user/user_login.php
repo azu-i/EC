@@ -17,7 +17,8 @@ if (count($error_message) > 0) {
 }
 
 $userDao = new UserDao();
-$userDao->login($user_login);
+$result = $userDao->login($user_login);
+
 // $pdo = new UserDao();
 // $pdo->pdo();
 

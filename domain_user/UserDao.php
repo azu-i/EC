@@ -34,36 +34,48 @@ class UserDao
     return $st;
   }
 
-  private function getUserByEmail(string $email)
+  private function getUserDataByEmail(string $email): array
   {
-    $sql =  "SELECT * FROM user WHERE email = ?";
-    $array_email = [];
-    $array_email[] = $email;
-    $result = 'false';
-   
-    try{
-      $st = $this->pdo->prepare($sql);
-      $st->execute($array_email);
-      $user_data = $st->fetch();
-      return $user_data;
-    }catch(\Exception $e){
-      return $result;
+    $sql =  "SELECT * FROM user WHERE email = :email";
+    $st = $this->pdo->prepare($sql);
+    $st->bindParam(':email', $email, PDO::PARAM_STR);
+    $st->execute();
+    $user_data = $st->fetch();
+    return $user_data;
+  }
+
+  private function checkUserExistenceByEmail(string $email): bool
+  {
+    $user_data = $this->getUserDataByEmail($email); 
+    if(!empty($user_data)){
+      return true;
+    }
+    return false;
+  }
+
+  private function checkPassword($password, $typed_password)
+  {
+    if (password_verify($password, $typed_password)) {
+      //セッションハイジャック対策
+      session_regenerate_id(true);
+      return true;
+    } else{
+      return false;
     }
   }
 
-  public function login(UserLogin $user_login)
+  public function login(UserLogin $user_login): bool
   {
     [$email, $password] = $user_login->extractParamsForLogin();
-    $user_data = $this->getUserByEmail($email);
-
-    $result = false;
-    if(password_verify($password, $user_data['password'])){
-      //セッションハイジャック対策
-      session_regenerate_id(true);
-      $_SESSION['login_user'] = $user_data;
-      $result = true;
-      return $result;
+    $user_data = $this->getUserDataByEmail($email);
+    // var_dump($user_data);
+    // die;
+    if($this->checkUserExistenceByEmail($email) && $this->checkPassword($password, $user_data['password'])){
+      return true;
+    }else{
+      return false;
     }
+
   }
 
   
