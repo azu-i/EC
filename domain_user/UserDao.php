@@ -1,5 +1,6 @@
 <?php
 require_once 'User.php';
+require_once 'UserLogin.php';
 
 ini_set('display_errors', "On");
 
@@ -33,12 +34,36 @@ class UserDao
     return $st;
   }
 
-  public function login(string $email, string $password)
+  private function getUserByEmail(string $email)
   {
-    $select = "SELECT * FROM members WHERE mail = '$email' AND pass = '$password'";
-    $search_account = $this->pdo->query($select);
-    $search_account->execute();
-    
+    $sql =  "SELECT * FROM user WHERE email = ?";
+    $array_email = [];
+    $array_email[] = $email;
+    $result = 'false';
+   
+    try{
+      $st = $this->pdo->prepare($sql);
+      $st->execute($array_email);
+      $user_data = $st->fetch();
+      return $user_data;
+    }catch(\Exception $e){
+      return $result;
+    }
+  }
+
+  public function login(UserLogin $user_login)
+  {
+    [$email, $password] = $user_login->extractParamsForLogin();
+    $user_data = $this->getUserByEmail($email);
+
+    $result = false;
+    if(password_verify($password, $user_data['password'])){
+      //セッションハイジャック対策
+      session_regenerate_id(true);
+      $_SESSION['login_user'] = $user_data;
+      $result = true;
+      return $result;
+    }
   }
 
   

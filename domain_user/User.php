@@ -10,9 +10,7 @@ class User
 
   public function __construct(UserName $name, Email $email, UserPassword $password)
   {
-    if (empty($password)) {
-      throw new Exception('パスワードが未入力です。');
-    }
+   
     $this->name = $name;
     $this->email = $email;
     $this->password = $password;
