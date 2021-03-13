@@ -17,9 +17,19 @@ if (count($error_message) > 0) {
 }
 
 $userDao = new UserDao();
-$result = $userDao->login($user_login);
+$loginResult = $userDao->login($user_login);
 
-// $pdo = new UserDao();
-// $pdo->pdo();
+$error_message = [];
+if($userDao->checkUserExistenceByEmail($email) == false){
+  $error_message['email'] = "入力したメールアドレスは登録されていません";
+  $_SESSION = $error_message;
+  header('Location: t_user_login.php');
+}
 
-header('Location: t_user_login.php');
+if($loginResult == true) {
+  header('Location: ../index.php');
+}else{
+  $error_message['password'] = "パスワードが一致しません";
+  $_SESSION = $error_message;
+  header('Location: t_user_login.php');
+} 

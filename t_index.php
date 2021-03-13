@@ -35,6 +35,9 @@
     <a href="admin/index.php">管理画面</a>
     <br>
     <a href="cart_empty.php">カートを空にする</a>
+    <br>
+    <a href="logout.php">ログアウト</a>
+
   </table>
 </body>
 

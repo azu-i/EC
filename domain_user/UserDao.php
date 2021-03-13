@@ -9,7 +9,7 @@ class UserDao
   const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
   const USER = "root";
   const PASS = "root";
-
+ 
   private $pdo;
 
   public function __construct()
@@ -34,7 +34,7 @@ class UserDao
     return $st;
   }
 
-  private function getUserDataByEmail(string $email): array
+  private function getUserDataByEmail(string $email)
   {
     $sql =  "SELECT * FROM user WHERE email = :email";
     $st = $this->pdo->prepare($sql);
@@ -44,7 +44,7 @@ class UserDao
     return $user_data;
   }
 
-  private function checkUserExistenceByEmail(string $email): bool
+  public function checkUserExistenceByEmail(string $email): bool
   {
     $user_data = $this->getUserDataByEmail($email); 
     if(!empty($user_data)){
@@ -68,15 +68,20 @@ class UserDao
   {
     [$email, $password] = $user_login->extractParamsForLogin();
     $user_data = $this->getUserDataByEmail($email);
-    // var_dump($user_data);
-    // die;
+    
     if($this->checkUserExistenceByEmail($email) && $this->checkPassword($password, $user_data['password'])){
       return true;
     }else{
       return false;
     }
-
   }
 
-  
+  public function checkLogin($email): bool
+  {
+    $user_data = $this->getUserDataByEmail($email);
+    if(isset($user_data)){
+      return true;
+    }
+    return false;
+  }  
 }
