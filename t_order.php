@@ -23,7 +23,7 @@ if ($check_login) {
 <body>
   <h1>購入</h1>
   <div class="base">
-    <form action="purchase.php" method="post">
+    <form action="order.php" method="post">
       <p>
         お名前<br>
         <input type="text" name="name">
@@ -34,7 +34,7 @@ if ($check_login) {
       </p>
       <p>
         電話番号<br>
-        <input type="text" name="tel">
+        <input type="text" name="tell">
       </p>
       <p>
         支払い方法<br>
@@ -48,7 +48,7 @@ if ($check_login) {
   </div>
   <div class="base">
     <a href="index.php">お買い物に戻る</a>
-    <a href="cart.php">カートに戻る</a>
+    <a href="cart_index.php">カートに戻る</a>
   </div>
 </body>
 

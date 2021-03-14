@@ -7,8 +7,7 @@ require 'domain/CartFactory.php';
 ini_set('display_errors', "On");
 $goodsDao = new GoodsDao();
 $goodsDao->pdo();
-session_start(); 
-
+session_start();
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = CartFactory::create();
 try {

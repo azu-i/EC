@@ -25,10 +25,9 @@ if ($check_login) {
   </div>
   <div class="base">
     購入時情報<br><br>
-    <?php echo $purchase_data->name(); ?> <br>
-    <?php echo $purchase_data->address(); ?> <br>
-    <?php echo $purchase_data->tell(); ?> <br>
-    <?php echo $purchase_data->payment(); ?>
+    <?php echo $address; ?> <br>
+    <?php echo $tell; ?> <br>
+    <?php echo $payment; ?>
   </div>
   <div class="base">
     <a href="index.php">お買い物に戻る</a>
