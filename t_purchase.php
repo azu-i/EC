@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once 'user/security.php';
+require_once 'domain_user/UserDao.php';
+$userDao = new UserDao();
+$check_login = $userDao->checkLogin();
+if ($check_login) {
+  $login_user = $_SESSION['login_user'];
+} else {
+  header('Location: t_user_login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +34,7 @@
       </p>
       <p>
         電話番号<br>
-        <input type="text" name="tel" >
+        <input type="text" name="tel">
       </p>
       <p>
         支払い方法<br>

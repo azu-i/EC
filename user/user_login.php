@@ -17,15 +17,19 @@ if (count($error_message) > 0) {
 }
 
 $userDao = new UserDao();
-$loginResult = $userDao->login($user_login);
 
+$login_user_data = $userDao->getUserDataByEmail($email);
+
+$_SESSION['login_user'] = $login_user_data;
+
+//メールアドレスとパスワードの照合
+$loginResult = $userDao->login($user_login);
 $error_message = [];
 if($userDao->checkUserExistenceByEmail($email) == false){
   $error_message['email'] = "入力したメールアドレスは登録されていません";
   $_SESSION = $error_message;
   header('Location: t_user_login.php');
 }
-
 if($loginResult == true) {
   header('Location: ../index.php');
 }else{

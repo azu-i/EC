@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once 'user/security.php';
+require_once 'domain_user/UserDao.php';
+$userDao = new UserDao();
+$check_login = $userDao->checkLogin();
+if ($check_login) {
+  $login_user = $_SESSION['login_user'];
+} else {
+  header('Location: user/t_user_login.php');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -5,10 +17,11 @@
   <meta charset="utf-8">
   <title>Noodle Shop</title>
   <link rel="stylesheet" href="shop.css">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <h1>Noodle Shop</h1>
+  <h1 class="text-3xl font-semibold">Noodle Shop</h1>
   <table>
     <?php foreach ($goods as $good) { ?>
       <tr>
@@ -36,7 +49,13 @@
     <br>
     <a href="cart_empty.php">カートを空にする</a>
     <br>
-    <a href="logout.php">ログアウト</a>
+    <a href="cart_index.php">カートへ</a>
+    <br>
+    <a href="user/t_user_registration.php">新規ユーザー登録</a>
+    <br>
+    <form action="user/user_logout.php" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
+    <br>
+    <p>ログインユーザー：<?php echo escape($login_user['name']); ?></p>
 
   </table>
 </body>

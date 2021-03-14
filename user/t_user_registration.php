@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once 'security.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +31,9 @@
       <p>
         パスワード確認<br>
         <input type="text" name="password_confirmation">
+      </p>
+      <p>
+        <input type="hidden" name="csrf_token" value="<?php echo escape(setToken()); ?>">
       </p>
       <p>
         <input type="hidden" name="id">

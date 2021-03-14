@@ -34,7 +34,7 @@ class UserDao
     return $st;
   }
 
-  private function getUserDataByEmail(string $email)
+  public function getUserDataByEmail(string $email)
   {
     $sql =  "SELECT * FROM user WHERE email = :email";
     $st = $this->pdo->prepare($sql);
@@ -76,12 +76,12 @@ class UserDao
     }
   }
 
-  public function checkLogin($email): bool
+  public function checkLogin(): bool
   {
-    $user_data = $this->getUserDataByEmail($email);
-    if(isset($user_data)){
+    if(isset($_SESSION['login_user']) && $_SESSION['login_user']['id'] > 0){
       return true;
     }
     return false;
   }  
+
 }
