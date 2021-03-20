@@ -1,15 +1,3 @@
-<?php
-session_start();
-require_once 'user/security.php';
-require_once 'domain_user/UserDao.php';
-$userDao = new UserDao();
-$check_login = $userDao->checkLogin();
-if ($check_login) {
-  $login_user = $_SESSION['login_user'];
-} else {
-  header('Location: t_user_login.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,8 +26,8 @@ if ($check_login) {
       </p>
       <p>
         支払い方法<br>
-        <input type="radio" name="payment" value="コンビニ支払い">コンビニ支払い
-        <input type="radio" name="payment" value="代金引換">代金引換
+        <input type="radio" name="payment" value=1>コンビニ支払い
+        <input type="radio" name="payment" value=2>代金引換
       </p>
       <p>
         <input type="submit" name="submit" value="購入">

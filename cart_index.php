@@ -1,13 +1,34 @@
 <?php
 
-require 'domain/Cart.php';
-require 'domain/GoodsDao.php';
-require 'domain/CartFactory.php';
+require_once 'domain/Cart.php';
+require_once 'domain/GoodsDao.php';
+require_once 'domain/CartFactory.php';
+require_once 'domain_user/UserDao.php';
 
 ini_set('display_errors', "On");
+
+//ログインしていなければログイン画面へ
+session_start();
+$userDao = new UserDao();
+$check_login = $userDao->checkLogin();
+if ($check_login) {
+  $goodsDao = new GoodsDao();
+  $goodsDao->pdo();
+  if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+  $cart = CartFactory::create();
+  try {
+    $goodsDao->searchCartItems($_SESSION['cart'], $cart);
+  } catch (Exception $e) {
+    echo $e->getMessage();
+    die;
+  }
+} else {
+  header('Location:user/t_user_login.php');
+}
+
+
 $goodsDao = new GoodsDao();
 $goodsDao->pdo();
-session_start();
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = CartFactory::create();
 try {
@@ -18,5 +39,3 @@ try {
 }
 
 require 't_cart.php';
-
-?>

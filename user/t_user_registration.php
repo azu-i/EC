@@ -1,7 +1,4 @@
-<?php
-session_start();
-require_once 'security.php';
-?>
+
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +30,7 @@ require_once 'security.php';
         <input type="text" name="password_confirmation">
       </p>
       <p>
-        <input type="hidden" name="csrf_token" value="<?php echo escape(setToken()); ?>">
+        <input type="hidden" name="csrf_token" value="<?php echo $setToken; ?>">
       </p>
       <p>
         <input type="hidden" name="id">

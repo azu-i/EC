@@ -54,6 +54,7 @@ class GoodsDao
     $st->bindParam(':price', $price, PDO::PARAM_INT);
 
     $st->execute();
+    
     return $st;
   }
 

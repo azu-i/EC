@@ -1,14 +1,4 @@
-<?php
-require_once 'user/security.php';
-require_once 'domain_user/UserDao.php';
-$userDao = new UserDao();
-$check_login = $userDao->checkLogin();
-if ($check_login) {
-  $login_user = $_SESSION['login_user'];
-} else {
-  header('Location: t_user_login.php');
-}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 

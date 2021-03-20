@@ -23,7 +23,7 @@ class Purchase
     $this->name = $name;
     $this->address = $address;
     $this->tell = $tell;
-    $this->payment = $payment; 
+    $this->payment = $payment;
   }
 
   public function name(): string
@@ -45,6 +45,4 @@ class Purchase
   {
     return $this->payment;
   }
-
 }
-?>

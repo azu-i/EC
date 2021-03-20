@@ -17,9 +17,7 @@ if (count($error_message) > 0) {
 }
 
 $userDao = new UserDao();
-
 $login_user_data = $userDao->getUserDataByEmail($email);
-
 $_SESSION['login_user'] = $login_user_data;
 
 //メールアドレスとパスワードの照合
@@ -36,4 +34,5 @@ if($loginResult == true) {
   $error_message['password'] = "パスワードが一致しません";
   $_SESSION = $error_message;
   header('Location: t_user_login.php');
-} 
+}
+
