@@ -24,6 +24,11 @@ class CartItem
     return $this->goods->price();
   }
 
+  public function id(): int
+  {
+    return $this->goods->id();
+  }
+
   public function quantity(): int
   {
     return $this->quantity->count();

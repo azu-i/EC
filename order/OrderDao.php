@@ -19,7 +19,7 @@ class OrderDao
     return $this->pdo;
   }
 
-  public function order($user_id, $address, $tell, $payment)
+  public function insert($user_id, $address, $tell, $payment)
   {
     $st = $this->pdo->prepare("INSERT INTO `order`(`user_id`, `address`, `tell`, `payment`, `created_at`)  VALUES(:user_id, :address, :tell, :payment, CURRENT_TIMESTAMP)");
     

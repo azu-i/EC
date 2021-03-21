@@ -7,17 +7,17 @@ require_once 'domain_user/UserDao.php';
 
 ini_set('display_errors', "On");
 
-//ログインしていなければログイン画面へ
+// ログインしていなければログイン画面へ
 session_start();
+
 $userDao = new UserDao();
 $check_login = $userDao->checkLogin();
 if ($check_login) {
-  $goodsDao = new GoodsDao();
-  $goodsDao->pdo();
-  if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
-  $cart = CartFactory::create();
   try {
-    $goodsDao->searchCartItems($_SESSION['cart'], $cart);
+    if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+    $cart = CartFactory::create();
+    $goodsDao = new GoodsDao();
+    $cart_items = $goodsDao->searchCartItems($_SESSION['cart'], $cart);
   } catch (Exception $e) {
     echo $e->getMessage();
     die;
@@ -26,16 +26,7 @@ if ($check_login) {
   header('Location:user/t_user_login.php');
 }
 
-
-$goodsDao = new GoodsDao();
-$goodsDao->pdo();
-if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
-$cart = CartFactory::create();
-try {
-    $goodsDao->searchCartItems($_SESSION['cart'], $cart);
-} catch (Exception $e) {
-  echo $e->getMessage();
-  die;
-}
-
 require 't_cart.php';
+
+
+

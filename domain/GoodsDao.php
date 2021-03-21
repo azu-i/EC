@@ -110,7 +110,7 @@ class GoodsDao
       $cart_item = CartItemFactory::create($goods, $num);
 
       $cart->append_cart_item($cart_item);
-      return $cart;
     }
+    return $cart;
   }
 }

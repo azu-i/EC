@@ -44,6 +44,7 @@
     <form action="user/user_logout.php" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
     <br>
     <p>ログインユーザー：<?php echo $login_user_name; ?></p>
+   
 
   </table>
 </body>

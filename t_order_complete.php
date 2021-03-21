@@ -15,9 +15,9 @@
   </div>
   <div class="base">
     購入時情報<br><br>
-    <?php echo $address; ?> <br>
-    <?php echo $tell; ?> <br>
-    <?php echo $payment; ?>
+    届け先住所：<?php echo $address; ?> <br>
+    電話番号：<?php echo $tell; ?> <br>
+    支払い方法：<?php echo $payment_display; ?>
   </div>
   <div class="base">
     <a href="index.php">お買い物に戻る</a>
