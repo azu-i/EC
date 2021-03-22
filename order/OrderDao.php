@@ -19,7 +19,7 @@ class OrderDao
     return $this->pdo;
   }
 
-  public function insert($user_id, $address, $tell, $payment)
+  public function orderInsert($user_id, $address, $tell, $payment)
   {
     $st = $this->pdo->prepare("INSERT INTO `order`(`user_id`, `address`, `tell`, `payment`, `created_at`)  VALUES(:user_id, :address, :tell, :payment, CURRENT_TIMESTAMP)");
     
@@ -31,4 +31,14 @@ class OrderDao
     $st->execute();
     return $st;
   }
+
+  public function orderItemInsert($order_items, $order_id): array
+  {
+    $stmt = [];
+    foreach($order_items as $item_id => $amount){
+      $stmt[] = $this->pdo->query("INSERT INTO `order_item`(`order_id`, `item_id`, `amount`) VALUES ('$order_id', '$item_id', '$amount')");
+    }
+    return $stmt;
+  }
+
 }

@@ -10,8 +10,38 @@
 
 <body>
   <h1>購入</h1>
+    <table>
+      <tr>
+        <th>商品</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+      <?php foreach ($cart_items->cart_items() as $cart_item) { ?>
+        <tr>
+          <td><?php echo $cart_item->name() ?></td>
+          <td><?php echo $cart_item->price() ?>円</td>
+          <td><?php echo $cart_item->quantity() ?></td>
+          <td><?php echo $cart_item->sum_price() ?>円</td>
+          <td>
+            <form action="cart_item_delete.php" method="POST">
+              <input type="hidden" name="id" value="<?php echo $cart_item->id() ?>">
+              <input type="submit" name="submit" value="カートから削除">
+            </form>
+          </td>
+        </tr>
+      <?php } ?>
+
+      <tr>
+        <td colspan="2"></td>
+        <td><strong>合計</strong></td>
+        <td><?php echo $cart->total_price() ?>円</td>
+        <td></td>
+      </tr>
+    </table>
   <div class="base">
-    <form action="order.php" method="post">
+    <form action="order_insert.php" method="post">
       <p>
         お名前<br>
         <input type="text" name="name">

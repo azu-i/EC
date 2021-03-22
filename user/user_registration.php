@@ -9,8 +9,6 @@ ini_set('display_errors', "On");
 $token = filter_input(INPUT_POST, 'csrf_token');
 
 try{
-  // if(!isset($_SESSION['csrf_token']) || $token != $_SESSION['csrf_token']){
-  //   throw new Exception('不正なリクエストです');
   if ($_POST['password'] !== $_POST['password_confirmation']) {
     throw new Exception('確認用パスワードと異なっています。');
   }
