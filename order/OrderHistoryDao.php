@@ -26,10 +26,11 @@ class OrderHistoryDao
     return $ordered_data;
   }
 
-  public function  orderedItemsByData($auth_user)
+  public function  orderedItemsByAuth($auth_id)
   {
+    $join_orderd_items = $this->pdo->query("SELECT * FROM order INNER JOIN order_item ON id = order_id");
     $ordered_data = $this->orderedDataByUser($auth_id);
-    foreach( )
+    
   }
 
 

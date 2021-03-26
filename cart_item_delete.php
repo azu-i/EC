@@ -1,6 +1,5 @@
 <?php
-require_once 'cart_index.php';
+session_start();
+unset($_SESSION['cart'][$_POST['id']]);
 
-$_SESSION['cart'][$_POST['id']] = null;
-require 't_cart.php';
-
+header('Location: cart_index.php');

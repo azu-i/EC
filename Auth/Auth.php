@@ -1,7 +1,7 @@
 <?php
 require_once 'user/security.php';
 session_start();
-ini_set('display_errors', "On");
+
 class Auth
 {
   private function loginUser()

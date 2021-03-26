@@ -2,6 +2,6 @@
   ini_set('display_errors', "On");
 
   session_start();
-  $_SESSION['cart'] = null;
+  unset($_SESSION['cart']);
   header('Location: cart_index.php');
 ?>
