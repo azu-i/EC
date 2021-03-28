@@ -41,7 +41,7 @@ class OrderDao
 
   //orderテーブルとorder_itemテーブルを
   //オーダーのidによって結合する
-  private function  orderJoin()
+  private function  orderDataJoin()
   {
     $st = $this->pdo->query("SELECT * FROM `order` INNER JOIN `order_item` ON order.id = order_item.order_id");
     $order_join =
@@ -52,6 +52,8 @@ class OrderDao
   public function orderedDataJoinWithItemDate()
   {
     $order_join = $this->orderJoin();
+    // var_dump($order_join);
+    // die;
     $order_data = [];
     foreach ($order_join as $order_item) {
       $item_id  = $order_item['item_id'];
@@ -70,11 +72,11 @@ class OrderDao
 
   public function orderedDataByAuth($auth_id): array
   {
-    $order_data = $this->orderedDataJoinWithItemDate();
+    $order_data = $this->orderDataJoin();
     $auth_order = [];
     foreach ($order_data as $order_items) {
-      if ($order_items[0]['user_id'] === $auth_id) {
-        $auth_order[] = $order_items;
+      if ($order_items['user_id'] === $auth_id) {
+        $auth_order[$order_items['id']][] = $order_items;
       }
     }
     return $auth_order;

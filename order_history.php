@@ -8,5 +8,7 @@ $orderDao = new OrderDao();
 
 $auth_id = Auth::id();
 $auth_order_items = $orderDao->orderedDataByAuth($auth_id);
+
+
  
 require 't_order_history.php';
