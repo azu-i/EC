@@ -4,12 +4,20 @@
 <head>
   <meta charset="utf-8">
   <title>Noodle Shop</title>
-  <link rel="stylesheet" href="shop.css">
-  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/shop.css">
 </head>
 
 <body>
   <h1 class="text-3xl font-semibold">Noodle Shop</h1>
+  <div class="container-link">
+    <a href="admin/index.php">管理画面へ</a>
+    <a href="cart_empty.php">カートを空にする</a>
+    <a href="cart_index.php">カートへ</a>
+    <a href="order_history.php">購入履歴へ</a>
+    <a href="user/t_user_registration.php">新規ユーザー登録</a>
+    <p>ログインユーザー：<?php echo $login_user_name; ?></p>
+    <form action="user/user_logout.php" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
+  </div>
   <table>
     <?php foreach ($goods as $good) { ?>
       <tr>
@@ -33,18 +41,7 @@
         </td>
       </tr>
     <?php } ?>
-    <a href="admin/index.php">管理画面</a>
-    <br>
-    <a href="cart_empty.php">カートを空にする</a>
-    <br>
-    <a href="cart_index.php">カートへ</a>
-    <br>
-    <a href="user/t_user_registration.php">新規ユーザー登録</a>
-    <br>
-    <form action="user/user_logout.php" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
-    <br>
-    <p>ログインユーザー：<?php echo $login_user_name; ?></p>
-   
+
 
   </table>
 </body>

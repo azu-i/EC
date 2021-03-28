@@ -52,9 +52,7 @@ class GoodsDao
     $st->bindParam(':name', $name, PDO::PARAM_STR);
     $st->bindParam(':comment', $comment, PDO::PARAM_STR);
     $st->bindParam(':price', $price, PDO::PARAM_INT);
-
     $st->execute();
-    
     return $st;
   }
 

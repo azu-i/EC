@@ -2,7 +2,9 @@
 //  ini_set('display_errors', "On");
 //  require 'order/OrderDao.php';
 
-//  session_start(); 
+// $orderDao = new OrderDao();
+// $ordered_items_join = $orderDao->orderJoin();
+ //  session_start(); 
 
 
 //  $_SESSION['cart'] = null;
