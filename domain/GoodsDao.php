@@ -9,6 +9,7 @@ class GoodsDao
   const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
   const USER = "root";
   const PASS = "root";
+  const TABLE_PRODUCTS = "goods";
 
   private $pdo;
 
@@ -26,7 +27,8 @@ class GoodsDao
   public function delete(int $id)
   {
     // TODO: bindParamとかで書き直す SQLインジェクション対策
-    $st = $this->pdo->prepare("DELETE FROM goods WHERE id = :id");
+    $table = self::TABLE_PRODUCTS;
+    $st = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
     $st->bindParam(':id', $id, PDO::PARAM_INT);
     $st->execute();
     return $st;
@@ -40,7 +42,8 @@ class GoodsDao
     $name = $goods->name();
     $price = $goods->price();
     $comment = $goods->comment();
-    $st = $this->pdo->query("UPDATE goods SET name='$name', comment='$comment', price=$price WHERE id= $id");
+    $table = self::TABLE_PRODUCTS;
+    $st = $this->pdo->query("UPDATE $table SET name='$name', comment='$comment', price=$price WHERE id= $id");
 
     return $st;
   }
@@ -48,7 +51,8 @@ class GoodsDao
   //商品追加
   public function goodInsert($name, $comment, $price)
   {
-    $st = $this->pdo->prepare("INSERT INTO goods(name,comment,price) VALUES(:name, :comment, :price)");
+    $table = self::TABLE_PRODUCTS;
+    $st = $this->pdo->prepare("INSERT INTO $table(name,comment,price) VALUES(:name, :comment, :price)");
     $st->bindParam(':name', $name, PDO::PARAM_STR);
     $st->bindParam(':comment', $comment, PDO::PARAM_STR);
     $st->bindParam(':price', $price, PDO::PARAM_INT);
@@ -59,7 +63,8 @@ class GoodsDao
   //登録されている商品を全てデータベースから取ってくる
   public function findAll(): array
   {
-    $st = $this->pdo()->query("SELECT * FROM goods");
+    $table = self::TABLE_PRODUCTS;
+    $st = $this->pdo()->query("SELECT * FROM $table");
     $goodsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
     $goods = $this->convertToGoodsEntities($goodsFromTable);
     return $goods;
@@ -68,7 +73,8 @@ class GoodsDao
 
   public function selectItem(int $id): Goods
   {
-    $st = $this->pdo->query("SELECT * FROM goods WHERE id = $id");
+    $table = self::TABLE_PRODUCTS;
+    $st = $this->pdo->query("SELECT * FROM $table WHERE id = $id");
     $row = $st->fetch();
 
     $goods = GoodsFactory::create(
@@ -97,9 +103,9 @@ class GoodsDao
 
   public function searchCartItems(array $cart_content, Cart $cart)
   {
-
+    $table = self::TABLE_PRODUCTS; 
     foreach ($cart_content as $id => $num) {
-      $st = $this->pdo->prepare("SELECT * FROM goods WHERE id = ?");
+      $st = $this->pdo->prepare("SELECT * FROM $table WHERE id = ?");
       $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
