@@ -10,16 +10,16 @@
 
 <body>
   <table>
-    <?php foreach ($goods as $good) { ?>
+    <?php foreach ($products as $product) { ?>
       <tr>
         <td>
-          <p class="goods"><?php echo $good->name() ?></p>
-          <p><?php echo nl2br($good->comment()) ?></p>
+          <p class="products"><?php echo $product->name() ?></p>
+          <p><?php echo nl2br($product->comment()) ?></p>
         </td>
         <td width="80">
-          <p><?php echo $good->getPriceWithUnit() ?></p>
-          <p><a href="edit.php?id=<?php echo $good->id() ?>">修正</a></p>
-          <p><a href="delete.php?id=<?php echo $good->id() ?>" onclick="return confirm('削除してよろしいですか？')">削除</a></p>
+          <p><?php echo $product->getPriceWithUnit() ?></p>
+          <p><a href="edit.php?id=<?php echo $product->id() ?>">修正</a></p>
+          <p><a href="delete.php?id=<?php echo $product->id() ?>" onclick="return confirm('削除してよろしいですか？')">削除</a></p>
         </td>
       </tr>
     <?php } ?>

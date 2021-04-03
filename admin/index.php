@@ -1,11 +1,11 @@
 <?php
 
 ini_set('display_errors', "On");
-require_once '../domain/GoodsDao.php';
+require_once '../domain/ProductsDao.php';
 
 try {
-  $goodsDao = new GoodsDao();
-  $goods = $goodsDao->findAll();
+  $productsDao = new ProductsDao();
+  $products = $productsDao->findAll();
 
 } catch (Exception $e) {
   echo $e->getMessage();

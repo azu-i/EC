@@ -24,7 +24,7 @@ $st = $orderDao->orderInsert($user_id, $address, $tell, $payment);
 
 
 $order_id = $orderDao->pdo()->lastInsertId();
-$stmt = $orderDao->orderItemInsert($_SESSION['cart'], $order_id);
+$stmt = $orderDao->orderProductInsert($_SESSION['cart'], $order_id);
 $_SESSION['cart'] = null;
 
 if ($payment = 1) $payment_display = "コンビニ支払い";

@@ -1,12 +1,12 @@
 <?php
-require 'domain/GoodsDao.php';
+require 'domain/ProductsDao.php';
 
-$goodsDao = new GoodsDao();
-$goodsDao->pdo();
+$productsDao = new ProductsDao();
+$productsDao->pdo();
 session_start();
 
-if (@$_POST['submit']) {
-  @$_SESSION['cart'][$_POST['id']] += $_POST['num'];
+if ($_POST['num'] > 0) {
+  $_SESSION['cart'][$_POST['id']] += $_POST['num'];
  
 }
 

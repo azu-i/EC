@@ -1,5 +1,5 @@
 <?php
-require_once 'domain/GoodsDao.php';
+require_once 'domain/ProductsDao.php';
 require_once 'domain_user/UserDao.php';
 require_once 'Auth/Auth.php';
 require_once 'domain_user/UserDao.php';
@@ -17,8 +17,8 @@ if (!$check_login) {
 }
 $login_user_name = Auth::name();
 try {
-  $goodsDao = new GoodsDao();
-  $goods = $goodsDao->findAll();
+  $productsDao = new ProductsDao();
+  $products = $productsDao->findAll();
   require 't_index.php';
 } catch (Exception $e) {
   echo $e->getMessage();

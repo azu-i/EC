@@ -1,24 +1,23 @@
 <?php
-  require '../domain/GoodsDao.php';
+require '../domain/ProductsDao.php';
 
-  ini_set('display_errors', "On");
-  $goodsDao = new GoodsDao();
- 
-  try {
+ini_set('display_errors', "On");
+$productsDao = new ProductsDao();
 
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $comment = $_POST['comment'];
-    $price = $_POST['price'];
-    
-    $goodsDao->editUplode($id, $name, $price, $comment);
-  
-    header('Location: index.php');
-    exit();
-  } catch (Exception $e) {
-    echo $e->getMessage();
-    exit;
-  }
+try {
 
-  require 't_edit.php';
-?>
+  $id = $_POST['id'];
+  $name = $_POST['name'];
+  $comment = $_POST['comment'];
+  $price = $_POST['price'];
+
+  $productsDao->editUplode($id, $name, $price, $comment);
+
+  header('Location: index.php');
+  exit();
+} catch (Exception $e) {
+  echo $e->getMessage();
+  exit;
+}
+
+require 't_edit.php';

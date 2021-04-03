@@ -10,11 +10,11 @@
 
 <body>
   <table>
-    <?php foreach ($auth_order_items as $auth_order_item) { ?>
+    <?php foreach ($auth_order_products as $auth_order_product) { ?>
       <tr>
         <td>
-          <?php foreach ($auth_order_item as $auth_order_item) { ?>
-            <p class="goods"><?php echo $auth_order_item ?></p>
+          <?php foreach ($auth_order_product as $auth_order_product) { ?>
+            <p class="products"><?php echo $auth_order_product ?></p>
             <p><?php echo nl2br($good->comment()) ?></p>
         </td>
         <td width="80">

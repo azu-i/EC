@@ -13,18 +13,18 @@
     <form action="edit_uplode.php" method="post">
       <p>
         商品名<br>
-        <input type="text" name="name" value="<?php echo $goods->name() ?>">
+        <input type="text" name="name" value="<?php echo $products->name() ?>">
       </p>
       <p>
         商品説明<br>
-        <textarea name="comment" rows="10" cols="60"><?php echo $goods->comment() ?></textarea>
+        <textarea name="comment" rows="10" cols="60"><?php echo $products->comment() ?></textarea>
       </p>
       <p>
         価格<br>
-        <input type="text" name="price" value="<?php echo $goods->price() ?>">
+        <input type="text" name="price" value="<?php echo $products->price() ?>">
       </p>
       <p>
-        <input type="hidden" name="id" value="<?php echo $goods->id() ?>">
+        <input type="hidden" name="id" value="<?php echo $products->id() ?>">
         <input type="submit" name="submit" value="更新">
       </p>
     </form>

@@ -1,32 +1,32 @@
 <?php
 
-class CartItem
+class CartProducts
 {
-  private $goods;
+  private $products;
   private $quantity;
 
-  public function __construct(Goods $goods, Quantity $quantity)
+  public function __construct(Products $products, Quantity $quantity)
   {
     if (empty($quantity)) {
       throw new Exception('足りていないパラメーターがあります');
     }
-    $this->goods = $goods;
+    $this->products = $products;
     $this->quantity = $quantity;
   }
 
   public function name(): string
   {
-    return $this->goods->name();
+    return $this->products->name();
   }
 
   public function price(): int
   {
-    return $this->goods->price();
+    return $this->products->price();
   }
 
   public function id(): int
   {
-    return $this->goods->id();
+    return $this->products->id();
   }
 
   public function quantity(): int

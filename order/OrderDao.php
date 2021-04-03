@@ -7,10 +7,10 @@ class OrderDao
   const USER = "root";
   const PASS = "root";
   const TABLE_ORDER = "`order`";
-  const TABLE_ORDER＿PRODUCTS = "`order_item`";
-  const TABLE_PRODUCTS = "`goods`";
+  const TABLE_ORDER＿PRODUCTS = "`order_products`";
+  const TABLE_PRODUCTS = "`products`";
   const TABLE_USERS =
-  "`user`"; 
+  "`users`"; 
 
   private $pdo;
 
@@ -36,42 +36,42 @@ class OrderDao
     return $st;
   }
 
-  public function orderItemInsert($order_items, $order_id): array
+  public function orderProductInsert($order_products, $order_id): array
   {
     $table = self::TABLE_ORDER＿PRODUCTS;
     $st = [];
-    foreach ($order_items as $item_id => $amount) {
-      $stmt[] = $this->pdo->query("INSERT INTO $table(`order_id`, `item_id`, `amount`) VALUES ('$order_id', '$item_id', '$amount')");
+    foreach ($order_products as $product_id => $amount) {
+      $stmt[] = $this->pdo->query("INSERT INTO $table(`order_id`, `product_id`, `amount`) VALUES ('$order_id', '$product_id', '$amount')");
     }
     return $st;
   }
 
-  //orderテーブルとorder_itemテーブルを
+  //orderテーブルとorder_productsテーブルを
   //オーダーのidによって結合する
-  private function  orderDataJoin()
+  private function  orderDataJoin(): array
   {
     $table_join = self::TABLE_ORDER;
     $table
     = self::TABLE_ORDER＿PRODUCTS;
-    $st = $this->pdo->query("SELECT * FROM $table_join INNER JOIN $table ON order.id = order_item.order_id");
+    $st = $this->pdo->query("SELECT * FROM $table_join INNER JOIN $table ON order.id = order_products.order_id");
     $order_join = $st->fetchAll(PDO::FETCH_ASSOC);
     return $order_join;
   }
 
-  public function orderedDataJoinWithItemDate()
+  public function orderedDataJoinWithProducDate(): array
   {
     $order_join = $this->orderDataJoin();
     $table_users =self::TABLE_USERS;
     $table = self::TABLE_PRODUCTS;
     $order_data = [];
-    foreach ($order_join as $order_item) {
-      $item_id  = $order_item['item_id'];
-      $item_st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM $table WHERE id='$item_id'");
-      $item_data = $item_st->fetchAll(PDO::FETCH_ASSOC);
-      $user_id = $order_item['user_id'];
+    foreach ($order_join as $order_products) {
+      $product_id  = $order_products['product_id'];
+      $product_st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM $table WHERE id='$product_id'");
+      $product_data = $product_st->fetchAll(PDO::FETCH_ASSOC);
+      $user_id = $order_products['user_id'];
       $user_st = $this->pdo()->query("SELECT `name`, `email` FROM $table_users WHERE id='$user_id'");
       $user_data = $user_st->fetchAll(PDO::FETCH_ASSOC);
-      $order_data[$order_item['id']] = [$order_item, $item_data, $user_data];
+      $order_data[$order_products['id']] = [$order_products, $product_data, $user_data];
     }
     return $order_data;
   }
@@ -81,9 +81,9 @@ class OrderDao
   {
     $order_data = $this->orderDataJoin();
     $auth_order = [];
-    foreach ($order_data as $order_items) {
-      if ($order_items['user_id'] === $auth_id) {
-        $auth_order[$order_items['id']][] = $order_items;
+    foreach ($order_data as $order_products) {
+      if ($order_products['user_id'] === $auth_id) {
+        $auth_order[$order_products['id']][] = $order_products;
       }
     }
     return $auth_order;

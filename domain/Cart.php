@@ -2,31 +2,31 @@
 
 class Cart
 {
-  private $cart_items;
+  private $cart_products;
 
-  public function __construct(array $cart_items = [])
+  public function __construct(array $cart_products = [])
   {
-    $this->cart_items = $cart_items;
+    $this->cart_products = $cart_products;
   }
 
-  public function cart_items(): array
+  public function cart_products(): array
   {
-    return $this->cart_items;
+    return $this->cart_products;
   }
 
   public function total_price(): int
   {
     $total_price = 0;
 
-    foreach ($this->cart_items as $cart_item) {
-      $total_price += $cart_item->sum_price();
+    foreach ($this->cart_products as $cart_product) {
+      $total_price += $cart_product->sum_price();
     }
 
     return $total_price;
   }
 
-  public function append_cart_item(CartItem $cart_item)
+  public function append_cart_product(CartProducts $cart_products)
   {
-    $this->cart_items[] = $cart_item;
+    $this->cart_products[] = $cart_products;
   }
 }

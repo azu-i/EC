@@ -1,15 +1,15 @@
 <?php
-require_once 'GoodsFactory.php';
-require_once 'CartItemFactory.php';
+require_once 'ProductsFactory.php';
+require_once 'CartProductFactory.php';
 require_once 'QuantityFactory.php';
 ini_set('display_errors', "On");
 
-class GoodsDao
+class ProductsDao
 {
   const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
   const USER = "root";
   const PASS = "root";
-  const TABLE_PRODUCTS = "goods";
+  const TABLE_PRODUCTS = "products";
 
   private $pdo;
 
@@ -37,11 +37,11 @@ class GoodsDao
   //商品情報編集
   public function editUplode(int $id, string $name, int $price, string $comment)
   {
-    $goods = GoodsFactory::create($id, $name, $price, $comment);
-    $id = $goods->id();
-    $name = $goods->name();
-    $price = $goods->price();
-    $comment = $goods->comment();
+    $products = ProductsFactory::create($id, $name, $price, $comment);
+    $id = $products->id();
+    $name = $products->name();
+    $price = $products->price();
+    $comment = $products->comment();
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("UPDATE $table SET name='$name', comment='$comment', price=$price WHERE id= $id");
 
@@ -49,7 +49,7 @@ class GoodsDao
   }
 
   //商品追加
-  public function goodInsert($name, $comment, $price)
+  public function productInsert($name, $comment, $price)
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("INSERT INTO $table(name,comment,price) VALUES(:name, :comment, :price)");
@@ -65,43 +65,43 @@ class GoodsDao
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo()->query("SELECT * FROM $table");
-    $goodsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
-    $goods = $this->convertToGoodsEntities($goodsFromTable);
-    return $goods;
+    $productsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
+    $products = $this->convertToProductsEntities($productsFromTable);
+    return $products;
   }
   
 
-  public function selectItem(int $id): Goods
+  public function selectProduct(int $id): Products
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("SELECT * FROM $table WHERE id = $id");
     $row = $st->fetch();
 
-    $goods = GoodsFactory::create(
+    $products = ProductsFactory::create(
       $id,
       $row['name'],
       $row['price'],
       $row['comment'],
     );
-    return $goods;
+    return $products;
   }
 
-  private function convertToGoodsEntities(array $goodsFromTable): array
+  private function convertToProductsEntities(array $productsFromTable): array
   {
-    $goods = [];
-    foreach ($goodsFromTable as $goodFromTable) {
+    $products = [];
+    foreach ($productsFromTable as $productFromTable) {
 
-      $goods[] = GoodsFactory::create(
-        $goodFromTable['id'],
-        $goodFromTable['name'],
-        $goodFromTable['price'],
-        $goodFromTable['comment']
+      $products[] = ProductsFactory::create(
+        $productFromTable['id'],
+        $productFromTable['name'],
+        $productFromTable['price'],
+        $productFromTable['comment']
       );
     }
-    return $goods;
+    return $products;
   }
 
-  public function searchCartItems(array $cart_content, Cart $cart)
+  public function searchCartProducts(array $cart_content, Cart $cart)
   {
     $table = self::TABLE_PRODUCTS; 
     foreach ($cart_content as $id => $num) {
@@ -109,11 +109,10 @@ class GoodsDao
       $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
-      $goods = GoodsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
-      $num = QuantityFactory::create( strip_tags($num))->count();
-      $cart_item = CartItemFactory::create($goods, $num);
-
-      $cart->append_cart_item($cart_item);
+      $products = ProductsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
+      $num = QuantityFactory::create(strip_tags($num))->count();
+      $cart_products = CartProductFactory::create($products, $num);
+      $cart->append_cart_product($cart_products);
     }
     return $cart;
   }

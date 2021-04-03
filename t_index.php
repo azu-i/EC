@@ -19,14 +19,14 @@
     <form action="user/user_logout.php" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
   </div>
   <table>
-    <?php foreach ($goods as $good) { ?>
+    <?php foreach ($products as $product) { ?>
       <tr>
         <td>
-          <p class="goods"><?php echo $good->name() ?></p>
-          <p><?php echo nl2br($good->comment()) ?></p>
+          <p class="products"><?php echo $product->name() ?></p>
+          <p><?php echo nl2br($product->comment()) ?></p>
         </td>
         <td width="80">
-          <p><?php echo $good->getPriceWithUnit() ?></p>
+          <p><?php echo $product->getPriceWithUnit() ?></p>
           <form action="cart_stock.php" method="post">
             <select name="num">
               <?php
@@ -35,7 +35,7 @@
               }
               ?>
             </select>
-            <input type="hidden" name="id" value="<?php echo $good->id() ?>">
+            <input type="hidden" name="id" value="<?php echo $product->id() ?>">
             <input type="submit" name="submit" value="カートへ">
           </form>
         </td>

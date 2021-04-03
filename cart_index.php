@@ -1,8 +1,7 @@
 <?php
 
 require_once 'domain/Cart.php';
-require_once 'domain/GoodsDao.php';
-require_once 'domain/CartFactory.php';
+require_once 'domain/ProductsDao.php';
 require_once 'domain_user/UserDao.php';
 
 ini_set('display_errors', "On");
@@ -18,9 +17,9 @@ if (!$check_login) {
 }
 try {
   if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
-  $cart = CartFactory::create();
-  $goodsDao = new GoodsDao();
-  $cart_items = $goodsDao->searchCartItems($_SESSION['cart'], $cart);
+  $cart = new Cart();
+  $productsDao = new ProductsDao();
+  $cart_products = $productsDao->searchCartProducts($_SESSION['cart'], $cart);
   require 't_cart.php';
 } catch (Exception $e) {
   echo $e->getMessage();

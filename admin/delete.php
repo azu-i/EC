@@ -1,7 +1,7 @@
 <?php
-  require '../domain/GoodsDao.php';
-  $goodsDao = new GoodsDao();
-  session_start(); 
-  $id = $_GET['id'];
-  $goodsDao->delete($id);
-  header('Location: index.php');
+require '../domain/ProductsDao.php';
+$productsDao = new ProductsDao();
+session_start();
+$id = $_GET['id'];
+$productsDao->delete($id);
+header('Location: index.php');
