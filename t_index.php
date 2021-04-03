@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Noodle Shop</title>
+  <title>Vegetable Shop</title>
   <link rel="stylesheet" href="css/shop.css">
 </head>
 
 <body>
-  <h1 class="text-3xl font-semibold">Noodle Shop</h1>
+  <h1 class="text-3xl font-semibold">Vegetable Shop</h1>
   <div class="container-link">
     <a href="admin/index.php">管理画面へ</a>
     <a href="cart_empty.php">カートを空にする</a>
