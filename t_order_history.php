@@ -5,25 +5,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order History</title>
+  <link rel="stylesheet" href="css/order_history.css">
+  <title>購入履歴</title>
 </head>
 
 <body>
   <table>
-    <?php foreach ($auth_order_products as $auth_order_product) { ?>
+    <h1>購入履歴</h1>
+    <table>
       <tr>
-        <td>
-          <?php foreach ($auth_order_product as $auth_order_product) { ?>
-            <p class="products"><?php echo $auth_order_product ?></p>
-            <p><?php echo nl2br($good->comment()) ?></p>
-        </td>
-        <td width="80">
-          <p><?php echo $good->getPriceWithUnit() ?></p>
-        <?php } ?>
-        </td>
+        <th>商品名</th>
+        <th>注文個数</th>
+        <th>金額</th>
+        <th>注文日時</th>
+      </tr>
+      <tr>
+        <?php foreach ($auth_order_lists as $auth_order_list) {  ?>
+          <?php foreach ($auth_order_list as $auth_order) {  ?>
+            <td>
+              <p class="products"><?php echo $auth_order['name'] ?></p>
+            </td>
+            <td>
+              <p><?php echo $auth_order['amount'] . '個' ?></p>
+            </td>
+            <td>
+              <p><?php echo $auth_order['price'] * $auth_order['amount'] . '円' ?></p>
+            </td>
+            <td>
+              <p><?php echo $auth_order['order_date'] ?></p>
+            </td>
       </tr>
     <?php } ?>
-  </table>
+  <?php } ?>
+   </table>
 </body>
 
 </html>
