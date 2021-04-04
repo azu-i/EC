@@ -29,6 +29,7 @@
     <a href="../index.php">サイト確認</a>
     <a href="../user/t_user_registration.php">ユーザー登録</a>
     <a href="../user/t_user_login.php">ユーザーlogin</a>
+    <a href="order_list.php">購入された商品</a>
   </div>
 </body>
 

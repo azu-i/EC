@@ -58,6 +58,7 @@ class OrderDao
     return $order_join;
   }
 
+  //購入履歴の配列にユーザー情報と商品情報を追加
   public function orderedDataWithUserAndProductData(): array
   {
     $order_join = $this->orderDataJoin();
@@ -71,11 +72,16 @@ class OrderDao
       $user_id = $order_products['user_id'];
       $user_st = $this->pdo()->query("SELECT `name`, `email` FROM $table_users WHERE id='$user_id'");
       $user_data = $user_st->fetch();
-      $order_data[$order_products['order_id']][] = [$order_products, $user_data, $product_data];
+      $order_product = array_merge($order_products, $user_data);
+      $order_product = array_merge($order_product, array('user_name' => $user_data['name']));
+      $order_product = array_merge($order_product, $product_data);
+      $order_data[$order_products['order_id']][] = $order_product;
+      // $order_data[$order_products['order_id']][] = [$order_products, $user_data, $product_data];
     }
     return $order_data;
   }
-
+  
+  //購入履歴の配列に商品情報を追加
   public function orderedDataWithProductData(): array
   {
     $order_join = $this->orderDataJoin();
