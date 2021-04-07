@@ -23,21 +23,15 @@
       <tr>
         <td>
           <p class="products"><?php echo $product->name() ?></p>
-          <p><?php echo nl2br($product->comment()) ?></p>
+          <!-- <p><?php echo nl2br($product->comment()) ?></p> -->
         </td>
         <td width="80">
           <p><?php echo $product->getPriceWithUnit() ?></p>
-          <form action="cart_stock.php" method="post">
-            <select name="num">
-              <?php
-              for ($i = 0; $i <= 9; $i++) {
-                echo "<option>$i</option>";
-              }
-              ?>
-            </select>
-            <input type="hidden" name="id" value="<?php echo $product->id() ?>">
-            <input type="submit" name="submit" value="カートへ">
-          </form>
+            <form action="product_detail.php" method="post">
+              
+              <input type="hidden" name="id" value="<?php echo $product->id() ?>">
+              <input type="submit" name="submit" value="詳細">
+            </form>
         </td>
       </tr>
     <?php } ?>

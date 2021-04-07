@@ -10,6 +10,7 @@ class ProductsDao
   const USER = "root";
   const PASS = "root";
   const TABLE_PRODUCTS = "products";
+  const TABLE_BROWING_HITORIES = "`browing_histories`";
 
   private $pdo;
 
@@ -115,5 +116,12 @@ class ProductsDao
       $cart->append_cart_product($cart_products);
     }
     return $cart;
+  }
+
+  public function browdingHistoriesInsert($product_id)
+  {
+    $table = self::TABLE_BROWING_HITORIES;
+    $st = $this->pdo->query("INSERT INTO (`product_id`) VALUES ($product_id)");
+    return $st;
   }
 }

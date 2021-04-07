@@ -76,7 +76,6 @@ class OrderDao
       $order_product = array_merge($order_product, array('user_name' => $user_data['name']));
       $order_product = array_merge($order_product, $product_data);
       $order_data[$order_products['order_id']][] = $order_product;
-      // $order_data[$order_products['order_id']][] = [$order_products, $user_data, $product_data];
     }
     return $order_data;
   }
