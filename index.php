@@ -1,8 +1,7 @@
 <?php
-require_once 'domain/ProductsDao.php';
-require_once 'domain_user/UserDao.php';
+require_once 'models/ProductsDao.php';
 require_once 'Auth/Auth.php';
-require_once 'domain_user/UserDao.php';
+require_once 'models/UserDao.php';
 
 ini_set('display_errors', "On");
 
@@ -19,7 +18,7 @@ $login_user_name = Auth::name();
 try {
   $productsDao = new ProductsDao();
   $products = $productsDao->findAll();
-  require 't_index.php';
+  require 'view/index.php';
 } catch (Exception $e) {
   echo $e->getMessage();
   die;

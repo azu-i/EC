@@ -8,4 +8,6 @@ $productsDao = new ProductsDao();
 $product_details = $productsDao->selectProduct($product_id);
 $productsDao->browdingHistoriesInsert($product_id);
 
+
+
 require 'view/product_detail.php';

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Vegetable Shop</title>
@@ -22,15 +21,15 @@
     <?php foreach ($products as $product) { ?>
       <tr>
         <td>
-          <p class="products"><?= $product->name() ?></p>
+          <p class="products"><?php echo $product->name() ?></p>
         </td>
         <td width="80">
-          <p><?=$product->getPriceWithUnit() ?></p>
-            <form action="product_detail.php" method="post">
-              
-              <input type="hidden" name="id" value="<?= $product->id() ?>">
-              <input type="submit" name="submit" value="詳細">
-            </form>
+          <p><?php echo $product->getPriceWithUnit() ?></p>
+          <form action="product_detail.php" method="post">
+
+            <input type="hidden" name="id" value="<?php echo $product->id() ?>">
+            <input type="submit" name="submit" value="詳細">
+          </form>
         </td>
       </tr>
     <?php } ?>
