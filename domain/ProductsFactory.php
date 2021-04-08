@@ -1,7 +1,7 @@
 <?php
 require_once 'PriceFactory.php';
 require_once 'Products.php';
-require_once 'CommentFactory.php';
+require_once 'Comment.php';
 ini_set('display_errors', "On");
 
 class ProductsFactory
@@ -12,7 +12,7 @@ class ProductsFactory
       $id,
       $name,
       new Price($price),
-      CommentFactory::create($comment)
+      new Comment($comment)
     );
   }
 }

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="../css/admin.css">
   <title>商品一覧</title>
 </head>
 
@@ -26,7 +26,7 @@
   </table>
   <div class="base">
     <a href="t_insert.php">新規追加</a>
-    <a href="../index.php">サイト確認</a>
+    <a href="../">サイト確認</a>
     <a href="../user/t_user_registration.php">ユーザー登録</a>
     <a href="../user/t_user_login.php">ユーザーlogin</a>
     <a href="order_list.php">購入された商品</a>

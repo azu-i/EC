@@ -10,4 +10,4 @@ $productsDao->browdingHistoriesInsert($product_id);
 
 
 
-require 'view/product_detail.php';
+require 'views/product_detail.php';

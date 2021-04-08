@@ -18,8 +18,10 @@ $login_user_name = Auth::name();
 try {
   $productsDao = new ProductsDao();
   $products = $productsDao->findAll();
-  require 'view/index.php';
+  // header('Location: views/users/index.php');
+  require 'views/users/index.php';
 } catch (Exception $e) {
   echo $e->getMessage();
   die;
 }
+

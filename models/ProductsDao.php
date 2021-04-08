@@ -2,6 +2,7 @@
 require_once 'domain//ProductsFactory.php';
 require_once 'domain/CartProductFactory.php';
 require_once 'domain/QuantityFactory.php';
+
 ini_set('display_errors', "On");
 
 class ProductsDao
@@ -27,7 +28,6 @@ class ProductsDao
   //登録している商品の削除
   public function delete(int $id)
   {
-    // TODO: bindParamとかで書き直す SQLインジェクション対策
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
     $st->bindParam(':id', $id, PDO::PARAM_INT);
@@ -118,10 +118,10 @@ class ProductsDao
     return $cart;
   }
 
-  public function browdingHistoriesInsert($product_id)
+  public function browdingHistoriesInsert(int $product_id)
   {
     $table = self::TABLE_BROWING_HITORIES;
-    $st = $this->pdo->query("INSERT INTO (`product_id`) VALUES ($product_id)");
+    $st = $this->pdo->query("INSERT INTO $table(`product_id`) VALUES ($product_id)");
     return $st;
   }
 }
