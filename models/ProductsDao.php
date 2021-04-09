@@ -1,7 +1,7 @@
 <?php
-require_once 'domain//ProductsFactory.php';
-require_once 'domain/CartProductFactory.php';
-require_once 'domain/QuantityFactory.php';
+require_once ( __DIR__ . '/../domain/ProductsFactory.php');
+require_once (__DIR__ . '/../domain/CartProductFactory.php');
+require_once (__DIR__ . '/../domain/QuantityFactory.php');
 
 ini_set('display_errors', "On");
 
