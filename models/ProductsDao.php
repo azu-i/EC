@@ -1,7 +1,7 @@
 <?php
-require_once ( __DIR__ . '/../domain/ProductsFactory.php');
-require_once (__DIR__ . '/../domain/CartProductFactory.php');
-require_once (__DIR__ . '/../domain/QuantityFactory.php');
+require_once ( __DIR__ . '/../controllers/domain/products/ProductsFactory.php');
+require_once (__DIR__ . '/../controllers/domain/cart/CartProductFactory.php');
+require_once (__DIR__ . '/../controllers/domain/products/QuantityFactory.php');
 
 ini_set('display_errors', "On");
 
@@ -118,10 +118,10 @@ class ProductsDao
     return $cart;
   }
 
-  public function browdingHistoriesInsert(int $product_id)
+  public function browdingHistoriesInsert(int $product_id, int $auth_id)
   {
     $table = self::TABLE_BROWING_HITORIES;
-    $st = $this->pdo->query("INSERT INTO $table(`product_id`) VALUES ($product_id)");
+    $st = $this->pdo->query("INSERT INTO $table(`product_id`, `user_id`) VALUES ($product_id, $auth_id)");
     return $st;
   }
 }

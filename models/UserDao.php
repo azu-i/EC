@@ -1,7 +1,7 @@
 <?php
 
-require_once 'domain_user/User.php';
-require_once 'domain_user/UserLogin.php';
+require_once (__DIR__ . '/../controllers/domain/login_function/User.php');
+require_once (__DIR__ . '/../controllers/domain/login_function/UserLogin.php');
 
 ini_set('display_errors', "On");
 
