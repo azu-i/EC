@@ -118,10 +118,4 @@ class ProductsDao
     return $cart;
   }
 
-  public function browdingHistoriesInsert(int $product_id, int $auth_id)
-  {
-    $table = self::TABLE_BROWING_HITORIES;
-    $st = $this->pdo->query("INSERT INTO $table(`product_id`, `user_id`) VALUES ($product_id, $auth_id)");
-    return $st;
-  }
 }

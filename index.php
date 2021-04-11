@@ -2,6 +2,7 @@
 require_once (__DIR__ . '/models/ProductsDao.php');
 require_once (__DIR__ . '/Auth/Auth.php');
 require_once (__DIR__ . '/models/UserDao.php');
+require_once (__DIR__ . '/models/BrowdingHistoriesDao.php');
 
 ini_set('display_errors', "On");
 
@@ -18,7 +19,11 @@ $login_user_name = Auth::name();
 try {
   $productsDao = new ProductsDao();
   $products = $productsDao->findAll();
- 
+
+  $auth_id = Auth::id();
+  $browdingHistoriesDao = new BrowdingHistoriesDao();
+  $browdingHistories = $browdingHistoriesDao->searchbrowdingHistoriesByAuth($auth_id);
+
   require (__DIR__ . '/views/user/index.php');
 } catch (Exception $e) {
   echo $e->getMessage();
