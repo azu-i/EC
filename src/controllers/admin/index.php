@@ -11,5 +11,5 @@ try {
   echo $e->getMessage();
   die;
 }
-require (__DIR__ . '/../../views/admin/index.php');
+
 ?>

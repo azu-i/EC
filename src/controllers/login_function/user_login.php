@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once (__DIR__ . '/../../models/UserDao.php');
-require_once (__DIR__ . '/../domain/login_function/UserLogin.php');
+require_once (__DIR__ . '/../../domain/login_function/UserLogin.php');
 
 
 $email = $_POST['email'];
@@ -12,7 +12,7 @@ $error_message = $user_login->countError();
 
 if (count($error_message) > 0) {
   $_SESSION = $error_message;
-  header('Location: /views/login_function/user_login.php');
+  header('Location: /login_function/login');
   return;
 }
 
@@ -29,10 +29,10 @@ if($userDao->checkUserExistenceByEmail($email) == false){
   header('Location: /views/login_functionuser_login.php');
 }
 if($loginResult == true) {
-  header('Location: /index.php');
+  header('Location: /');
 }else{
   $error_message['password'] = "パスワードが一致しません";
   $_SESSION = $error_message;
-  header('Location: /views/login_function/user_login.php');
+  header('Location: /login_function/login');
 }
 

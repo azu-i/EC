@@ -38,6 +38,7 @@ class browdingHistoriesDao
 
   public function searchbrowdingHistoriesByAuth(int $auth_id): array
   {
+    $auth_id = 
     $browding_histories = $this->tableJoin();
     $auth_browding_histories = [];
     foreach($browding_histories as $browding_history){

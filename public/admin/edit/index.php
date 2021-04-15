@@ -30,7 +30,7 @@
     </form>
   </div>
   <div class="base">
-    <a href="index.php">一覧に戻る</a>
+    <a href="/index.php">一覧に戻る</a>
   </div>
 </body>
 

@@ -1,8 +1,7 @@
 <?php
-// require (__DIR__ . '/../domain/products//Price.php');
-require (__DIR__ . '/../domain/products/CommentFactory.php');
-require (__DIR__ . '/../domain/products/PriceFactory.php');
-require (__DIR__ . '/../../models/ProductsDao.php');
+require_once (__DIR__ . '/../domain/products/CommentFactory.php');
+require_once (__DIR__ . '/../domain/products/PriceFactory.php');
+require_once (__DIR__ . '/../../models/ProductsDao.php');
 
 ini_set('display_errors', "On");
 

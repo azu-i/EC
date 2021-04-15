@@ -41,7 +41,7 @@
     </tr>
   </table>
   <div class="base">
-    <a href="/index.php">お買い物に戻る</a><br>
+    <a href="/">お買い物に戻る</a><br>
     <a href="/controllers/user/cart_empty.php">カートを空にする</a><br>
     <a href="/controllers/user/order.php">購入する</a>
   </div>

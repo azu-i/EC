@@ -1,5 +1,5 @@
 <?php
-      session_start();
+      // session_start();
       $error_message = $_SESSION;
       $_SESSION = [];
       session_destroy();
@@ -15,7 +15,7 @@
 
 <body>
   <div class="base">
-    <form action="/controllers/login_function/user_login.php" method="post">
+    <form action="../src/controllers/login_function/user_login.php" method="post">
       <p>
         登録メールアドレス<br>
         <?php if (isset($error_message['email'])) :

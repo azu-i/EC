@@ -1,4 +1,6 @@
 <?php
+//adminControllerへ転記済み
+
 require (__DIR__ . '/../domain/products/ProductsDao.php');
 $productsDao = new ProductsDao();
 session_start();
