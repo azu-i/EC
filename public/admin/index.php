@@ -1,6 +1,3 @@
-<?php
-require_once(__DIR__ . '/../../src/controllers/admin/index.php');
-?>
 <!DOCTYPE html>
 <html lang="ja">
 

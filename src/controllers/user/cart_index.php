@@ -1,6 +1,6 @@
 <?php
 
-require_once (__DIR__ . '/../domain/cart/Cart.php');
+require_once (__DIR__ . '/../../domain/cart/Cart.php');
 require_once (__DIR__ . '/../../models/ProductsDao.php');
 require_once (__DIR__ . '/../../models/UserDao.php');
 
@@ -12,7 +12,7 @@ session_start();
 $userDao = new UserDao();
 $check_login = $userDao->checkLogin();
 if (!$check_login) {
-  header('Location:/views/login_function/user_login.php');
+  header('Location:/pubic/login_function/login.php');
   exit;
 }
 try {
@@ -21,6 +21,7 @@ try {
   $productsDao = new ProductsDao();
   $cart_products = $productsDao->searchCartProducts($_SESSION['cart'], $cart);
   require (__DIR__ . '/../../views/user/cart.php');
+  require (__DIR__ . '/../../../public/user/cart/index.php');
 } catch (Exception $e) {
   echo $e->getMessage();
   die;

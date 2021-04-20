@@ -1,20 +1,16 @@
 <?php
 
-class Products
+class Product
 {
   private $id;
   private $name;
   private $price;
   private $comment;
 
-  public function __construct(int $id, string $name, Price $price, Comment $comment)
+  public function __construct(ProductId $id, string $name, Price $price, Comment $comment)
   {
-    if (empty($id)) {
-      throw new Exception('IDが不適切です。');
-    }
     if (empty($name)) {
       throw new Exception('商品名が空です。');
-      
     }
     $this->id = $id;
     $this->name = $name;
@@ -22,7 +18,7 @@ class Products
     $this->comment = $comment;
   }
 
-  public function id(): int
+  public function id(): ProductId
   {
     return $this->id;
   }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once (__DIR__ . '/../../models/UserDao.php');
-require_once (__DIR__ . '/../domain/login_function/UserFactory.php');
+require_once (__DIR__ . '/../../domain/login_function/UserFactory.php');
 require_once (__DIR__ . '/../login_function/security.php');
 
 ini_set('display_errors', "On");
@@ -30,4 +30,4 @@ $setToken = escape(setToken());
 $userDao = new UserDao();
 $userDao->insert($user);
 
-header('Location: /views/login_function/user_registration_complete.php');
+header('Location: /public/login_function/registration_complete/index.php');

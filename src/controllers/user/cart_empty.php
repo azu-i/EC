@@ -3,5 +3,5 @@
 
   session_start();
   unset($_SESSION['cart']);
-  header('Location: /controllers/user/cart_index.php');
+  header('Location: /src/controllers/user/cart_index.php');
 ?>

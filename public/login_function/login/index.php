@@ -1,9 +1,19 @@
 <?php
-      // session_start();
-      $error_message = $_SESSION;
-      $_SESSION = [];
-      session_destroy();
-      ?>
+$error_message = $_SESSION;
+$_SESSION = [];
+session_destroy();
+require_once (__DIR__ . '/../../../vendor/altorouter/altorouter/AltoRouter.php');
+
+ini_set('display_errors', "On");
+
+$router = new AltoRouter();
+
+$router->map('GET|POST', '/login_function/login/', function () {
+  require(__DIR__ . '/../src/controllers/login_function/user_login.php');
+}, 'login');
+
+$match = $router->match();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +25,7 @@
 
 <body>
   <div class="base">
-    <form action="../src/controllers/login_function/user_login.php" method="post">
+    <form action='<?= $router->generate('login'); ?>' method="post">
       <p>
         登録メールアドレス<br>
         <?php if (isset($error_message['email'])) :
@@ -36,7 +46,7 @@
     <input type="submit" name="submit" value="ログイン">
   </p>
     </form>
-    <a href="/controllers/login_function/user_registration.php">新規登録はこちら</a>
+    <a href="<?php echo $router->generate('login'); ?>">新規登録はこちら</a>
   </div>
 </body>
 

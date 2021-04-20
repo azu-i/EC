@@ -1,3 +1,14 @@
+<?php
+// require_once (__DIR__ . '/../routes.php');
+// var_dump($router);
+require_once (__DIR__ . '/../../vendor/altorouter/altorouter/AltoRouter.php');
+$router = new AltoRouter();
+
+$router->map('GET', '/admin', function () {
+  require(__DIR__ . '/../../src/controllers/admin/index.php');
+}, 'admin');
+$match = $router->match();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +21,7 @@
 <body>
   <h1 class="text-3xl font-semibold">Vegetable Shop</h1>
   <div class="container-link">
-    <a href="/admin">管理画面へ</a>
+    <a href="<?= $router->generate('admin'); ?>">管理画面へ</a>
     <a href="/user/cart_empty.php">カートを空にする</a>
     <a href="/user/cart_index.php">カートへ</a>
     <a href="/user/order_history.php">購入履歴へ</a>
@@ -26,9 +37,9 @@
         </td>
         <td width="80">
           <p><?= $product->getPriceWithUnit() ?></p>
-          <form action="/controllers/user/product_detail.php" method="post">
+          <form action="" method="post">
 
-            <input type="hidden" name="id" value="<?= $product->id() ?>">
+            <input type="hidden" name="id" value="<?= $product->id()->value() ?>">
             <input type="submit" name="submit" value="詳細">
           </form>
         </td>

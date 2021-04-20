@@ -1,9 +1,11 @@
 <?php
+// namespace src\models;
 
 require_once (__DIR__ . '/../domain/login_function/User.php');
 require_once (__DIR__ . '/../domain/login_function/UserLogin.php');
 
 ini_set('display_errors', "On");
+
 
 class UserDao
 {

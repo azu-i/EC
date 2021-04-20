@@ -5,12 +5,12 @@ class CartProducts
   private $products;
   private $quantity;
 
-  public function __construct(Products $products, Quantity $quantity)
+  public function __construct(Product $product, Quantity $quantity)
   {
     if (empty($quantity)) {
       throw new Exception('足りていないパラメーターがあります');
     }
-    $this->products = $products;
+    $this->products = $product;
     $this->quantity = $quantity;
   }
 
@@ -24,7 +24,7 @@ class CartProducts
     return $this->products->price();
   }
 
-  public function id(): int
+  public function id(): ProductId
   {
     return $this->products->id();
   }

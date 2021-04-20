@@ -1,5 +1,5 @@
 <?php
-require (__DIR__ . '/../../models/ProductsDao.php');
+require_once (__DIR__ . '/../../models/ProductsDao.php');
 
 ini_set('display_errors', "On");
 $productsDao = new ProductsDao();

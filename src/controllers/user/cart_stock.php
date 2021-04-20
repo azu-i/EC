@@ -10,4 +10,4 @@ if ($_POST['num'] > 0) {
  
 }
 
-header('Location: /controllers/user/cart_index.php');
+header('Location: /src/controllers/user/cart_index.php');

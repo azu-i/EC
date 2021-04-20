@@ -24,19 +24,19 @@ class ProductsDao
   {
     return $this->pdo;
   }
-
+  //TODO: returnなくす
   //登録している商品の削除
-  public function delete(int $id)
+  public function delete(int $id): void
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
     $st->bindParam(':id', $id, PDO::PARAM_INT);
     $st->execute();
-    return $st;
+    // return $st;
   }
 
   //商品情報編集
-  public function editUplode(int $id, string $name, int $price, string $comment)
+  public function editUplode(int $id, string $name, int $price, string $comment): void
   {
     $products = ProductsFactory::create($id, $name, $price, $comment);
     $id = $products->id();
@@ -45,12 +45,11 @@ class ProductsDao
     $comment = $products->comment();
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("UPDATE $table SET name='$name', comment='$comment', price=$price WHERE id= $id");
-
-    return $st;
+    // return $st;
   }
 
   //商品追加
-  public function productInsert($name, $comment, $price)
+  public function productInsert($name, $comment, $price): void
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("INSERT INTO $table(name,comment,price) VALUES(:name, :comment, :price)");
@@ -58,7 +57,7 @@ class ProductsDao
     $st->bindParam(':comment', $comment, PDO::PARAM_STR);
     $st->bindParam(':price', $price, PDO::PARAM_INT);
     $st->execute();
-    return $st;
+    // return $st;
   }
 
   //登録されている商品を全てデータベースから取ってくる
@@ -67,40 +66,19 @@ class ProductsDao
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo()->query("SELECT * FROM $table");
     $productsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
-    $products = $this->convertToProductsEntities($productsFromTable);
-    return $products;
+    return $productsFromTable;
   }
   
-
-  public function selectProduct(int $id): Products
+ //findByIdとかとか
+  public function selectProduct(ProductId $productId): Product
   {
     $table = self::TABLE_PRODUCTS;
+    $id = $productId->value();
     $st = $this->pdo->query("SELECT * FROM $table WHERE id = $id");
-    $row = $st->fetch();
-
-    $products = ProductsFactory::create(
-      $id,
-      $row['name'],
-      $row['price'],
-      $row['comment'],
-    );
-    return $products;
+    $product = $st->fetch();
+    return $product;
   }
 
-  private function convertToProductsEntities(array $productsFromTable): array
-  {
-    $products = [];
-    foreach ($productsFromTable as $productFromTable) {
-
-      $products[] = ProductsFactory::create(
-        $productFromTable['id'],
-        $productFromTable['name'],
-        $productFromTable['price'],
-        $productFromTable['comment']
-      );
-    }
-    return $products;
-  }
 
   public function searchCartProducts(array $cart_content, Cart $cart)
   {
