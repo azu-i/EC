@@ -69,8 +69,8 @@ class ProductsDao
     return $productsFromTable;
   }
   
- //findByIdとかとか
-  public function selectProduct(ProductId $productId): Product
+ 
+  public function selectProduct(ProductId $productId): array
   {
     $table = self::TABLE_PRODUCTS;
     $id = $productId->value();

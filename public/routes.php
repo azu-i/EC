@@ -7,7 +7,7 @@ $router = new AltoRouter();
 
 $router->map('GET', '/', function () {
   // require_once __DIR__ . '/../src/controllers/user/index.php';
-  require_once (__DIR__ . '/../src/controllers/login_function/user_login.php');
+  header('Location: /src/');
 }, 'home');
 
 $router->map('GET|POST', '/login_function/login/', function () {
@@ -25,7 +25,7 @@ $router->map('GET', '/admin/order_list', function () {
 $router->map('GET|POST', '/product_detail/[i:id] ', function ($id) {
   require __DIR__ .
   '/../src/controllers/user/product_detail.php';
-}, 'product-detail');
+}, 'product_detail');
 
 $match = $router->match();
 

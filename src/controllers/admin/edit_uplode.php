@@ -13,11 +13,11 @@ try {
 
   $productsDao->editUplode($id, $name, $price, $comment);
 
-  header('Location: /controllers/admin/index.php');
+  header('Location: /admin');
   exit();
 } catch (Exception $e) {
   echo $e->getMessage();
   exit;
 }
 
-require (__DIR__ . '/edit.php');
+// require (__DIR__ . '/edit.php');

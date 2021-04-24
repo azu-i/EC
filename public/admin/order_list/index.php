@@ -1,3 +1,6 @@
+<?php
+require_once (__DIR__ . '/../../../src/controllers/admin/order_list.php');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 

@@ -1,6 +1,7 @@
 <?php
 // namespace src\models;
 
+// use PDO;
 require_once (__DIR__ . '/../domain/login_function/User.php');
 require_once (__DIR__ . '/../domain/login_function/UserLogin.php');
 

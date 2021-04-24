@@ -1,5 +1,5 @@
 <?php
-require (__DIR__ . '/../../index.php');
+require_once (__DIR__ . '/../../../../src/controllers/login_function/user_logout.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@ require (__DIR__ . '/../../index.php');
 
 <body>
   <div class="base">
-    <form action="/route/login" method="get">
+    <form action='' method="post">
       <p>
         登録メールアドレス<br>
         <?php if (isset($error_message['email'])) :
@@ -33,7 +33,7 @@ require (__DIR__ . '/../../index.php');
     <input type="submit" name="submit" value="ログイン">
   </p>
     </form>
-    <a href="/login_function/registration">新規登録はこちら</a>
+    <a href="">新規登録はこちら</a>
   </div>
 </body>
 

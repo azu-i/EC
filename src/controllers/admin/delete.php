@@ -6,4 +6,3 @@ $productsDao = new ProductsDao();
 session_start();
 $id = $_GET['id'];
 $productsDao->delete($id);
-header('Location: /controllers/admin/index.php');

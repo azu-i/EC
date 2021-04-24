@@ -1,3 +1,7 @@
+<?php
+// require_once(__DIR__ . '/../../../src/controllers/user/product_detail.php');
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -29,11 +33,12 @@
               }
               ?>
             </select>
-            <input type="hidden" name="id" value="<?=  $product_details->id() ?>">
+            <input type="hidden" name="id" value="<?= $product_details->id()->value() ?>">
             <input type="submit" name="submit" value="カートへ">
           </form>
       </td>
     </tr>
   </table>
 </body>
+
 </html>
