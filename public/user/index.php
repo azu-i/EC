@@ -15,8 +15,8 @@
     <a href="/user/cart">カートへ</a>
     <a href="/user/order_history">購入履歴へ</a>
     <a href="/login_function/registration">新規ユーザー登録</a>
-    <p>ログインユーザー：<?= $login_user_name; ?></p>
-    <form action="<?php include_once(__DIR__ . '/../../src/controllers/login_function/user_logout.php')?>" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
+    <p>ログインユーザー：<?= $loginUserName; ?></p>
+    <form action="" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
   </div>
   <table>
     <?php foreach ($products as $product) { ?>

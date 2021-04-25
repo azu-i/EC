@@ -85,7 +85,7 @@ class UserDao
 
   public function checkLogin(): bool
   {
-    if(isset($_SESSION['login_user']) && $_SESSION['login_user']['id'] > 0){
+    if(isset($_SESSION['loginUser']) && $_SESSION['loginUser']['id'] > 0){
       return true;
     }
     return false;

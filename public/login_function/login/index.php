@@ -1,5 +1,8 @@
 <?php
-require (__DIR__ . '/../../index.php');
+// require (__DIR__ . '/../../index.php');
+session_start();
+
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,20 +15,20 @@ require (__DIR__ . '/../../index.php');
 
 <body>
   <div class="base">
-    <form action="/route/login" method="get">
+    <form action="http://l-ec.com/route/login" method="get">
       <p>
         登録メールアドレス<br>
-        <?php if (isset($error_message['email'])) :
+        <?php if (isset($_SESSION['email'])): 
         ?>
-      <p><?= $error_message['email']; ?></p>
-    <?php endif; ?>
+      <p><?= $_SESSION['email']; ?></p>
+    <?php endif ?>
     <input type="text" name="email"></input>
     </p>
     <p>
       パスワード<br>
-      <?php if (isset($error_message['password'])) :
+      <?php if (isset($_SESSION['password'])) :
       ?>
-    <p><?= $error_message['password']; ?></p>
+    <p><?= $_SESSION['password']; ?></p>
   <?php endif; ?>
   <input type="text" name="password">
   </p>

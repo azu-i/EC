@@ -1,17 +1,14 @@
 <?php
 require_once(__DIR__ . '/../../../src/controllers/login_function/user_login.php');
 session_start();
+$login = new Login($_GET['email'], $_GET['password']);
 
-$error_message = [];
-if ($user_dao->checkUserExistenceByEmail($email) == false) {
-  $error_message['email'] = "入力したメールアドレスは登録されていません";
-  $_SESSION = $error_message;
+$errorMessage = $login->countError();
+if(count($errorMessage) > 0){
+  $_SESSION = $errorMessage;
   header('Location: http://l-ec.com/login_function/login');
-}
-if ($login_result == true) {
-  header('Location: http://l-ec.com');
-} else {
-  $error_message['password'] = "パスワードが一致しません";
-  $_SESSION = $error_message;
-  header('Location: /login_function/login');
+}else{
+  $loginUserData = $login->userData();
+  $_SESSION['loginUser'] = $loginUserData;
+  header('Location: http://l-ec.com'); 
 }

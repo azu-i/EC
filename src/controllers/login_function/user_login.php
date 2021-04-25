@@ -1,37 +1,34 @@
 <?php
 session_start();
-require_once (__DIR__ . '/../../models/UserDao.php');
-require_once (__DIR__ . '/../../domain/login_function/UserLogin.php');
+require_once(__DIR__ . '/../../models/UserDao.php');
+require_once(__DIR__ . '/../../domain/login_function/UserLogin.php');
 
-$email = $_GET['email'];
-$password = $_GET['password'];
-$user_login = new UserLogin($email, $password);
+class Login
+{
+  public function __construct(string $email, string $password)
+  {
+    $this->email = $email;
+    $this->password = $password;
+  }
 
-$error_message = $user_login->countError();
+  public function countError(): array
+  {
+    $userLogin = new UserLogin($this->email, $this->password);
+    $userDao = new UserDao();
+    $errorMessage = $userLogin->countError();
+    $loginResult = $userDao->login($userLogin);
+    if ($userDao->checkUserExistenceByEmail($this->email) == false) {
+      $errorMessage['email'] = "入力したメールアドレスは登録されていません";
+    }elseif($loginResult == false){
+      $errorMessage['password'] = "パスワードが一致しません";
+    }
+    return $errorMessage;
+  }
 
-if (count($error_message) > 0) {
-  $_SESSION = $error_message;
-  header('Location: /login_function/login');
-  return;
+  public function userData()
+  {
+    $userDao = new UserDao();
+    $loginUserData = $userDao->getUserDataByEmail($this->email);
+    return $loginUserData;
+  }
 }
-
-$user_dao = new UserDao();
-$login_user_data = $user_dao->getUserDataByEmail($email);
-$_SESSION['login_user'] = $login_user_data;
-
-//メールアドレスとパスワードの照合
-$login_result = $user_dao->login($user_login);
-// $error_message = [];
-// if($user_dao->checkUserExistenceByEmail($email) == false){
-//   $error_message['email'] = "入力したメールアドレスは登録されていません";
-//   $_SESSION = $error_message;
-//   header('Location: /login_function/login');
-// }
-// if($login_result == true) {
-//   header('Location: http://l-ec.com');
-// }else{
-//   $error_message['password'] = "パスワードが一致しません";
-//   $_SESSION = $error_message;
-//   header('Location: /login_function/login');
-// }
-
