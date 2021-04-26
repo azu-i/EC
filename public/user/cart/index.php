@@ -18,21 +18,20 @@
       <th>小計</th>
       <th></th>
     </tr>
-    <?php foreach ($cart_products->cart_products() as $cart_product) { ?>
+    <?php foreach ($cartProducts->cart_products() as $cartProduct) { ?>
       <tr>
-        <td><?= $cart_product->name() ?></td>
-        <td><?= $cart_product->price() ?>円</td>
-        <td><?= $cart_product->quantity() ?></td>
-        <td><?= $cart_product->sum_price() ?>円</td>
+        <td><?= $cartProduct->name() ?></td>
+        <td><?= $cartProduct->price() ?>円</td>
+        <td><?= $cartProduct->quantity() ?></td>
+        <td><?= $cartProduct->sum_price() ?>円</td>
         <td>
-          <form action="/controllers/user/cart_product_delete.php" method="POST">
-            <input type="hidden" name="id" value="<?= $cart_product->id() ?>">
+          <form action="/route/cart_delete" method="get">
+            <input type="hidden" name="id" value="<?= $cartProduct->id()->value() ?>">
             <input type="submit" name="submit" value="カートから削除">
           </form>
         </td>
       </tr>
     <?php } ?>
-
     <tr>
       <td colspan="2"></td>
       <td><strong>合計</strong></td>
@@ -42,8 +41,8 @@
   </table>
   <div class="base">
     <a href="/">お買い物に戻る</a><br>
-    <a href="/controllers/user/cart_empty.php">カートを空にする</a><br>
-    <a href="/controllers/user/order.php">購入する</a>
+    <a href="/route/cart_empty">カートを空にする</a><br>
+    <a href="/route/order">購入する</a>
   </div>
 </body>
 

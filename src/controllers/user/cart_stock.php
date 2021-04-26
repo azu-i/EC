@@ -1,13 +1,21 @@
 <?php
 require (__DIR__ . '/../../models/ProductsDao.php');
 
-$productsDao = new ProductsDao();
-$productsDao->pdo();
-session_start();
+class CartStock
+{
+  public function __construct(int $productId, int $stockNum)
+  {
+    $this->productId = $productId; 
+    $this->stockNum = $stockNum; 
+  }
 
-if ($_POST['num'] > 0) {
-  $_SESSION['cart'][$_POST['id']] += $_POST['num'];
- 
+  public function cartStock(): array
+  {
+    session_start();
+    if ($this->stockNum > 0) {
+      $_SESSION['cart'][$this->productId] +=
+      $this->stockNum;
+      return $_SESSION['cart']; 
+    }
+  }
 }
-
-header('Location: /src/controllers/user/cart_index.php');

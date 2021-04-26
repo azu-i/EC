@@ -1,21 +1,19 @@
 <?php
 
-class Quantity
+class ProductId
 {
-  private $count;
+  private $value;
 
-  public function __construct(int $count)
+  public function __construct(int $value)
   {
-    if($count < 0){
-      throw new Exception('個数は0以上で入力してください');
+    if ($value < 0) {
+      throw new Exception('IDは0以上で入力してください');
     }
-   $this->count = $count; 
+    $this->value = $value;
   }
 
-  public function count():int
+  public function value(): int
   {
-    return $this->count;
+    return $this->value;
   }
 }
-
-?>

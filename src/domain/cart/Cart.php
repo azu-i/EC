@@ -17,7 +17,6 @@ class Cart
   public function total_price(): int
   {
     $total_price = 0;
-
     foreach ($this->cart_products as $cart_product) {
       $total_price += $cart_product->sum_price();
     }

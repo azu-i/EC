@@ -18,15 +18,15 @@
         <th>小計</th>
         <th></th>
       </tr>
-      <?php foreach ($cart_products->cart_products() as $cart_product) { ?>
+      <?php foreach ($cartProducts->cart_products() as $cartProduct) { ?>
         <tr>
-          <td><?= $cart_product->name() ?></td>
-          <td><?= $cart_product->price() ?>円</td>
-          <td><?= $cart_product->quantity() ?></td>
-          <td><?= $cart_product->sum_price() ?>円</td>
+          <td><?= $cartProduct->name() ?></td>
+          <td><?= $cartProduct->price() ?>円</td>
+          <td><?= $cartProduct->quantity() ?></td>
+          <td><?= $cartProduct->sum_price() ?>円</td>
           <td>
-            <form action="/controllers/user/cart_product_delete.php" method="POST">
-              <input type="hidden" name="id" value="<?php echo $cart_product->id() ?>">
+            <form action="/route/cart_delete" method="get">
+              <input type="hidden" name="id" value="<?= $cartProduct->id()->value() ?>">
               <input type="submit" name="submit" value="カートから削除">
             </form>
           </td>
@@ -36,7 +36,7 @@
       <tr>
         <td colspan="2"></td>
         <td><strong>合計</strong></td>
-        <td><?php echo $cart->total_price() ?>円</td>
+        <td><?= $cart->total_price() ?>円</td>
         <td></td>
       </tr>
     </table>
@@ -66,7 +66,7 @@
   </div>
   <div class="base">
     <a href="/index.php">お買い物に戻る</a>
-    <a href="/controllers/user/cart_index.php">カートに戻る</a>
+    <a href="/route/cart">カートに戻る</a>
   </div>
 </body>
 

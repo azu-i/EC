@@ -20,19 +20,19 @@
         <th>注文日時</th>
       </tr>
       <tr>
-        <?php foreach ($auth_order_lists as $auth_order_list) {  ?>
-          <?php foreach ($auth_order_list as $auth_order) {  ?>
+        <?php foreach ($authOrderLists as $authOrderList) {  ?>
+          <?php foreach ($authOrderList as $authOrder) {  ?>
             <td>
-              <p class="products"><?= $auth_order['name'] ?></p>
+              <p class="products"><?= $authOrder['name'] ?></p>
             </td>
             <td>
-              <p><?= $auth_order['amount'] . '個' ?></p>
+              <p><?= $authOrder['amount'] . '個' ?></p>
             </td>
             <td>
-              <p><?= $auth_order['price'] * $auth_order['amount'] . '円' ?></p>
+              <p><?= $authOrder['price'] * $authOrder['amount'] . '円' ?></p>
             </td>
             <td>
-              <p><?= $auth_order['order_date'] ?></p>
+              <p><?= $authOrder['order_date'] ?></p>
             </td>
       </tr>
     <?php } ?>

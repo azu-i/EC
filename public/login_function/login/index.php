@@ -1,7 +1,5 @@
 <?php
-// require (__DIR__ . '/../../index.php');
 session_start();
-
 session_destroy();
 ?>
 <!DOCTYPE html>

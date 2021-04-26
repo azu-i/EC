@@ -1,7 +1,3 @@
-<?php
-// require_once(__DIR__ . '/../../../src/controllers/user/product_detail.php');
-
-?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,21 +15,20 @@
   <table>
     <tr>
       <td>
-        <p class="products"><?= $product_details->name() ?></p>
-        <p><?= nl2br($product_details->comment()) ?></p>
+        <p class="products"><?= $productInfo->name() ?></p>
+        <p><?= nl2br($productInfo->comment()) ?></p>
       </td>
       <td>
-        <p><?= $product_details->getPriceWithUnit() ?></p>
-        <form action="/controllers/user/cart_stock.php" method="post">
-          <form action="/controllers/user/product_detail.php" method="post">
+        <p><?= $productInfo->getPriceWithUnit() ?></p>
+        <form action="/route/cart_stock" method="get">
             <select name="num">
               <?php
-              for ($i = 0; $i <= $max_order_number; $i++) {
+              for ($i = 0; $i <= $maxOrderNumber; $i++) {
                 echo "<option>$i</option>";
               }
               ?>
             </select>
-            <input type="hidden" name="id" value="<?= $product_details->id()->value() ?>">
+            <input type="hidden" name="id" value="<?= $productInfo->id()->value() ?>">
             <input type="submit" name="submit" value="カートへ">
           </form>
       </td>

@@ -7,13 +7,7 @@ require_once (__DIR__ . '/../../models/ProductsDao.php');
 require_once (__DIR__ . '/../../models/UserDao.php');
 
 session_start();
-$userDao = new UserDao();
-$check_login = $userDao->checkLogin();
 
-if (!$check_login) {
-  header('Location: /public/login_function/login/index.php');
-  exit;
-}
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = CartFactory::create();
 $productsDao = new ProductsDao();
