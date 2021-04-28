@@ -17,10 +17,10 @@
     購入時情報<br><br>
     届け先住所：<?= $address; ?> <br>
     電話番号：<?= $tell; ?> <br>
-    支払い方法：<?= $payment_display; ?>
+    支払い方法：<?= $paymentDispray; ?>
   </div>
   <div class="base">
-    <a href="/index.php">お買い物に戻る</a>
+    <a href="/">お買い物に戻る</a>
   </div>
 </body>
 

@@ -41,7 +41,7 @@
       </tr>
     </table>
   <div class="base">
-    <form action="/controllers/user/order_insert.php" method="post">
+    <form action="/route/order_insert" method="get">
       <p>
         お名前<br>
         <input type="text" name="name">
@@ -65,7 +65,7 @@
     </form>
   </div>
   <div class="base">
-    <a href="/index.php">お買い物に戻る</a>
+    <a href="/">お買い物に戻る</a>
     <a href="/route/cart">カートに戻る</a>
   </div>
 </body>

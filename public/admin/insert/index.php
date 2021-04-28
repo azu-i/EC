@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/admin.css">
@@ -10,7 +9,7 @@
 <body>
   <div class="base">
     <?php if ($error) echo "<span class=\"error\">$error</span>" ?>
-    <form action="/controllers/admin/insert.php" method="post">
+    <form action="/route/product_insert" method="get">
       <p>
         商品名<br>
         <input type="text" name="name" value="<?= $name ?>">
@@ -29,7 +28,7 @@
     </form>
   </div>
   <div class="base">
-    <a href="/controllers/admin/index.php">一覧に戻る</a>
+    <a href="/admin">一覧に戻る</a>
   </div>
 </body>
 
