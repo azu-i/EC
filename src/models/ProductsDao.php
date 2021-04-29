@@ -24,7 +24,7 @@ class ProductsDao
   {
     return $this->pdo;
   }
-  //TODO: returnなくす
+ 
   //登録している商品の削除
   public function delete()
   {
