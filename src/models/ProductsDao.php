@@ -20,6 +20,7 @@ class ProductsDao
     $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
   }
 
+  // pdoのgetter
   public function pdo()
   {
     return $this->pdo;
