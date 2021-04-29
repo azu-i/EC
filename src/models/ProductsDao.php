@@ -38,13 +38,12 @@ class ProductsDao
   public function editUplode(int $id, string $name, int $price, string $comment): void
   {
     $products = ProductsFactory::create($id, $name, $price, $comment);
-    $id = $products->id();
+    $id = $products->id()->value();
     $name = $products->name();
     $price = $products->price();
     $comment = $products->comment();
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("UPDATE $table SET name='$name', comment='$comment', price=$price WHERE id= $id");
-    // return $st;
   }
 
   //商品追加

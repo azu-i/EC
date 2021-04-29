@@ -1,12 +1,6 @@
-<?php
+<!-- <?php
 require_once(__DIR__ . '/../../../src/controllers/admin/edit.php');
-require_once(__DIR__ . '/../../routes.php');
-
-
-$router->map('GET|POST', '/admin/edit_uplode', function () {
-  require_once (__DIR__ . '/../../../src/controllers/admin/edit_uplode.php');
-}, 'uplode');
-?>
+?> -->
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +12,7 @@ $router->map('GET|POST', '/admin/edit_uplode', function () {
 
 <body>
   <div class="base">
-    <form action="<?= $router->generate('uplode')?>" method="post">
+    <form action="/route/product_edit" method="get">
       <p>
         商品名<br>
         <input type="text" name="name" value="<?= $products->name() ?>">
