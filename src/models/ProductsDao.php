@@ -24,15 +24,13 @@ class ProductsDao
   {
     return $this->pdo;
   }
-  //TODO: returnなくす
+ 
   //登録している商品の削除
   public function delete()
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
     return $st;
-    // $st->bindParam(':id', $id, PDO::PARAM_INT);
-    // $st->execute();
   }
 
   //商品情報編集
