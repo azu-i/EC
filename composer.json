@@ -1,0 +1,19 @@
+{
+    "name": "azu/myfr",
+    "description": "this is my fream work",
+    "license": "AGPL-3.0-or-later",
+    "require": {
+        "php": "^7.4",
+        "altorouter/altorouter": "1.1.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "public\\": "public/"
+        }
+    }
+}
