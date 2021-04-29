@@ -12,4 +12,3 @@ $id = new ProductId($_GET['id']);
 
 $products = $productsRepository->findById($id);
 
-// require (__DIR__ . '/../../../public/admin/edit/index.php')
