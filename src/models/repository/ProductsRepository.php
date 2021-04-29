@@ -16,6 +16,7 @@ class ProductsRepository implements ProductsRepositoryInterface
     $this->productsDao = new ProductsDao();
   }
 
+  // 商品Entitiyの全取得
   public function findAll(): array
   {
     $productsFromTable = $this->productsDao->findAll();
