@@ -31,8 +31,6 @@ class ProductsDao
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
     return $st;
-    // $st->bindParam(':id', $id, PDO::PARAM_INT);
-    // $st->execute();
   }
 
   //商品情報編集
