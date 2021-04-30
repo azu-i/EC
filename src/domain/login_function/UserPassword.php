@@ -1,18 +1,18 @@
 <?php
 class UserPassword
 {
-  private $user_password;
+  private $userPassword;
 
-  public function __construct(string $user_password)
+  public function __construct(string $userPassword)
   {
-    if(!preg_match("/\A[a-z\d]{8,100}+\z/i",$user_password)){
+    if(!preg_match("/\A[a-z\d]{8,100}+\z/i",$userPassword)){
       throw new Exception('パスワードは英数字8文字以上、100文字以内にしてください。');
     }
-    $this->user_password = $user_password;
+    $this->userPassword = $userPassword;
   }
   
-  public function user_password(): string
+  public function userPassword(): string
   {
-    return $this->user_password;
+    return $this->userPassword;
   }
 }

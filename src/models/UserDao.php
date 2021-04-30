@@ -1,7 +1,4 @@
 <?php
-// namespace src\models;
-
-// use PDO;
 require_once (__DIR__ . '/../domain/login_function/User.php');
 require_once (__DIR__ . '/../domain/login_function/UserLogin.php');
 
@@ -47,22 +44,22 @@ class UserDao
     $st = $this->pdo->prepare($sql);
     $st->bindParam(':email', $email, PDO::PARAM_STR);
     $st->execute();
-    $user_data = $st->fetch();
-    return $user_data;
+    $userData = $st->fetch();
+    return $userData;
   }
 
   public function checkUserExistenceByEmail(string $email): bool
   {
-    $user_data = $this->getUserDataByEmail($email); 
-    if(!empty($user_data)){
+    $userData = $this->getUserDataByEmail($email); 
+    if(!empty($userData)){
       return true;
     }
     return false;
   }
 
-  private function checkPassword($password, $typed_password)
+  private function checkPassword($password, $typedPassword)
   {
-    if (password_verify($password, $typed_password)) {
+    if (password_verify($password, $typedPassword)) {
       //セッションハイジャック対策
       session_regenerate_id(true);
       return true;
@@ -71,12 +68,12 @@ class UserDao
     }
   }
 
-  public function login(UserLogin $user_login): bool
+  public function login(UserLogin $userLogin): bool
   {
-    [$email, $password] = $user_login->extractParamsForLogin();
-    $user_data = $this->getUserDataByEmail($email);
+    [$email, $password] = $userLogin->extractParamsForLogin();
+    $userData = $this->getUserDataByEmail($email);
     
-    if($this->checkUserExistenceByEmail($email) && $this->checkPassword($password, $user_data['password'])){
+    if($this->checkUserExistenceByEmail($email) && $this->checkPassword($password, $userData['password'])){
       return true;
     }else{
       return false;

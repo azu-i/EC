@@ -1,6 +1,3 @@
-<!-- <?php
-require_once(__DIR__ . '/../../../src/controllers/admin/edit.php');
-?> -->
 <!DOCTYPE html>
 <html>
 

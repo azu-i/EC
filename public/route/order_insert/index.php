@@ -4,11 +4,11 @@ require_once (__DIR__ . '/../../../src/auth/Auth.php');
 
 session_start();
 $authId = Auth::id();
-$address = $_GET['address'];
-$tell = $_GET['tell'];
-$payment = $_GET['payment'];
+// $address = $_GET['address'];
+// $tell = $_GET['tell'];
+// $payment = $_GET['payment'];
 
-$orderInsert = new OrderInsert($authId, $address, $tell, $payment);
+$orderInsert = new OrderInsert($authId, $_GET['address'], $_GET['tell'], $_GET['payment']);
 
 $orderInsert->orderInsert();
 $orderInsert->orderProductInsert();

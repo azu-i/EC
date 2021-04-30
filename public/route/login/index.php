@@ -6,9 +6,9 @@ $login = new Login($_GET['email'], $_GET['password']);
 $errorMessage = $login->countError();
 if(count($errorMessage) > 0){
   $_SESSION = $errorMessage;
-  header('Location: http://l-ec.com/login_function/login');
+  header('Location: /login_function/login');
 }else{
   $loginUserData = $login->userData();
   $_SESSION['loginUser'] = $loginUserData;
-  header('Location: http://l-ec.com'); 
+  header('Location: /'); 
 }

@@ -33,9 +33,9 @@ class User
 
   public function extractParamsForRegister(): array
   {
-    $name = $this->name->user_name();
+    $name = $this->name->userName();
     $email = $this->email->mail();
-    $password = $this->password->user_password();
+    $password = $this->password->userPassword();
     return [$name, $email, $password];
   }
 }

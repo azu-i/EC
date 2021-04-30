@@ -11,6 +11,6 @@ session_start();
 if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
 $cart = CartFactory::create();
 $productsDao = new ProductsDao();
-$cart_products = $productsDao->searchCartProducts($_SESSION['cart'], $cart);
+$cartProducts = $productsDao->searchCartProducts($_SESSION['cart'], $cart);
 
 require (__DIR__ . '/../../../public/user/order/index.php');

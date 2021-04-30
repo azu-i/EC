@@ -6,7 +6,7 @@ $stockNum = $_GET['num'];
 $cartStock = new CartStock($productId, $stockNum);
 $cart = $cartStock->cartStock();
 
-header('Location: http://l-ec.com/route/cart');
+header('Location: /route/cart');
 
 
 
