@@ -34,7 +34,7 @@ class CartProducts
     return $this->quantity->count();
   }
 
-  public function sum_price(): int
+  public function sumPrice(): int
   {
     return $this->price() * $this->quantity->count();
   }

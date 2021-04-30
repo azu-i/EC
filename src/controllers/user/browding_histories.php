@@ -2,17 +2,17 @@
 require_once (__DIR__ . '/../../auth/Auth.php');
 require_once (__DIR__ . '/../../models/BrowdingHistoriesDao.php');
 
-$auth_id = Auth::id();
+$authId = Auth::id();
 $browdingHistoriesDao = new BrowdingHistoriesDao();
 
-$browding_histories = $browdingHistoriesDao->tableJoin();
-$auth_browding_histories = [];
-foreach ($browding_histories as $browding_history) {
-  if ($browding_history['user_id'] == $auth_id) $auth_browding_histories[$browding_history['product_id']] = $browding_history;
+$browdingHistories = $browdingHistoriesDao->tableJoin();
+$authBrowdingHistories = [];
+foreach ($browdingHistories as $browdingHistory) {
+  if ($browdingHistory['user_id'] == $authId) $authBrowdingHistories[$browdingHistory['product_id']] = $browdingHistory;
 }
-if (count($auth_browding_histories) > 5) {
-  $reverse_browding_histories = array_reverse($auth_browding_histories);
-  $auth_browding_histories = array_slice($reverse_browding_histories, 0, 5);
+if (count($authBrowdingHistories) > 5) {
+  $reverseBrowdingHistories = array_reverse($authBrowdingHistories);
+  $authBrowdingHistories = array_slice($reverseBrowdingHistories, 0, 5);
 }else{
-  array_reverse($auth_browding_histories);
+  array_reverse($authBrowdingHistories);
 }

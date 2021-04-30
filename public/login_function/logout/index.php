@@ -1,9 +1,5 @@
-<?php
-require_once (__DIR__ . '/../../../../src/controllers/login_function/user_logout.php');
-?>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>ユーザーログイン</title>

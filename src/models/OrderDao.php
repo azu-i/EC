@@ -34,12 +34,12 @@ class OrderDao
     $st->execute();
   }
 
-  public function orderProductInsert($order_products, $order_id): void
+  public function orderProductInsert($orderProducts, $orderId): void
   {
     $table = self::TABLE_ORDER＿PRODUCTS;
     $st = [];
-    foreach ($order_products as $product_id => $amount) {
-      $stmt[] = $this->pdo->prepare("INSERT INTO `$table`(`order_id`, `product_id`, `amount`) VALUES ('$order_id', '$product_id', '$amount')");
+    foreach ($orderProducts as $productId => $amount) {
+      $stmt[] = $this->pdo->prepare("INSERT INTO `$table`(`order_id`, `product_id`, `amount`) VALUES ('$orderId', '$productId', '$amount')");
     }
   }
 
@@ -47,80 +47,80 @@ class OrderDao
   //オーダーのidによって結合する
   private function  orderDataJoin(): array
   {
-    $table_order = self::TABLE_ORDER;
-    $table_order_products
+    $tableOrder = self::TABLE_ORDER;
+    $tableOrderProducts
       = self::TABLE_ORDER＿PRODUCTS;
-    $st = $this->pdo->query("SELECT * FROM `$table_order` INNER JOIN `$table_order_products` ON $table_order.id = $table_order_products.order_id");
-    $order_join = $st->fetchAll(PDO::FETCH_ASSOC);
-    return $order_join;
+    $st = $this->pdo->query("SELECT * FROM `$tableOrder` INNER JOIN `$tableOrderProducts` ON $tableOrder.id = $tableOrderProducts.order_id");
+    $orderJoin = $st->fetchAll(PDO::FETCH_ASSOC);
+    return $orderJoin;
   }
 
   //購入履歴の配列にユーザー情報と商品情報を追加
   public function orderedDataWithUserAndProductData(): array
   {
-    $order_join = $this->orderDataJoin();
-    $table_users = self::TABLE_USERS;
-    $table_products = self::TABLE_PRODUCTS;
-    $order_data = [];
-    foreach ($order_join as $order_products) {
-      $product_id  = $order_products['product_id'];
-      $product_st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM `$table_products` WHERE id=$product_id");
-      $product_data = $product_st->fetch();
-      $user_id = $order_products['user_id'];
-      $user_st = $this->pdo()->query("SELECT `name`, `email` FROM `$table_users` WHERE id='$user_id'");
-      $user_data = $user_st->fetch();
-      $order_product = array_merge($order_products, $user_data);
-      $order_product = array_merge($order_product, array('user_name' => $user_data['name']));
-      $order_product = array_merge($order_product, $product_data);
-      $order_data[$order_products['order_id']][] = $order_product;
+    $orderJoin = $this->orderDataJoin();
+    $tableUsers = self::TABLE_USERS;
+    $tableProducts = self::TABLE_PRODUCTS;
+    $orderData = [];
+    foreach ($orderJoin as $orderProducts) {
+      $productId  = $orderProducts['product_id'];
+      $st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM `$tableProducts` WHERE id=$productId");
+      $productData = $st->fetch();
+      $userId = $orderProducts['user_id'];
+      $user_st = $this->pdo()->query("SELECT `name`, `email` FROM `$tableUsers` WHERE id='$userId'");
+      $userData = $user_st->fetch();
+      $orderProduct = array_merge($orderProducts, $userData);
+      $orderProduct = array_merge($orderProduct, array('user_name' => $userData['name']));
+      $orderProduct = array_merge($orderProduct, $productData);
+      $orderData[$orderProducts['order_id']][] = $orderProduct;
     }
-    return $order_data;
+    return $orderData;
   }
   
   //購入履歴の配列に商品情報を追加
   public function orderedDataWithProductData(): array
   {
-    $order_join = $this->orderDataJoin();
+    $orderJoin = $this->orderDataJoin();
     $table = self::TABLE_PRODUCTS;
-    $order_data = [];
-    foreach ($order_join as $order_products) {
-      $product_id  = $order_products['product_id'];
-      $product_st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM `$table` WHERE id=$product_id");
-      $product_data = $product_st->fetch();
-      $order_data[$order_products['order_id']]['order_basedata'] = $order_products;
-      $product_data = array_merge($product_data, array('amount' => $order_products['amount']));
-      $product_data = array_merge($product_data, array('order_date' => $order_products['created_at']));
-      $order_data[$order_products['order_id']][] =
-      $product_data;
+    $orderData = [];
+    foreach ($orderJoin as $orderProducts) {
+      $productId  = $orderProducts['product_id'];
+      $product_st = $this->pdo()->query("SELECT `name`, `price`, `comment` FROM `$table` WHERE id=$productId");
+      $productData = $product_st->fetch();
+      $orderData[$orderProducts['order_id']]['order_basedata'] = $orderProducts;
+      $productData = array_merge($productData, array('amount' => $orderProducts['amount']));
+      $productData = array_merge($productData, array('order_date' => $orderProducts['created_at']));
+      $orderData[$orderProducts['order_id']][] =
+      $productData;
     }
-    return $order_data;
+    return $orderData;
   }
 
  //ログインユーザーの注文履歴を配列に入れる
-  private function orderedDataByAuth($auth_id): array
+  private function orderedDataByAuth(int $authId): array
   {
-    $order_data = $this->orderedDataWithProductData();
-    $auth_order = [];
-    foreach ($order_data as $order_info) {
-      if ($order_info["order_basedata"]['user_id'] === $auth_id) {        
-        $order_id = $order_info["order_basedata"]['order_id'];
-        $auth_order[$order_id][] = $order_info;
+    $orderData = $this->orderedDataWithProductData();
+    $authOrder = [];
+    foreach ($orderData as $orderInfo) {
+      if ($orderInfo["order_basedata"]['user_id'] === $authId) {        
+        $orderId = $orderInfo["order_basedata"]['order_id'];
+        $authOrder[$orderId][] = $orderInfo;
       }
     }
-    return $auth_order;
+    return $authOrder;
   }
 
-  public function makeOrderedDataList($auth_id)
+  public function makeOrderedDataList(int $authId)
   {
-    $auth_order_products = $this->orderedDataByAuth($auth_id);
-    $auth_order_lists = [];
-    foreach ($auth_order_products as $auth_order_product) {
-      foreach ($auth_order_product as $auth_orders) {
-        $order_time[] = $auth_orders["order_basedata"]["created_at"];
-        unset($auth_orders["order_basedata"]);
-        $auth_order_lists[] = $auth_orders;
+    $authOrderProducts = $this->orderedDataByAuth($authId);
+    $authOrderLists = [];
+    foreach ($authOrderProducts as $authOrderProduct) {
+      foreach ($authOrderProduct as $authOrders) {
+        $orderTime[] = $authOrders["order_basedata"]["created_at"];
+        unset($authOrders["order_basedata"]);
+        $authOrderLists[] = $authOrders;
       }
     }
-    return $auth_order_lists;
+    return $authOrderLists;
   }
 }

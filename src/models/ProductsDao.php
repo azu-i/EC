@@ -77,18 +77,18 @@ class ProductsDao
   }
 
 
-  public function searchCartProducts(array $cart_content, Cart $cart)
+  public function searchCartProducts(array $cartContent, Cart $cart)
   {
     $table = self::TABLE_PRODUCTS; 
-    foreach ($cart_content as $id => $num) {
+    foreach ($cartContent as $id => $num) {
       $st = $this->pdo->prepare("SELECT * FROM $table WHERE id = ?");
       $st->execute(array($id));
       $row = $st->fetch();
       $st->closeCursor();
       $products = ProductsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
       $num = QuantityFactory::create(strip_tags($num))->count();
-      $cart_products = CartProductFactory::create($products, $num);
-      $cart->append_cart_product($cart_products);
+      $cartProducts = CartProductFactory::create($products, $num);
+      $cart->appendCartProduct($cartProducts);
     }
     return $cart;
   }

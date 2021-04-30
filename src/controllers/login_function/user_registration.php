@@ -30,4 +30,4 @@ $setToken = escape(setToken());
 $userDao = new UserDao();
 $userDao->insert($user);
 
-header('Location: /public/login_function/registration_complete/index.php');
+header('Location: /login_function/registration_complete');

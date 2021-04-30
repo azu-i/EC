@@ -1,15 +1,15 @@
 <?php
 class Order
 {
-  private $user_id;
+  private $userId;
   private $address;
   private $tell;
   private $payment;
 
-  public function __construct(int $user_id, string $address, string $tell, string $payment)
+  public function __construct(int $userId, string $address, string $tell, string $payment)
   {
     try{
-      if (empty($user_id)) {
+      if (empty($userId)) {
         throw new Exception('ログインしてください。');
       }
       if (empty($address)) {
@@ -25,15 +25,15 @@ class Order
       echo $e->getMessage();
       die;
     }
-    $this->user_id = $user_id;
+    $this->userId = $userId;
     $this->address = $address;
     $this->tell = $tell;
     $this->payment = $payment;
   }
 
-  public function user_id(): int
+  public function userId(): int
   {
-    return $this->user_id;
+    return $this->userId;
   }
 
   public function address(): string
@@ -53,10 +53,10 @@ class Order
 
   public function extractParamsForRegister(): array
   {
-    $user_id = $this->user_id;
+    $userId = $this->userId;
     $address = $this->address;
     $tell = $this->tell;
     $payment = $this->payment;
-    return [$user_id, $address, $tell, $payment];
+    return [$userId, $address, $tell, $payment];
   }
 }

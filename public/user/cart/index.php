@@ -18,12 +18,12 @@
       <th>小計</th>
       <th></th>
     </tr>
-    <?php foreach ($cartProducts->cart_products() as $cartProduct) { ?>
+    <?php foreach ($cartProducts->cartProducts() as $cartProduct) { ?>
       <tr>
         <td><?= $cartProduct->name() ?></td>
         <td><?= $cartProduct->price() ?>円</td>
         <td><?= $cartProduct->quantity() ?></td>
-        <td><?= $cartProduct->sum_price() ?>円</td>
+        <td><?= $cartProduct->sumPrice() ?>円</td>
         <td>
           <form action="/route/cart_delete" method="get">
             <input type="hidden" name="id" value="<?= $cartProduct->id()->value() ?>">
@@ -35,7 +35,7 @@
     <tr>
       <td colspan="2"></td>
       <td><strong>合計</strong></td>
-      <td><?= $cart->total_price() ?>円</td>
+      <td><?= $cart->totalPrice() ?>円</td>
       <td></td>
     </tr>
   </table>
