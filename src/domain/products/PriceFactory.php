@@ -1,4 +1,5 @@
 <?php
+namespace src\domain\products; 
 require_once (__DIR__ . '/Price.php');
 
 class PriceFactory

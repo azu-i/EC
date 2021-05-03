@@ -1,4 +1,5 @@
 <?php
+namespace src\domain\products; 
 class Deletion
 {
   private $id;

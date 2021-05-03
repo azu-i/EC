@@ -1,8 +1,22 @@
 <?php
-require_once (__DIR__ . '/../../models/repository/ProductsRepository.php');
-require_once (__DIR__ . '/../../domain/products/ProductId.php');
+namespace src\controllers\admin;
 
-$productsRepository = new ProductsRepository();
-session_start();
-$productId = new ProductId($_GET['id']);
-$productsRepository->delete($productId);
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\repository\ProductsRepository;
+use src\domain\products\ProductId;
+
+class Delete
+{
+  public function __construct(int $id)
+  {
+    $this->id = $id;
+  }
+
+  public function productDelete()
+  {
+    $productsRepository = new ProductsRepository();
+    session_start();
+    $productId = new ProductId($this->id);
+    $productsRepository->delete($productId);
+  }
+}

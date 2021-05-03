@@ -1,7 +1,9 @@
 <?php
-require_once (__DIR__ . '/../domain/login_function/User.php');
-require_once (__DIR__ . '/../domain/login_function/UserLogin.php');
+namespace src\models;
+require_once (__DIR__ . '/../../vendor/autoload.php');
 
+use src\domain\login_function\User;
+use src\domain\login_function\UserLogin;
 ini_set('display_errors', "On");
 
 
@@ -16,7 +18,7 @@ class UserDao
 
   public function __construct()
   {
-    $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
+    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
   }
 
   public function pdo()
@@ -30,9 +32,9 @@ class UserDao
     [$name, $email, $password] = $user->extractParamsForRegister();
     $sql = "INSERT INTO $table VALUES(NULL, :name, :email, :password, CURRENT_TIMESTAMP)";
     $st = $this->pdo->prepare($sql);
-    $st->bindParam(':name', $name, PDO::PARAM_STR);
-    $st->bindParam(':email', $email, PDO::PARAM_STR);
-    $st->bindParam(':password', password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+    $st->bindParam(':name', $name, \PDO::PARAM_STR);
+    $st->bindParam(':email', $email, \PDO::PARAM_STR);
+    $st->bindParam(':password', password_hash($password, PASSWORD_DEFAULT), \PDO::PARAM_STR);
     $st->execute();
     return $st;
   }
@@ -42,7 +44,7 @@ class UserDao
     $table = self::TABLE_USERS;
     $sql =  "SELECT * FROM $table WHERE email = :email";
     $st = $this->pdo->prepare($sql);
-    $st->bindParam(':email', $email, PDO::PARAM_STR);
+    $st->bindParam(':email', $email, \PDO::PARAM_STR);
     $st->execute();
     $userData = $st->fetch();
     return $userData;

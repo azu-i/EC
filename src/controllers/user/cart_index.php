@@ -1,4 +1,5 @@
 <?php
+namespace src\controllers\user;
 require_once(__DIR__ . '/../../domain/cart/Cart.php');
 require_once(__DIR__ . '/../../models/ProductsDao.php');
 

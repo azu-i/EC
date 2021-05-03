@@ -1,5 +1,5 @@
 <?php
-
+namespace src\domain\cart;
 class Cart
 {
   private $cartProducts;

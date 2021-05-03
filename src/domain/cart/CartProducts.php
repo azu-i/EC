@@ -1,4 +1,11 @@
 <?php
+namespace src\domain\cart;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\domain\products\Product;
+use src\domain\products\ProductId;
+use src\domain\products\Quantity;
+
 ini_set('display_errors', "On");
 class CartProducts
 {
@@ -8,7 +15,7 @@ class CartProducts
   public function __construct(Product $product, Quantity $quantity)
   {
     if (empty($quantity)) {
-      throw new Exception('足りていないパラメーターがあります');
+      throw new \Exception('足りていないパラメーターがあります');
     }
     $this->products = $product;
     $this->quantity = $quantity;

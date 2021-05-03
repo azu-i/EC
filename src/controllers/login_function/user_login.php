@@ -1,7 +1,12 @@
 <?php
-session_start();
-require_once(__DIR__ . '/../../models/UserDao.php');
-require_once(__DIR__ . '/../../domain/login_function/UserLogin.php');
+namespace src\controllers\login_function;
+
+// session_start();
+// require_once(__DIR__ . '/../../models/UserDao.php');
+// require_once(__DIR__ . '/../../domain/login_function/UserLogin.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\UserDao;
+use src\domain\login_function\UserLogin;
 
 class Login
 {

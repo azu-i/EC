@@ -1,4 +1,5 @@
 <?php
+namespace src\controllers\user;
 require (__DIR__ . '/../../models/ProductsDao.php');
 
 class CartStock

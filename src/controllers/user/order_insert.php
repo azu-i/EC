@@ -1,4 +1,5 @@
 <?php
+namespace src\controllers\user;
 ini_set('display_errors', "On");
 require_once(__DIR__ . '/../../domain/order/Order.php');
 require_once(__DIR__ . '/../../models/OrderDao.php');

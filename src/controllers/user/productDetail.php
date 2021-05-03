@@ -1,4 +1,6 @@
 <?php
+namespace src\controllers\user;
+
 require_once (__DIR__ . '/../../auth/Auth.php');
 require_once (__DIR__ . '/../../models/repository/ProductsRepository.php');
 require_once (__DIR__ . '/../../models/BrowdingHistoriesDao.php');

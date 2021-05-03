@@ -1,8 +1,6 @@
 <?php
-require_once (__DIR__ . '/Product.php');
-require_once (__DIR__ . '/Comment.php');
-require_once (__DIR__ . '/Price.php');
-require_once (__DIR__ . '/ProductId.php');
+namespace src\domain\products;
+
 ini_set('display_errors', "On");
 
 class ProductsFactory

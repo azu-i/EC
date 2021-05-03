@@ -1,7 +1,9 @@
 <?php
-require_once (__DIR__ . '/../../models/OrderDao.php');
+namespace src\controllers\admin;
+
+// require_once (__DIR__ . '/../../models/OrderDao.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\OrderDao;
 
 $orderDao = new OrderDao();
 $orderLists = $orderDao->orderedDataWithUserAndProductData();
-
-// require (__DIR__ . '/../../../public/admin/order_list/index.php');

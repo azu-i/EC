@@ -1,4 +1,5 @@
 <?php
+namespace src\models;
 ini_set('display_errors', "On");
 
 class OrderDao
@@ -15,7 +16,7 @@ class OrderDao
 
   public function __construct()
   {
-    $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
+    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
   }
 
   public function pdo()
@@ -27,10 +28,10 @@ class OrderDao
   {
     $table = self::TABLE_ORDER;
     $st = $this->pdo->prepare("INSERT INTO `$table`(`user_id`, `address`, `tell`, `payment`, `created_at`)  VALUES(:user_id, :address, :tell, :payment, CURRENT_TIMESTAMP)");
-    $st->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $st->bindParam(':address', $address, PDO::PARAM_STR);
-    $st->bindParam(':tell', $tell, PDO::PARAM_STR);
-    $st->bindParam(':payment', $payment, PDO::PARAM_INT);
+    $st->bindParam(':user_id', $user_id, \PDO::PARAM_INT);
+    $st->bindParam(':address', $address, \PDO::PARAM_STR);
+    $st->bindParam(':tell', $tell, \PDO::PARAM_STR);
+    $st->bindParam(':payment', $payment, \PDO::PARAM_INT);
     $st->execute();
   }
 
@@ -51,7 +52,7 @@ class OrderDao
     $tableOrderProducts
       = self::TABLE_ORDER＿PRODUCTS;
     $st = $this->pdo->query("SELECT * FROM `$tableOrder` INNER JOIN `$tableOrderProducts` ON $tableOrder.id = $tableOrderProducts.order_id");
-    $orderJoin = $st->fetchAll(PDO::FETCH_ASSOC);
+    $orderJoin = $st->fetchAll(\PDO::FETCH_ASSOC);
     return $orderJoin;
   }
 
