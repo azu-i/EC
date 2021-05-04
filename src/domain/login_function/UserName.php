@@ -1,4 +1,6 @@
 <?php
+namespace src\domain\login_function;
+
 ini_set('display_errors', "On");
 class UserName
 {
@@ -7,7 +9,7 @@ class UserName
   public function __construct(string $userName)
   {
     if (mb_strlen($userName) > 20) {
-      throw new Exception('ユーザー名は20文字までで登録お願いします。');
+      throw new \Exception('ユーザー名は20文字までで登録お願いします。');
     }
     $this->userName = $userName;
   }

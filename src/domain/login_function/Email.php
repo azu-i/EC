@@ -1,4 +1,6 @@
 <?php
+namespace src\domain\login_function;
+
 ini_set('display_errors', "On");
 class Email
 {
@@ -7,7 +9,7 @@ class Email
   public function __construct(string $mail)
   {
     if (!preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/', $mail)) {
-      throw new Exception('メールアドレスの入力が正しくありません');
+      throw new \Exception('メールアドレスの入力が正しくありません');
     }
     $this->mail = $mail;
   }

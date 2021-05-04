@@ -1,6 +1,10 @@
 <?php
-require_once(__DIR__ . '/../../domain/cart/Cart.php');
-require_once(__DIR__ . '/../../models/ProductsDao.php');
+namespace src\controllers\user;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\domain\cart\Cart;
+use src\models\ProductsDao;
 
 ini_set('display_errors', "On");
 

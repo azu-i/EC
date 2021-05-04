@@ -1,8 +1,11 @@
 <?php
-require_once (__DIR__ . '/../products/Quantity.php');
-require_once (__DIR__ .'/../products/Product.php');
-require_once (__DIR__ . '/CartProducts.php');
+namespace src\domain\cart;
 
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\domain\products\Product;
+use src\domain\cart\CartProducts;
+use src\domain\products\Quantity;
 
 class CartProductFactory
 {

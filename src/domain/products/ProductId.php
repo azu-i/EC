@@ -1,5 +1,5 @@
 <?php
-
+namespace src\domain\products;
 class ProductId
 {
   private $value;
@@ -7,7 +7,7 @@ class ProductId
   public function __construct(int $value)
   {
     if ($value < 0) {
-      throw new Exception('IDは0以上で入力してください');
+      throw new \Exception('IDは0以上で入力してください');
     }
     $this->value = $value;
   }

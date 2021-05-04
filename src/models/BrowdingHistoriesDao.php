@@ -1,5 +1,5 @@
 <?php
-
+namespace src\models;
 class browdingHistoriesDao
 {
   const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
@@ -12,7 +12,7 @@ class browdingHistoriesDao
 
   public function __construct()
   {
-    $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
+    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
   }
 
   public function pdo()
@@ -32,7 +32,7 @@ class browdingHistoriesDao
     $table_browding_histories = self::TABLE_BROWING_HISTORIES;
     $table_products = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("SELECT * FROM `$table_browding_histories` INNER JOIN `$table_products` ON browing_histories.product_id = products.id");
-    $browding_histories = $st->fetchAll(PDO::FETCH_ASSOC);
+    $browding_histories = $st->fetchAll(\PDO::FETCH_ASSOC);
     return $browding_histories;
   }
 

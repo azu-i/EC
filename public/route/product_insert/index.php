@@ -1,11 +1,11 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/admin/insert.php');
-session_start();
-// $name = $_GET['name'];
-// $comment = $_GET['comment'];
-// $price = $_GET['price'];
+require_once (__DIR__ . '/../../../vendor/autoload.php');
 
+use src\controllers\admin\Insert;
+
+session_start();
+;
 $insert = new Insert($_GET['name'], $_GET['comment'], $_GET['price']);
 $insert->insert();
 
-header('Location: /admin');
+header('Location: /route/admin');

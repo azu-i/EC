@@ -1,5 +1,7 @@
 <?php
-require_once (__DIR__ . '/Comment.php');
+namespace src\domain\products; 
+
+// require_once (__DIR__ . '/Comment.php');
 
 class CommentFactory
 {

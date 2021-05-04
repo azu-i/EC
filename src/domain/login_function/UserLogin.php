@@ -1,4 +1,5 @@
 <?php
+namespace src\domain\login_function;
 ini_set('display_errors', "On");
 
 class UserLogin

@@ -1,4 +1,5 @@
 <?php
+namespace src\domain\products;
 
 class Quantity
 {
@@ -7,7 +8,7 @@ class Quantity
   public function __construct(int $count)
   {
     if ($count < 0) {
-      throw new Exception('個数は0以上で入力してください');
+      throw new \Exception('個数は0以上で入力してください');
     }
     $this->count = $count;
   }

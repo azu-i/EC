@@ -1,7 +1,14 @@
 <?php
-require_once ( __DIR__ . '/../domain/products/ProductsFactory.php');
-require_once (__DIR__ . '/../domain/cart/CartProductFactory.php');
-require_once (__DIR__ . '/../domain/products/QuantityFactory.php');
+namespace src\models;
+// require_once ( __DIR__ . '/../domain/products/ProductsFactory.php');
+// require_once (__DIR__ . '/../domain/cart/CartProductFactory.php');
+// require_once (__DIR__ . '/../domain/products/QuantityFactory.php');
+require_once (__DIR__ . '/../../vendor/autoload.php');
+use src\domain\products\ProductsFactory;
+use src\domain\cart\CartProductFactory;
+use src\domain\products\QuantityFactory;
+use src\domain\products\ProductId;
+use src\domain\cart\Cart;
 
 ini_set('display_errors', "On");
 
@@ -17,7 +24,7 @@ class ProductsDao
 
   public function __construct()
   {
-    $this->pdo = new PDO(self::DSN, self::USER, self::PASS);
+    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
   }
 
   // pdoのgetter
@@ -37,11 +44,6 @@ class ProductsDao
   //商品情報編集
   public function editUplode(int $id, string $name, int $price, string $comment): void
   {
-    $products = ProductsFactory::create($id, $name, $price, $comment);
-    $id = $products->id()->value();
-    $name = $products->name();
-    $price = $products->price();
-    $comment = $products->comment();
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->query("UPDATE $table SET name='$name', comment='$comment', price=$price WHERE id= $id");
   }
@@ -51,9 +53,9 @@ class ProductsDao
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("INSERT INTO $table(name,comment,price) VALUES(:name, :comment, :price)");
-    $st->bindParam(':name', $name, PDO::PARAM_STR);
-    $st->bindParam(':comment', $comment, PDO::PARAM_STR);
-    $st->bindParam(':price', $price, PDO::PARAM_INT);
+    $st->bindParam(':name', $name, \PDO::PARAM_STR);
+    $st->bindParam(':comment', $comment, \PDO::PARAM_STR);
+    $st->bindParam(':price', $price, \PDO::PARAM_INT);
     $st->execute();
   }
 
@@ -62,7 +64,7 @@ class ProductsDao
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo()->query("SELECT * FROM $table");
-    $productsFromTable = $st->fetchAll(PDO::FETCH_ASSOC);
+    $productsFromTable = $st->fetchAll(\PDO::FETCH_ASSOC);
     return $productsFromTable;
   }
   

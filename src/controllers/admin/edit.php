@@ -1,14 +1,23 @@
 <?php
-require_once(__DIR__ . '/../../domain/products/Price.php');
-require_once(__DIR__ . '/../../domain/products/Product.php');
-require_once(__DIR__ . '/../../domain/products/Comment.php');
-require_once(__DIR__ . '/../../models/repository/ProductsRepository.php');
-require_once(__DIR__ . '/../../domain/products/ProductId.php');
+namespace src\controllers\admin;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\repository\ProductsRepository;
+use src\domain\products\ProductId;
 
 ini_set('display_errors', "On");
 
-$productsRepository = new ProductsRepository();
-$id = new ProductId($_GET['id']);
+class Edit
+{
+  public function __construct(int $id)
+  {
+    $this->id = $id;
+  }
 
-$products = $productsRepository->findById($id);
-
+  public function productEdit()
+  {
+    $productsRepository = new ProductsRepository();
+    $id = new ProductId($this->id);
+    $products = $productsRepository->findById($id);
+  }
+}

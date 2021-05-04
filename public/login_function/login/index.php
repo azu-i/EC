@@ -13,7 +13,7 @@ session_destroy();
 
 <body>
   <div class="base">
-    <form action="/route/login" method="get">
+    <form action="/route/login/index.php" method="post">
       <p>
         登録メールアドレス<br>
         <?php if (isset($_SESSION['email'])): 

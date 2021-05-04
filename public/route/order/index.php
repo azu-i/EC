@@ -1,5 +1,7 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/user/cart_index.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\controllers\user\CartIndex;
 
 $cartIndex = new CartIndex();
 [$cartProducts, $cart] = $cartIndex->cartProducts();

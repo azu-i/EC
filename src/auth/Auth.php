@@ -1,18 +1,16 @@
 <?php
-require_once (__DIR__ . '/../controllers/login_function/security.php');
-
-// session_start();
+namespace src\auth;
 
 class Auth
 {
-  public static function id()
+  public function id()
   {
     return $_SESSION['loginUser']['id'];
   }
 
-  public static function name()
+  public function name()
   {
-    return escape($_SESSION['loginUser']['name']);
+    return htmlspecialchars($_SESSION['loginUser']['name']);
   } 
 
 }

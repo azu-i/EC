@@ -1,3 +1,8 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/admin/delete.php');
-header('Location: /admin');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\controllers\admin\Delete;
+
+$delete = new Delete($_GET['id']);
+$delete->productDelete();
+header('Location: /route/admin');

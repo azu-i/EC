@@ -1,5 +1,8 @@
 <?php
-require_once(__DIR__ . '/../../models/ProductsDao.php');
+namespace src\controllers\admin;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\ProductsDao;
 
 ini_set('display_errors', "On");
 

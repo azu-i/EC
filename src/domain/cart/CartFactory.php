@@ -1,5 +1,8 @@
 <?php
-require_once (__DIR__ . '/Cart.php');
+namespace src\domain\cart;
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\domain\cart\Cart;
 
 class CartFactory
 {
@@ -7,6 +10,5 @@ class CartFactory
   {
     return new Cart();
   }
-
 }
 ?>

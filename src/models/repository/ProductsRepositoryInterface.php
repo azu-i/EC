@@ -1,7 +1,9 @@
 <?php
-require_once ( __DIR__ . '/../../domain/products/ProductsFactory.php');
-require_once (__DIR__ . '/../../domain/cart/CartProductFactory.php');
-require_once (__DIR__ . '/../../domain/products/QuantityFactory.php');
+namespace src\models\repository;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\domain\products\ProductId;
+use src\domain\products\Product;
 
 ini_set('display_errors', "On");
 
@@ -11,6 +13,6 @@ interface ProductsRepositoryInterface
   public function findAll(): array;
   public function findById(ProductId $id): Product;
   public function delete(ProductId $id): void;
-  public function edit(Product $product): void;
+  public function edit(int $id, string $name, int $price, string $comment): void;
   public function insert(Product $product): void; 
 }

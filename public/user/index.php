@@ -9,7 +9,7 @@
 <body>
   <h1 class="text-3xl font-semibold">Vegetable Shop</h1>
   <div class="container-link">
-    <a href="/admin">管理画面へ</a>
+    <a href="/route/admin">管理画面へ</a>
     <a href="/route/cart_empty">カートを空にする</a>
     <a href="/route/cart">カートへ</a>
     <a href="/route/order_history">購入履歴へ</a>

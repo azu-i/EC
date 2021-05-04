@@ -1,6 +1,8 @@
 <?php
-require (__DIR__ . '/../../models/ProductsDao.php');
+namespace src\controllers\user;
 
+require (__DIR__ . '/../../models/ProductsDao.php');
+ini_set('display_errors', "On");
 class CartStock
 {
   public function __construct(int $productId, int $stockNum)

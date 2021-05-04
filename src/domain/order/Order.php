@@ -1,4 +1,5 @@
 <?php
+namespace src\domain\order;
 class Order
 {
   private $userId;
@@ -10,18 +11,18 @@ class Order
   {
     try{
       if (empty($userId)) {
-        throw new Exception('ログインしてください。');
+        throw new \Exception('ログインしてください。');
       }
       if (empty($address)) {
-        throw new Exception('住所が未入力です。');
+        throw new \Exception('住所が未入力です。');
       }
       if (empty($tell)) {
-        throw new Exception('電話番号が未入力です。');
+        throw new \Exception('電話番号が未入力です。');
       }
       if (empty($payment)) {
-        throw new Exception('支払い方法が未入力です。');
+        throw new \Exception('支払い方法が未入力です。');
       }
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       echo $e->getMessage();
       die;
     }

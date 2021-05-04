@@ -1,5 +1,5 @@
 <?php
-
+namespace src\domain\products; 
 class Price
 {
   private $value;
@@ -7,7 +7,7 @@ class Price
   public function __construct($value)
   {
     if ($value < 0 || empty($value)) {
-      throw new Exception('金額は0円以上で入力してください');
+      throw new \Exception('金額は0円以上で入力してください');
     }
     $this->value = $value;
   }

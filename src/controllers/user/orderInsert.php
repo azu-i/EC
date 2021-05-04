@@ -1,9 +1,12 @@
 <?php
-ini_set('display_errors', "On");
-require_once(__DIR__ . '/../../domain/order/Order.php');
-require_once(__DIR__ . '/../../models/OrderDao.php');
-require_once(__DIR__ . '/../../models/UserDao.php');
+namespace src\controllers\user;
 
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\domain\order\Order;
+use src\models\OrderDao;
+
+ini_set('display_errors', "On");
 class OrderInsert
 {
 
@@ -31,7 +34,7 @@ class OrderInsert
   {
     [$authId, $address, $tell, $payment] = $this->Params();
     $orderDao = new OrderDao();
-    $st = $orderDao->orderInsert($authId, $address, $tell, $payment);
+    $orderDao->orderInsert($authId, $address, $tell, $payment);
   }
 
   public function orderProductInsert(): void

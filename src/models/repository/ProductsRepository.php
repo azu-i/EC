@@ -1,16 +1,18 @@
 <?php
-require_once(__DIR__ . '/../../domain/products/ProductsFactory.php');
-require_once(__DIR__ . '/../../domain/cart/CartProductFactory.php');
-require_once(__DIR__ . '/../../domain/products/QuantityFactory.php');
-require_once(__DIR__ . '/ProductsRepositoryInterface.php');
-require_once(__DIR__ . '/../ProductsDao.php');
+namespace src\models\repository;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\ProductsDao;
+use src\domain\products\ProductsFactory;
+use src\domain\products\ProductId;
+use src\domain\products\Product;
 
 ini_set('display_errors', "On");
 
 class ProductsRepository implements ProductsRepositoryInterface
 {
   private ProductsDao $productsDao;
-  //TODO: DIの形にする
+ 
   public function __construct()
   {
     $this->productsDao = new ProductsDao();
@@ -55,12 +57,18 @@ class ProductsRepository implements ProductsRepositoryInterface
   {
     $st = $this->productsDao->delete();
     $productId = $id->value();
-    $st->bindParam(':id', $productId, PDO::PARAM_INT);
+    $st->bindParam(':id', $productId, \PDO::PARAM_INT);
     $st->execute();
   }
 
-  public function edit(Product $product): void
+  public function edit(int $id, string $name, int $price, string $comment): void
   {
+    $products = ProductsFactory::create($id, $name, $price, $comment);
+    $id = $products->id()->value();
+    $name = $products->name();
+    $price = $products->price();
+    $comment = $products->comment();
+    $this->productsDao->editUplode($id,$name, $price, $comment);
   }
 
   public function insert(Product $product): void

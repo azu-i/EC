@@ -1,12 +1,18 @@
 <?php
-require_once(__DIR__ . '/../../models/repository/ProductsRepository.php');
-ini_set('display_errors', "On");
+// namespace src\controllers\admin;
 
-try {
-  $productsRepository = new ProductsRepository();
-  $products = $productsRepository->findAll();
-  // require(__DIR__ . '/../../../public/admin/index.php');
-} catch (Exception $e) {
-  echo $e->getMessage();
-  die;
-}
+// require (__DIR__ . '/../../../vendor/autoload.php');
+// use src\models\repository\ProductsRepository;
+
+// ini_set('display_errors', "On");
+// class AdminIndex
+// {
+//   public function allProducts()
+//   {
+//     $productsRepository = new ProductsRepository();
+//     $products = $productsRepository->findAll();
+//     return $products;
+//   }
+  
+
+// }

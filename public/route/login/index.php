@@ -1,7 +1,15 @@
 <?php
-require_once(__DIR__ . '/../../../src/controllers/login_function/user_login.php');
+require (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\controllers\login_function\Login;
+
+ini_set('display_errors', "On");
 session_start();
-$login = new Login($_GET['email'], $_GET['password']);
+
+$email = $_POST['email']; 
+$password = $_POST['password'];
+
+$login = new Login($email, $password);
 
 $errorMessage = $login->countError();
 if(count($errorMessage) > 0){

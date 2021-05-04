@@ -1,7 +1,11 @@
 <?php
-require_once (__DIR__ . '/../../domain/products/CommentFactory.php');
-require_once (__DIR__ . '/../../domain/products/PriceFactory.php');
-require_once (__DIR__ . '/../../models/ProductsDao.php');
+namespace src\controllers\admin;
+
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+use src\models\ProductsDao;
+use src\domain\products\CommentFactory;
+;
+use src\domain\products\PriceFactory;
 
 ini_set('display_errors', "On");
 

@@ -1,8 +1,5 @@
 <?php
-require_once (__DIR__ . '/User.php');
-require_once (__DIR__ . '/Email.php');
-require_once (__DIR__ . '/UserName.php');
-require_once (__DIR__ . '/UserPassword.php');
+namespace src\domain\login_function;
 
 ini_set('display_errors', "On");
 class UserFactory

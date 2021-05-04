@@ -11,7 +11,7 @@
 <body>
   <div class="base">
     <?php if ($error) echo "<span class=\"error\">$error</span>" ?>
-    <form action="/route/registration" method="post">
+    <form action="/route/registration/index.php" method="post">
       <p>
         ユーザー名 ※20文字まで<br>
         <input type="text" name="name">
