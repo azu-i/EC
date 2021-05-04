@@ -1,14 +1,18 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/user/order_insert.php');
-require_once (__DIR__ . '/../../../src/auth/Auth.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\auth\Auth;
+use src\controllers\user\OrderInsert;
+
+ini_set('display_errors', "On");
 
 session_start();
-$authId = Auth::id();
-// $address = $_GET['address'];
-// $tell = $_GET['tell'];
-// $payment = $_GET['payment'];
+$auth= new Auth();
+$authId = $auth->id();
+$address = $_POST['address'];
+$tell = $_POST['tell'];
 
-$orderInsert = new OrderInsert($authId, $_GET['address'], $_GET['tell'], $_GET['payment']);
+$orderInsert = new OrderInsert($authId, $address, $tell, $_POST['payment']);
 
 $orderInsert->orderInsert();
 $orderInsert->orderProductInsert();

@@ -1,6 +1,10 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/user/productDetail.php');
-require_once (__DIR__ . '/../../../src/domain/products/ProductId.php');
+// require_once (__DIR__ . '/../../../src/controllers/user/productDetail.php');
+// require_once (__DIR__ . '/../../../src/domain/products/ProductId.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\controllers\user\ProductDetail;
+use src\domain\products\ProductId;
 
 $productId = new ProductId($_GET["id"]);
 $productDetail = new ProductDetail($productId);

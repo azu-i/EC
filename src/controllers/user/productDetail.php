@@ -1,9 +1,12 @@
 <?php
 namespace src\controllers\user;
 
-require_once (__DIR__ . '/../../auth/Auth.php');
-require_once (__DIR__ . '/../../models/repository/ProductsRepository.php');
-require_once (__DIR__ . '/../../models/BrowdingHistoriesDao.php');
+require_once (__DIR__ . '/../../../vendor/autoload.php');
+
+use src\auth\Auth;
+use src\models\repository\ProductsRepository;
+use src\domain\products\ProductId;
+use src\models\browdingHistoriesDao;
 
 class ProductDetail
 {
@@ -22,7 +25,8 @@ class ProductDetail
   public function browdingHistoriesInsert(): void
   {
     session_start();
-    $authId = Auth::id();
+    $auth = new Auth();
+    $authId = $auth->id();
     $browdingHistoriesDao = new BrowdingHistoriesDao();
     $browdingHistoriesDao->browdingHistoriesInsert($this->productId->value(), $authId);
   }  

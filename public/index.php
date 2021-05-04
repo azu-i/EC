@@ -1,7 +1,4 @@
 <?php
-// require_once(__DIR__ . '/../src/models/UserDao.php');
-// require_once(__DIR__ . '/../src/auth/Auth.php');
-// require_once(__DIR__ . '/../src/models/repository/ProductsRepository.php');
 require_once (__DIR__ . '/../vendor/autoload.php');
 use src\auth\Auth;
 use src\models\UserDao;

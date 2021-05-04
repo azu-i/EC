@@ -38,9 +38,8 @@ class OrderDao
   public function orderProductInsert($orderProducts, $orderId): void
   {
     $table = self::TABLE_ORDER＿PRODUCTS;
-    $st = [];
     foreach ($orderProducts as $productId => $amount) {
-      $stmt[] = $this->pdo->prepare("INSERT INTO `$table`(`order_id`, `product_id`, `amount`) VALUES ('$orderId', '$productId', '$amount')");
+      $stmt[] = $this->pdo->query("INSERT INTO `$table`(`order_id`, `product_id`, `amount`) VALUES ('$orderId', '$productId', '$amount')");
     }
   }
 

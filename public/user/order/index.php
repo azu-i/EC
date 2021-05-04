@@ -41,7 +41,7 @@
       </tr>
     </table>
   <div class="base">
-    <form action="/route/order_insert" method="get">
+    <form action="/route/order_insert/index.php" method="post">
       <p>
         お名前<br>
         <input type="text" name="name">
