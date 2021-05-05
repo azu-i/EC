@@ -1,12 +1,13 @@
+<?php
+require_once (__DIR__ . '/../../template/adminHeader.php');
+?>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>商品修正</title>
   <link rel="stylesheet" href="/css/admin.css">
 </head>
-
 <body>
   <div class="base">
     <form action="/route/product_edit" method="get">

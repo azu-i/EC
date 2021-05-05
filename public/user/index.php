@@ -1,3 +1,6 @@
+<?php
+require_once (__DIR__ . '/../template/header.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,18 +8,7 @@
   <title>Vegetable Shop</title>
   <link rel="stylesheet" href="/css/shop.css">
 </head>
-
 <body>
-  <h1 class="text-3xl font-semibold">Vegetable Shop</h1>
-  <div class="container-link">
-    <a href="/route/admin">管理画面へ</a>
-    <a href="/route/cart_empty">カートを空にする</a>
-    <a href="/route/cart">カートへ</a>
-    <a href="/route/order_history">購入履歴へ</a>
-    <a href="/login_function/registration">新規ユーザー登録</a>
-    <p>ログインユーザー：<?= $loginUserName; ?></p>
-    <form action="/login_function/login" method="POST"><input type="submit" name="logout" value="ログアウト"></form>
-  </div>
   <table>
     <?php foreach ($products as $product) { ?>
       <tr>
