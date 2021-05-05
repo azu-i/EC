@@ -1,5 +1,6 @@
 <?php
 require_once (__DIR__ . '/../../../src/controllers/admin/order_list.php');
+require_once (__DIR__ . '/../../template/adminHeader.php');
 ?>
 <!DOCTYPE html>
 <html lang="ja">

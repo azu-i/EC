@@ -1,3 +1,6 @@
+<?php
+require_once (__DIR__ . '/../../template/adminHeader.php');
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,7 +8,6 @@
   <link rel="stylesheet" href="/css/admin.css">
   <title>商品追加</title>
 </head>
-
 <body>
   <div class="base">
     <?php if ($error) echo "<span class=\"error\">$error</span>" ?>

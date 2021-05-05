@@ -1,6 +1,4 @@
 <?php
-// require_once (__DIR__ . '/../../../src/controllers/user/productDetail.php');
-// require_once (__DIR__ . '/../../../src/domain/products/ProductId.php');
 require_once (__DIR__ . '/../../../vendor/autoload.php');
 
 use src\controllers\user\ProductDetail;
