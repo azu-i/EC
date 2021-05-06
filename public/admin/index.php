@@ -25,12 +25,5 @@ require_once (__DIR__ . '/../template/adminHeader.php');
       </tr>
     <?php } ?>
   </table>
-  <!-- <div class="base">
-    <a href="/admin/insert">新規追加</a>
-    <a href="/">サイト確認</a>
-    <a href="/login_function/registration">ユーザー登録</a>
-    <a href="/login_function/login">ユーザーlogin</a>
-    <a href="/admin/order_list">購入された商品</a>
-  </div> -->
 </body>
 </html>

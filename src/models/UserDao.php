@@ -3,9 +3,8 @@ namespace src\models;
 require_once (__DIR__ . '/../../vendor/autoload.php');
 
 use src\domain\login_function\User;
-use src\domain\login_function\UserLogin;
-ini_set('display_errors', "On");
 
+ini_set('display_errors', "On");
 
 class UserDao
 {
@@ -30,16 +29,14 @@ class UserDao
   {
     $table = self::TABLE_USERS;
     [$name, $email, $password] = $user->extractParamsForRegister();
-    $sql = "INSERT INTO $table VALUES(NULL, :name, :email, :password, CURRENT_TIMESTAMP)";
-    $st = $this->pdo->prepare($sql);
+    $st = $this->pdo->prepare("INSERT INTO $table VALUES(NULL, :name, :email, :password, CURRENT_TIMESTAMP)");
     $st->bindParam(':name', $name, \PDO::PARAM_STR);
     $st->bindParam(':email', $email, \PDO::PARAM_STR);
     $st->bindParam(':password', password_hash($password, PASSWORD_DEFAULT), \PDO::PARAM_STR);
     $st->execute();
-    return $st;
   }
 
-  public function getUserDataByEmail(string $email)
+  public function getUserDataByEmail($email)
   {
     $table = self::TABLE_USERS;
     $sql =  "SELECT * FROM $table WHERE email = :email";
@@ -49,45 +46,4 @@ class UserDao
     $userData = $st->fetch();
     return $userData;
   }
-
-  public function checkUserExistenceByEmail(string $email): bool
-  {
-    $userData = $this->getUserDataByEmail($email); 
-    if(!empty($userData)){
-      return true;
-    }
-    return false;
-  }
-
-  private function checkPassword($password, $typedPassword)
-  {
-    if (password_verify($password, $typedPassword)) {
-      //セッションハイジャック対策
-      session_regenerate_id(true);
-      return true;
-    } else{
-      return false;
-    }
-  }
-
-  public function login(UserLogin $userLogin): bool
-  {
-    [$email, $password] = $userLogin->extractParamsForLogin();
-    $userData = $this->getUserDataByEmail($email);
-    
-    if($this->checkUserExistenceByEmail($email) && $this->checkPassword($password, $userData['password'])){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  public function checkLogin(): bool
-  {
-    if(isset($_SESSION['loginUser']) && $_SESSION['loginUser']['id'] > 0){
-      return true;
-    }
-    return false;
-  }  
-
 }

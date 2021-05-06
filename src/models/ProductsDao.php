@@ -1,14 +1,9 @@
 <?php
 namespace src\models;
-// require_once ( __DIR__ . '/../domain/products/ProductsFactory.php');
-// require_once (__DIR__ . '/../domain/cart/CartProductFactory.php');
-// require_once (__DIR__ . '/../domain/products/QuantityFactory.php');
+
 require_once (__DIR__ . '/../../vendor/autoload.php');
-use src\domain\products\ProductsFactory;
-use src\domain\cart\CartProductFactory;
-use src\domain\products\QuantityFactory;
+
 use src\domain\products\ProductId;
-use src\domain\cart\Cart;
 
 ini_set('display_errors', "On");
 
@@ -49,7 +44,7 @@ class ProductsDao
   }
 
   //商品追加
-  public function productInsert($name, $comment, $price): void
+  public function productInsert($name, $comment, $price)
   {
     $table = self::TABLE_PRODUCTS;
     $st = $this->pdo->prepare("INSERT INTO $table(name,comment,price) VALUES(:name, :comment, :price)");
@@ -79,20 +74,20 @@ class ProductsDao
   }
 
 
-  public function searchCartProducts(array $cartContent, Cart $cart)
+  public function searchCartProducts(array $cartContent)
   {
     $table = self::TABLE_PRODUCTS; 
-    foreach ($cartContent as $id => $num) {
+    $productsData = [];
+    $num = [];
+    foreach ($cartContent as $id => $cartNum) {
       $st = $this->pdo->prepare("SELECT * FROM $table WHERE id = ?");
       $st->execute(array($id));
-      $row = $st->fetch();
+      $product = $st->fetch();
       $st->closeCursor();
-      $products = ProductsFactory::create($row['id'], $row['name'], $row['price'], $row['comment']);
-      $num = QuantityFactory::create(strip_tags($num))->count();
-      $cartProducts = CartProductFactory::create($products, $num);
-      $cart->appendCartProduct($cartProducts);
+      $productsData[] = $product;
+      $num[] = $cartNum;
     }
-    return $cart;
+    return [$productsData, $num];
   }
 
 }

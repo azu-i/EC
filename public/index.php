@@ -1,12 +1,13 @@
 <?php
 require_once (__DIR__ . '/../vendor/autoload.php');
 use src\auth\Auth;
-use src\models\UserDao;
+// use src\models\UserDao;
 use src\models\repository\ProductsRepository;
+use src\models\repository\UserRepository;
 
 session_start();
-$userDao = new UserDao();
-$checkLogin = $userDao->checkLogin();
+$userRepository = new UserRepository();
+$checkLogin = $userRepository->checkLogin();
 
 if ($checkLogin === false) {
   header('Location: /login_function/login');

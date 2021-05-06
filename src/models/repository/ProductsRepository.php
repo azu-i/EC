@@ -6,6 +6,9 @@ use src\models\ProductsDao;
 use src\domain\products\ProductsFactory;
 use src\domain\products\ProductId;
 use src\domain\products\Product;
+use src\domain\cart\Cart;
+use src\domain\cart\CartProductFactory;
+use src\domain\products\QuantityFactory;
 
 ini_set('display_errors', "On");
 
@@ -30,7 +33,6 @@ class ProductsRepository implements ProductsRepositoryInterface
   {
     $products = [];
     foreach ($productsFromTable as $productFromTable) {
-
       $products[] = ProductsFactory::create(
         $productFromTable['id'],
         $productFromTable['name'],
@@ -71,7 +73,16 @@ class ProductsRepository implements ProductsRepositoryInterface
     $this->productsDao->editUplode($id,$name, $price, $comment);
   }
 
-  public function insert(Product $product): void
+  public function cartProducts(array $cartContent, Cart $cart)
   {
+    [$productsData, $num] = $this->productsDao->searchCartProducts($cartContent);
+    for($i = 0; $i < count($productsData); $i++)
+    {
+      $products = ProductsFactory::create($productsData[$i]['id'], $productsData[$i]['name'], $productsData[$i]['price'], $productsData[$i]['comment']);
+      $num[$i] = QuantityFactory::create(strip_tags($num[$i]))->count();
+      $cartProducts = CartProductFactory::create($products, $num[$i]);
+      $cart->appendCartProduct($cartProducts);
+    }
+    return $cart;
   }
 }

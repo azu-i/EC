@@ -5,6 +5,7 @@ require_once (__DIR__ . '/../../../vendor/autoload.php');
 
 use src\domain\cart\Cart;
 use src\models\ProductsDao;
+use src\models\repository\ProductsRepository;
 
 ini_set('display_errors', "On");
 
@@ -15,8 +16,8 @@ class CartIndex
     session_start();
     if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
     $cart = new Cart();
-    $productsDao = new ProductsDao();
-    $cartProducts = $productsDao->searchCartProducts($_SESSION['cart'], $cart);
+    $productsRepository = new ProductsRepository();
+    $cartProducts = $productsRepository->cartProducts($_SESSION['cart'], $cart);
     return [$cartProducts, $cart];
   }
 }

@@ -1,5 +1,4 @@
 <?php
-require_once (__DIR__ . '/../../../src/controllers/admin/order_list.php');
 require_once (__DIR__ . '/../../template/adminHeader.php');
 ?>
 <!DOCTYPE html>
@@ -24,25 +23,23 @@ require_once (__DIR__ . '/../../template/adminHeader.php');
 
       </tr>
       <tr>
-        <?php foreach ($orderLists as $orderList) {  ?>
-          <?php foreach ($orderList as $orderInfo)  ?>
+        <?php for($i = 0; $i < count($orderData); $i++) {  ?>
           <td>
-            <p class="products"><?= $orderInfo['user_name'] ?></p>
-            <p class="products"><?= $orderInfo['email'] ?></p>
+            <p class="products"><?= $orderData[$i]['name'] ?></p>
+            <p class="products"><?= $orderData[$i]['email'] ?></p>
           </td>
           <td>
-            <p>商品名 ：<?= $orderInfo['name'] ?></p>
-            <p>個数   ：<?= $orderInfo['amount'] . '個' ?></p>
-            <p>金額   ：<?= $orderInfo['price'] * $orderInfo['amount'] . '円' ?></p>
-            <p>注文日時:<?= $orderInfo['created_at'] ?></p>
+            <p>商品名 ：<?= $productsData[$i]['name'] ?></p>
+            <p>個数   ：<?= $orderData[$i]['amount'] . '個' ?></p>
+            <p>金額   ：<?= $productsData[$i]['price'] * $orderData[$i]['amount'] . '円' ?></p>
+            <p>注文日時:<?= $orderData[$i]['created_at'] ?></p>
           </td>
           <td>
-            <p>住所：<?= $orderInfo['address'] ?></p>
-            <p>電話：<?= $orderInfo['tell'] ?></p>
+            <p>住所：<?= $orderData[$i]['address'] ?></p>
+            <p>電話：<?= $orderData[$i]['tell'] ?></p>
           </td>
       </tr>
     <?php } ?>
-    <?php  ?>
     </table>
 </body>
 

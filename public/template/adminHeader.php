@@ -18,7 +18,7 @@
         <li class="nav-list-item"><a href="/route/admin">管理画面Top</a></li>
         <li class="nav-list-item"><a href="/admin/insert">新規追加</a></li>
         <li class="nav-list-item"><a href="/">サイト確認</a></li>
-        <li class="nav-list-item"><a href="/admin/order_list">購入された商品</a></li>
+        <li class="nav-list-item"><a href="/route/order_list">購入された商品</a></li>
     </nav>
   </header>
 </body>

@@ -14,5 +14,5 @@ interface ProductsRepositoryInterface
   public function findById(ProductId $id): Product;
   public function delete(ProductId $id): void;
   public function edit(int $id, string $name, int $price, string $comment): void;
-  public function insert(Product $product): void; 
+  
 }
