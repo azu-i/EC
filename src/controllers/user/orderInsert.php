@@ -30,17 +30,18 @@ class OrderInsert
     return [$authId, $address, $tell, $payment];
   }
 
-  public function orderInsert(): void
+  public function orderInsert(): int
   {
     [$authId, $address, $tell, $payment] = $this->Params();
     $orderDao = new OrderDao();
     $orderDao->orderInsert($authId, $address, $tell, $payment);
+    $orderId = $orderDao->pdo()->lastInsertId();
+    return $orderId;
   }
 
-  public function orderProductInsert(): void
+  public function orderProductInsert($orderId): void
   {
     $orderDao = new OrderDao();
-    $orderId = $orderDao->pdo()->lastInsertId();
     $st = $orderDao->orderProductInsert($_SESSION['cart'], $orderId);
   }
 

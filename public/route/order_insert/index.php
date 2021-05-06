@@ -14,8 +14,8 @@ $tell = $_POST['tell'];
 
 $orderInsert = new OrderInsert($authId, $address, $tell, $_POST['payment']);
 
-$orderInsert->orderInsert();
-$orderInsert->orderProductInsert();
+$orderId = $orderInsert->orderInsert();
+$orderInsert->orderProductInsert($orderId);
 
 $paymentDispray = $orderInsert->paymentDispray();
 $_SESSION['cart'] = [];
