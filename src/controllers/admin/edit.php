@@ -19,5 +19,6 @@ class Edit
     $productsRepository = new ProductsRepository();
     $id = new ProductId($this->id);
     $products = $productsRepository->findById($id);
+    return $products;
   }
 }

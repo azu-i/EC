@@ -1,5 +1,7 @@
 <?php
+
 namespace src\domain\products;
+
 class Product
 {
   private $id;
@@ -9,9 +11,14 @@ class Product
 
   public function __construct(ProductId $id, string $name, Price $price, Comment $comment)
   {
-    if (empty($name)) {
-      throw new \Exception('商品名が空です。');
-    }
+    // try {
+    //   if (empty($name)) {
+    //     throw new \Exception('商品名が空です。');
+    //   }
+    // } catch (\Exception $e) {
+    //   echo $e->getMessage();
+    //   die;
+    // }
     $this->id = $id;
     $this->name = $name;
     $this->price = $price;

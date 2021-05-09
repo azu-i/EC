@@ -12,9 +12,6 @@ class Dao
   {
     $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
   }
-
-  
-
 }
 
 
