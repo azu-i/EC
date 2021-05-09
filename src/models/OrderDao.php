@@ -4,9 +4,14 @@ ini_set('display_errors', "On");
 
 class OrderDao
 {
-  const DSN = "mysql:host=localhost;dbname=shop;charset=utf8";
-  const USER = "root";
-  const PASS = "root";
+   const DSN = "mysql:host=us-cdbr-east-03.cleardb.com;dbname=heroku_f478407332e820c;charset=utf8";
+  const USER = "b4d023571f190b";
+  const PASS = "b2bbc28a";
+  const OPTION = array(
+                        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                        \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+                      );
   const TABLE_ORDER = "order";
   const TABLE_ORDER＿PRODUCTS = "order_products";
   const TABLE_PRODUCTS = "products";
@@ -16,7 +21,7 @@ class OrderDao
 
   public function __construct()
   {
-    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS);
+    $this->pdo = new \PDO(self::DSN, self::USER, self::PASS, self::OPTION);
   }
 
   public function pdo()
