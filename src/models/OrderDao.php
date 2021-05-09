@@ -19,11 +19,13 @@ class OrderDao
 
   private $pdo;
 
+  //db接続
+
   public function __construct()
   {
     $this->pdo = new \PDO(self::DSN, self::USER, self::PASS, self::OPTION);
   }
-
+  
   public function pdo()
   {
     return $this->pdo;
