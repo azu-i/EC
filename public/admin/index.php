@@ -19,7 +19,7 @@ require_once (__DIR__ . '/../template/adminHeader.php');
         </td>
         <td width="80">
           <p><?= $product->getPriceWithUnit() ?></p>
-          <p><a href="/admin/edit/?id=<?= $product->id()->value() ?>">修正</a></p>
+          <p><a href="/route/productEdit/?id=<?= $product->id()->value() ?>">修正</a></p>
           <p><a href="/route/product_delete/?id=<?= $product->id()->value() ?>" onclick="return confirm('削除してよろしいですか？')">削除</a></p>
         </td>
       </tr>

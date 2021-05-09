@@ -5,7 +5,7 @@ ini_set('display_errors', "On");
 
 class ProductsFactory
 {
-  public static function create(int $id, string $name, int $price, string $comment): Product
+  public static function create(int $id, string $name, string $price, string $comment): Product
   {
     return new Product(
       new ProductId($id),
