@@ -6,7 +6,7 @@ use src\domain\products\Product;
 use src\domain\products\ProductId;
 use src\domain\products\Quantity;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 class CartProducts
 {
   private $products;

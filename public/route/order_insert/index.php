@@ -4,7 +4,7 @@ require_once (__DIR__ . '/../../../vendor/autoload.php');
 use src\auth\Auth;
 use src\controllers\user\OrderInsert;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 session_start();
 $auth= new Auth();

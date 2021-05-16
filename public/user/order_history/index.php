@@ -24,7 +24,7 @@ require_once (__DIR__ . '/../../template/header.php');
       <tr>
         <?php for ($i = 0; $i < count($AuthOrderData); $i++ ) {  ?>
             <td>
-              <p class="products"><?= $AuthProductsData[$i]['name'] ?></p>
+              <p class="products"><?= $AuthProductsData[$i][name] ?></p>
             </td>
             <td>
               <p><?= $AuthOrderData[$i]['amount'] . '個' ?></p>

@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../../vendor/autoload.php');
 
 use src\domain\login_function\User;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class UserDao
 {

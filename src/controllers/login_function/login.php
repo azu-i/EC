@@ -7,7 +7,7 @@ use src\models\UserDao;
 use src\domain\login_function\UserLogin;
 use src\models\repository\UserRepository;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 class Login
 {
   public function __construct(string $email, string $password)

@@ -6,7 +6,7 @@ require_once (__DIR__ . '/../../../vendor/autoload.php');
 use src\models\UserDao;
 use src\domain\login_function\UserFactory;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class UserRegistration
 {

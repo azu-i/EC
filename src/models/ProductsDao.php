@@ -5,7 +5,7 @@ require_once (__DIR__ . '/../../vendor/autoload.php');
 
 use src\domain\products\ProductId;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class ProductsDao
 {

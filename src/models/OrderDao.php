@@ -1,6 +1,6 @@
 <?php
 namespace src\models;
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class OrderDao
 {

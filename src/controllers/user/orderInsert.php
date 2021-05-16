@@ -6,7 +6,7 @@ require_once (__DIR__ . '/../../../vendor/autoload.php');
 use src\domain\order\Order;
 use src\models\OrderDao;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 class OrderInsert
 {
 
