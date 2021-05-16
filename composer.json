@@ -8,7 +8,8 @@
         "ext-mbstring": "*"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "bin-dir": "vender/bin"
     },
 
     "autoload": {

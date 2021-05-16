@@ -1,9 +1,7 @@
 <?php
 namespace src\domain\login_function;
-// require_once (__DIR__ . '/UserName.php');
-// require_once (__DIR__ . '/Email.php');
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 class User
 {
   private $name;

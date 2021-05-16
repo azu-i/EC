@@ -7,7 +7,7 @@ use src\domain\cart\Cart;
 use src\models\ProductsDao;
 use src\models\repository\ProductsRepository;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class CartIndex
 {

@@ -16,7 +16,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
   <header>
     <h1 class="headline">
-      <a href="http://l-ec.com">Vegetable Shop</a>
+      <a href="/">Vegetable Shop</a>
     </h1>
     <nav class="nav-list">
       <ul>

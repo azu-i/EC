@@ -10,7 +10,7 @@ use src\domain\cart\Cart;
 use src\domain\cart\CartProductFactory;
 use src\domain\products\QuantityFactory;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class ProductsRepository implements ProductsRepositoryInterface
 {

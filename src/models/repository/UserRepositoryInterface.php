@@ -6,7 +6,7 @@ use src\domain\login_function\Email;
 use src\domain\login_function\UserLogin;
 use src\domain\login_function\User;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 //UserRepositoryであることの条件
 interface UserRepositoryInterface

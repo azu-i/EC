@@ -3,7 +3,7 @@ require (__DIR__ . '/../../../vendor/autoload.php');
 
 use src\controllers\login_function\Login;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 session_start();
 
 $email = $_POST['email']; 

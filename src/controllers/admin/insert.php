@@ -7,7 +7,7 @@ use src\domain\products\CommentFactory;
 ;
 use src\domain\products\PriceFactory;
 
-ini_set('display_errors', "On");
+// ini_set('display_errors', "On");
 
 class Insert
 {
